@@ -22,6 +22,16 @@
         "id": "piso-5",
         "es": "5to piso",
         "en": "5th floor"
+      },
+      {
+        "id": "piso-4",
+        "es": "4to piso",
+        "en": "4th floor"
+      },
+      {
+        "id": "piso-2",
+        "es": "2do piso",
+        "en": "2nd floor"
       }
     ]
   },
@@ -978,6 +988,461 @@
           "alt": {
             "es": "Área de juegos para niños",
             "en": "Children's play area"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bosques-escazu-vista-montana",
+      "codigo": "VT-04",
+      "pais": "Costa Rica",
+      "provincia": "San José",
+      "zona": "Escazú",
+      "condominio": "Bosques de Escazú",
+      "unidad": null,
+      "titulo": {
+        "es": "Apartamento con vista a la montaña en Bosques de Escazú",
+        "en": "Mountain-view apartment in Bosques de Escazú"
+      },
+      "precioUSD": 260000,
+      "m2": 90,
+      "habitaciones": 2,
+      "banos": 2,
+      "banoServicio": false,
+      "pisoTipo": [
+        "piso-2"
+      ],
+      "piso": {
+        "es": "2do piso",
+        "en": "2nd floor"
+      },
+      "parqueos": 2,
+      "bodega": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "amueblado": {
+        "es": "Se vende sin amueblar",
+        "en": "Sold unfurnished"
+      },
+      "cuotaCondominio": {
+        "es": "₡150,000 al mes",
+        "en": "₡150,000 per month"
+      },
+      "anioConstruccion": {
+        "es": "2014",
+        "en": "2014"
+      },
+      "ocupacion": {
+        "es": "Visitas con cita.",
+        "en": "Visits by appointment."
+      },
+      "habitado": false,
+      "financiamiento": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descuentoContado": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descripcion": {
+        "es": [
+          "Apartamento de 90 m² en el piso 2 de Bosques de Escazú, con 2 habitaciones, 2 baños y 2 parqueos techados amplios. Sala, cocina y comedor integrados, con mucha ventilación y entrada de luz.",
+          "Vista a la montaña de Escazú y a la ciudad de San José. Aire acondicionado en las habitaciones y toda la línea blanca de la cocina incluida en el precio.",
+          "El condominio se construyó con técnicas sostenibles con la naturaleza: senderos, casa club junto al río de Escazú (su sonido se escucha en el apartamento), áreas para yoga, áreas infantiles y espacios para BBQ. Piscina amplia temperada y gimnasio con vista al bosque.",
+          "Ideal para familias que buscan tranquilidad y seguridad. Se ofrece como inversión."
+        ],
+        "en": [
+          "A 90 m² apartment on the 2nd floor of Bosques de Escazú, with 2 bedrooms, 2 bathrooms and 2 spacious covered parking spaces. Living room, kitchen and dining room in one open space, with plenty of ventilation and natural light.",
+          "View of the Escazú mountain and the city of San José. Air conditioning in the bedrooms and all the kitchen appliances included in the price.",
+          "The condominium was built with techniques that respect nature: walking trails, a clubhouse next to the Escazú river (you can hear the water from the apartment), yoga areas, children's areas and BBQ spots. A large heated pool and a gym with forest views.",
+          "Ideal for families looking for peace and security. Offered as an investment."
+        ]
+      },
+      "incluye": {
+        "es": [
+          "2 parqueos techados amplios",
+          "Línea blanca de la cocina incluida en el precio",
+          "Aire acondicionado en las habitaciones",
+          "Terraza"
+        ],
+        "en": [
+          "2 spacious covered parking spaces",
+          "Kitchen appliances included in the price",
+          "Air conditioning in the bedrooms",
+          "Terrace"
+        ]
+      },
+      "amenidades": {
+        "es": [
+          "Piscina amplia temperada",
+          "Gimnasio con vista al bosque",
+          "Salón de fiestas",
+          "Parque infantil",
+          "Área social",
+          "Área de BBQ",
+          "Áreas para yoga",
+          "Senderos",
+          "Casa club junto al río de Escazú",
+          "Sauna",
+          "Seguridad 24 horas",
+          "Ascensor",
+          "Planta eléctrica",
+          "Lavandería",
+          "Admite mascotas"
+        ],
+        "en": [
+          "Large heated pool",
+          "Gym with forest views",
+          "Party room",
+          "Playground",
+          "Social area",
+          "BBQ area",
+          "Yoga areas",
+          "Walking trails",
+          "Clubhouse next to the Escazú river",
+          "Sauna",
+          "24-hour security",
+          "Elevator",
+          "Backup power generator",
+          "Laundry",
+          "Pet friendly"
+        ]
+      },
+      "cerca": {
+        "es": [],
+        "en": []
+      },
+      "registro": {
+        "es": [],
+        "en": []
+      },
+      "portada": 0,
+      "fotos": [
+        {
+          "src": "assets/vistamontana/vista-montana-01.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-01.jpg",
+          "w": 940,
+          "h": 500,
+          "alt": {
+            "es": "Sala y comedor con ventanales y vista verde",
+            "en": "Living and dining room with large windows and a green view"
+          }
+        },
+        {
+          "src": "assets/vistamontana/vista-montana-02.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-02.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Sala con mueble de TV y ventanal al balcón",
+            "en": "Living room with TV unit and a window onto the balcony"
+          }
+        },
+        {
+          "src": "assets/vistamontana/vista-montana-03.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-03.jpg",
+          "w": 940,
+          "h": 500,
+          "alt": {
+            "es": "Balcón con baranda de vidrio entre los árboles",
+            "en": "Balcony with a glass railing among the trees"
+          }
+        },
+        {
+          "src": "assets/vistamontana/vista-montana-04.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-04.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Cocina con isla, refrigeradora y campana",
+            "en": "Kitchen with island, refrigerator and range hood"
+          }
+        },
+        {
+          "src": "assets/vistamontana/vista-montana-05.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-05.jpg",
+          "w": 940,
+          "h": 500,
+          "alt": {
+            "es": "Habitación con ventana al verde",
+            "en": "Bedroom with a window onto the greenery"
+          }
+        },
+        {
+          "src": "assets/vistamontana/vista-montana-06.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-06.jpg",
+          "w": 940,
+          "h": 500,
+          "alt": {
+            "es": "Habitación con aire acondicionado y ventana",
+            "en": "Bedroom with air conditioning and a window"
+          }
+        },
+        {
+          "src": "assets/vistamontana/vista-montana-07.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-07.jpg",
+          "w": 940,
+          "h": 500,
+          "alt": {
+            "es": "Sala, comedor y cocina integrados",
+            "en": "Living room, dining room and kitchen in one space"
+          }
+        },
+        {
+          "src": "assets/vistamontana/vista-montana-08.jpg",
+          "thumb": "assets/vistamontana/t/vista-montana-08.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Vista al bosque y a la piscina del condominio desde el balcón",
+            "en": "View of the forest and the condominium pool from the balcony"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bosques-escazu-rooftop",
+      "codigo": "VT-05",
+      "pais": "Costa Rica",
+      "provincia": "San José",
+      "zona": "Escazú",
+      "condominio": "Bosques de Escazú",
+      "unidad": null,
+      "titulo": {
+        "es": "Apartamento con rooftop en Bosques de Escazú",
+        "en": "Apartment with a rooftop in Bosques de Escazú"
+      },
+      "precioUSD": 325000,
+      "m2": 132,
+      "habitaciones": 3,
+      "banos": 2.5,
+      "banoServicio": false,
+      "pisoTipo": [
+        "piso-4"
+      ],
+      "piso": {
+        "es": "4to piso, con terraza rooftop de 50 m² en el piso 7",
+        "en": "4th floor, with a 50 m² rooftop terrace on the 7th floor"
+      },
+      "parqueos": 2,
+      "bodega": true,
+      "amueblado": {
+        "es": "Se vende sin amueblar",
+        "en": "Sold unfurnished"
+      },
+      "cuotaCondominio": {
+        "es": "₡200,000 al mes",
+        "en": "₡200,000 per month"
+      },
+      "anioConstruccion": {
+        "es": "2015",
+        "en": "2015"
+      },
+      "ocupacion": {
+        "es": "Visitas con cita.",
+        "en": "Visits by appointment."
+      },
+      "habitado": false,
+      "financiamiento": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descuentoContado": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descripcion": {
+        "es": [
+          "Apartamento de 132 m² en el piso 4 de Bosques de Escazú, con 3 habitaciones, 2.5 baños, 2 parqueos y vista a San José. Está diseñado para familias pequeñas que buscan armonía con la naturaleza, seguridad y confort.",
+          "El precio incluye una terraza de 50 m² en el rooftop del piso 7, para hacer BBQ en las alturas de Escazú.",
+          "Condominio seguro, a la par de la única montaña virgen de Escazú, con senderos para caminar, decks para yoga, piscina temperada y área social. El condominio y la zona cuentan con seguridad 24/7.",
+          "Actualmente se ofrece a inversionistas."
+        ],
+        "en": [
+          "A 132 m² apartment on the 4th floor of Bosques de Escazú, with 3 bedrooms, 2.5 bathrooms, 2 parking spaces and a view of San José. It is designed for small families looking for harmony with nature, security and comfort.",
+          "The price includes a 50 m² terrace on the 7th-floor rooftop, for barbecues up high over Escazú.",
+          "A secure condominium next to the only unspoiled mountain in Escazú, with walking trails, yoga decks, a heated pool and a social area. The condominium and the surrounding area have 24/7 security.",
+          "Currently offered to investors."
+        ]
+      },
+      "incluye": {
+        "es": [
+          "Terraza de 50 m² en el rooftop del piso 7, incluida en el precio",
+          "2 parqueos",
+          "Depósito"
+        ],
+        "en": [
+          "50 m² terrace on the 7th-floor rooftop, included in the price",
+          "2 parking spaces",
+          "Storage room"
+        ]
+      },
+      "amenidades": {
+        "es": [
+          "Piscina temperada",
+          "Gimnasio",
+          "Salón de fiestas",
+          "Parque infantil",
+          "Área social",
+          "Área de BBQ",
+          "Decks para yoga",
+          "Senderos para caminar",
+          "Sauna",
+          "Seguridad 24 horas",
+          "Ascensor",
+          "Planta eléctrica",
+          "Lavandería",
+          "Aire acondicionado",
+          "Admite mascotas"
+        ],
+        "en": [
+          "Heated pool",
+          "Gym",
+          "Party room",
+          "Playground",
+          "Social area",
+          "BBQ area",
+          "Yoga decks",
+          "Walking trails",
+          "Sauna",
+          "24-hour security",
+          "Elevator",
+          "Backup power generator",
+          "Laundry",
+          "Air conditioning",
+          "Pet friendly"
+        ]
+      },
+      "cerca": {
+        "es": [],
+        "en": []
+      },
+      "registro": {
+        "es": [],
+        "en": []
+      },
+      "portada": 0,
+      "fotos": [
+        {
+          "src": "assets/rooftop/rooftop-01.jpg",
+          "thumb": "assets/rooftop/t/rooftop-01.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Sala con ventanales de piso a techo y vista a las montañas",
+            "en": "Living room with floor-to-ceiling windows and a mountain view"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-02.jpg",
+          "thumb": "assets/rooftop/t/rooftop-02.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Sala con ventanal en esquina y balcón con vista al valle",
+            "en": "Living room with a corner window and a balcony over the valley"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-03.jpg",
+          "thumb": "assets/rooftop/t/rooftop-03.jpg",
+          "w": 960,
+          "h": 1280,
+          "alt": {
+            "es": "Habitación con ventana y cortina",
+            "en": "Bedroom with a window and curtain"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-04.jpg",
+          "thumb": "assets/rooftop/t/rooftop-04.jpg",
+          "w": 960,
+          "h": 1280,
+          "alt": {
+            "es": "Vista desde el balcón sobre árboles y techos",
+            "en": "View from the balcony over trees and rooftops"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-05.jpg",
+          "thumb": "assets/rooftop/t/rooftop-05.jpg",
+          "w": 960,
+          "h": 1280,
+          "alt": {
+            "es": "Vista desde el balcón hacia las montañas y un edificio vecino",
+            "en": "View from the balcony toward the mountains and a neighboring building"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-06.jpg",
+          "thumb": "assets/rooftop/t/rooftop-06.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Balcón con sillas y vista al valle",
+            "en": "Balcony with chairs and a view of the valley"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-07.jpg",
+          "thumb": "assets/rooftop/t/rooftop-07.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Vista al valle y a las montañas desde el balcón",
+            "en": "View of the valley and the mountains from the balcony"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-08.jpg",
+          "thumb": "assets/rooftop/t/rooftop-08.jpg",
+          "w": 1013,
+          "h": 1280,
+          "alt": {
+            "es": "Cocina con encimera de piedra y horno empotrado",
+            "en": "Kitchen with a stone countertop and built-in oven"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-09.jpg",
+          "thumb": "assets/rooftop/t/rooftop-09.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Habitación con aire acondicionado, ventanal y TV",
+            "en": "Bedroom with air conditioning, a large window and a TV"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-10.jpg",
+          "thumb": "assets/rooftop/t/rooftop-10.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Baño con lavamanos doble y encimera oscura",
+            "en": "Bathroom with a double sink and a dark countertop"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-11.jpg",
+          "thumb": "assets/rooftop/t/rooftop-11.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Baño con inodoro, ducha y mueble blanco",
+            "en": "Bathroom with toilet, shower and a white vanity"
+          }
+        },
+        {
+          "src": "assets/rooftop/rooftop-12.jpg",
+          "thumb": "assets/rooftop/t/rooftop-12.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Vista al bosque y a la piscina del condominio",
+            "en": "View of the forest and the condominium pool"
           }
         }
       ]

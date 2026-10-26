@@ -217,7 +217,7 @@ body { background: var(--sc-canvas); }
   transform-origin: 50% 100%;
   transition: transform 420ms var(--sc-ease-out), opacity 300ms var(--sc-ease-out), filter 260ms var(--sc-ease-out);
 }
-.pin__label { display: grid; gap: 1px; text-align: center; background: #fff; border: 1px solid var(--vt-line); border-radius: 10px; padding: 6px 10px; box-shadow: var(--sc-e1); white-space: nowrap; }
+.pin__label { display: grid; gap: 1px; text-align: center; background: #fff; border: 1px solid var(--vt-line); border-radius: 10px; padding: 6px 10px; box-shadow: var(--sc-e1); white-space: normal; max-width: 9.2rem; }
 .pin__name { font-weight: 600; font-size: var(--sc-t-sm); color: var(--sc-ink); }
 .pin__price { font-weight: 700; font-size: var(--sc-t-base); font-variant-numeric: tabular-nums; color: var(--vt-forest); }
 .pin__fit { font-size: 0.7rem; color: var(--sc-ink-soft); }
@@ -229,6 +229,16 @@ body { background: var(--sc-canvas); }
 }
 .pin__drop img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transform: rotate(45deg); }
 .pin__stem { position: absolute; left: -1.5px; bottom: 0; width: 3px; height: 34px; transform-origin: 50% 100%; background: var(--vt-leaf); border-radius: 2px; transition: opacity 300ms var(--sc-ease-out); }
+/* two rows of pins when one row cannot fit (see layoutPins) */
+.pin__stem { z-index: 0; }
+.pin__btn { z-index: 1; }
+.pin__code { display: none; font-weight: 600; font-size: 0.66rem; letter-spacing: 0.02em; color: var(--sc-ink-soft); }
+.line__pins.is-stagger { --drop: 46px; }
+.line__pins.is-stagger .pin__name, .line__pins.is-stagger .pin__fit { display: none; }
+.line__pins.is-stagger .pin__code { display: block; }
+.line__pins.is-stagger .pin__label { padding: 3px 7px; }
+.line__pins.is-stagger .pin__drop { margin-bottom: 2px; }
+.line__pins.is-stagger .pin__sprout { gap: 5px; }
 .pin.is-out .pin__sprout { opacity: 0.4; filter: grayscale(1); }
 .pin.is-out .pin__drop, .pin.is-out .pin__stem { background: #9AA59F; }
 .pin.is-seed .pin__sprout { transform: translateY(22px) scale(0.6); opacity: 0; }

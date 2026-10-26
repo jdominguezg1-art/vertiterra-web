@@ -207,6 +207,8 @@
       if (!reduce && p < 0.7) window.scrollTo({ top: Math.round(sec.offsetTop + travel * 0.8), behavior: 'instant' });
     });
   }
+  // Several apartments in one condominium and no unit number: the pin names the code so they read apart.
+  function sameCondo(a) { return state.data.apartamentos.filter(function (b) { return b.condominio === a.condominio; }).length; }
   function renderPins() {
     if (!state.data) return;
     var groups = {};
@@ -219,8 +221,8 @@
         html += '<div class="pin" data-price="' + a.precioUSD + '" data-stack="' + i + '" style="left:' + pct + '%">' +
           '<span class="pin__stem"></span>' +
           '<button class="pin__btn" type="button" data-open="' + a.id + '"><span class="pin__sprout">' +
-            '<span class="pin__label"><span class="pin__name">' + esc(a.condominio) + (a.unidad ? ' ' + esc(a.unidad) : '') + '</span>' +
-            '<span class="pin__price">' + money(a.precioUSD) + '</span><span class="pin__fit"></span></span>' +
+            '<span class="pin__label"><span class="pin__name">' + esc(a.condominio) + (a.unidad ? ' ' + esc(a.unidad) : (sameCondo(a) > 1 ? ' ' + esc(a.codigo) : '')) + '</span>' +
+            '<span class="pin__code">' + esc(a.codigo) + '</span><span class="pin__price">' + money(a.precioUSD) + '</span><span class="pin__fit"></span></span>' +
             '<span class="pin__drop"><img src="' + cover.thumb + '" alt="" width="120" height="120"></span>' +
           '</span></button></div>';
       });
@@ -233,26 +235,44 @@
     refreshPins();
   }
   function layoutPins() {
-    // Stack apartments that share a price; the stem reaches down to the line.
-    // Apartments that share a price stand side by side over one stem; a group
-    // is kept inside the plot at the far ends.
+    // Apartments that share a price stand side by side over one stem; groups
+    // are kept apart and inside the plot. When one row of pins cannot fit the
+    // width (five apartments on a phone), the groups alternate between two
+    // rows: the stems still start at each exact price, only the tip rises.
     var pins = $$('.pin', lineEl.pins);
     if (!pins.length) return;
-    // Each pin's stem grows from its exact price on the line to its tip, so a
-    // shared price reads as two sprouts from one seed.
-    var W = lineEl.pins.clientWidth, gap = 8, groups = {};
+    var W = lineEl.pins.clientWidth, gap = 8, sep = 14, groups = {};
+    var plot = lineEl.pins;
+    plot.classList.remove('is-stagger');
+    pins.forEach(function (p) { p.querySelector('.pin__btn').style.bottom = ''; });
     pins.forEach(function (p) { (groups[p.getAttribute('data-price')] = groups[p.getAttribute('data-price')] || []).push(p); });
     var G = Object.keys(groups).map(function (k) {
       var g = groups[k], x = g[0].offsetLeft;
       var widths = g.map(function (p) { return p.querySelector('.pin__btn').offsetWidth || 120; });
       var total = widths.reduce(function (s, w) { return s + w; }, 0) + gap * (g.length - 1);
-      return { pins: g, x: x, widths: widths, total: total, left: x - total / 2 };
+      return { pins: g, x: x, widths: widths, total: total, left: x - total / 2, tier: 0 };
     }).sort(function (a, b) { return a.x - b.x; });
-    // keep groups apart and inside the plot
-    G.forEach(function (g, i) { g.left = Math.max(g.left, 0, i ? G[i - 1].left + G[i - 1].total + 14 : 0); });
-    for (var i = G.length - 1; i >= 0; i--) {
-      var limit = i === G.length - 1 ? W : G[i + 1].left - 14;
-      if (G[i].left + G[i].total > limit) G[i].left = limit - G[i].total;
+    var need = G.reduce(function (s, g) { return s + g.total; }, 0) + sep * (G.length - 1);
+    var stagger = need > W && G.length > 2;
+    if (stagger) {
+      plot.classList.add('is-stagger');
+      G.forEach(function (g, i) { g.tier = i % 2; });
+      // widths and heights can change with the smaller drop
+      G.forEach(function (g) { g.widths = g.pins.map(function (p) { return p.querySelector('.pin__btn').offsetWidth || 120; }); g.total = g.widths.reduce(function (s, w) { return s + w; }, 0) + gap * (g.pins.length - 1); g.left = g.x - g.total / 2; });
+    }
+    var tiers = stagger ? [G.filter(function (g) { return g.tier === 0; }), G.filter(function (g) { return g.tier === 1; })] : [G];
+    tiers.forEach(function (T) {
+      T.forEach(function (g, i) { g.left = Math.max(g.left, 0, i ? T[i - 1].left + T[i - 1].total + sep : 0); });
+      for (var i = T.length - 1; i >= 0; i--) {
+        var limit = i === T.length - 1 ? W : T[i + 1].left - sep;
+        if (T[i].left + T[i].total > limit) T[i].left = limit - T[i].total;
+      }
+    });
+    var rise = 0;
+    if (stagger) {
+      var hmax = 0;
+      pins.forEach(function (p) { hmax = Math.max(hmax, p.querySelector('.pin__btn').offsetHeight); });
+      rise = hmax + 8;
     }
     G.forEach(function (g) {
       var left = g.left - g.x;
@@ -260,6 +280,7 @@
         var btn = p.querySelector('.pin__btn');
         btn.style.left = left.toFixed(1) + 'px';
         var base = parseFloat(getComputedStyle(btn).bottom) || 30;
+        if (g.tier) { base += rise; btn.style.bottom = base + 'px'; }
         var dx = left + g.widths[i] / 2;
         var stem = p.querySelector('.pin__stem');
         stem.style.height = Math.hypot(dx, base).toFixed(1) + 'px';
@@ -272,6 +293,7 @@
   function refreshPins() {
     if (!lineEl.pins) return;
     var showV = state.budgetUser ? (state.budget == null ? B_MAX : state.budget) : demoV;
+    var fitSig = '';
     $$('.pin', lineEl.pins).forEach(function (p) {
       var price = +p.getAttribute('data-price');
       var seed = !state.budgetUser && !reduce && price > demoV;
@@ -280,8 +302,11 @@
       p.classList.toggle('is-out', out);
       var fit = p.querySelector('.pin__fit');
       fit.textContent = state.budgetUser && state.budget != null ? (out ? T('over') : T('fits')) : '';
+      fitSig += fit.textContent.length ? '1' : '0';
       p.querySelector('.pin__btn').setAttribute('aria-label', p.querySelector('.pin__name').textContent + ', ' + money(price) + (fit.textContent ? ', ' + fit.textContent : ''));
     });
+    // the "fits / over budget" line changes a pin's size: lay the pins out again when it appears or goes
+    if (fitSig !== lineEl.fitSig) { var first = lineEl.fitSig === undefined; lineEl.fitSig = fitSig; if (!first) layoutPins(); }
     lineEl.stage.setAttribute('data-sc-verify-state', Math.round(showV / 1000) + '|' + $$('.pin.is-seed', lineEl.pins).length);
   }
   function lineFrame() {
