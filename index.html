@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verti Terra · Apartamentos en Escazú y Santa Ana</title>
+<meta name="description" content="Solo apartamentos en Escazú y Santa Ana, Costa Rica. Busca por zona, precio, condominio y piso, y agenda tu visita por WhatsApp.">
+<meta name="theme-color" content="#0F3B33">
+<link rel="icon" type="image/png" href="assets/brand/icono-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Geist:wght@400;500;600&display=swap">
+<link rel="preload" as="image" href="assets/hero/room.jpg" imagesrcset="assets/hero/room-m.jpg 1100w, assets/hero/room.jpg 1775w" imagesizes="100vw">
+<link rel="stylesheet" href="scrollcraft.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#apartamentos" data-i18n="skip">Saltar a los apartamentos</a>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<header class="bar" id="bar">
+  <a class="bar__brand" href="#inicio" aria-label="Verti Terra, inicio" data-i18n-attr="aria-label:brandHome">
+    <img src="assets/brand/logo-15-2-520.png" width="520" height="271" alt="Verti Terra Bienes Raíces" data-i18n-attr="alt:logoAlt">
+  </a>
+  <nav class="bar__nav" id="barNav" aria-label="Principal" data-i18n-attr="aria-label:navLabel">
+    <a href="#apartamentos" data-i18n="navApts">Apartamentos</a>
+    <a href="#presupuesto" data-i18n="navBudget">Tu presupuesto</a>
+    <a href="#propietarios" data-i18n="navOwners">Para propietarios</a>
+    <a href="#preguntas" data-i18n="navFaq">Preguntas</a>
+    <a class="btn btn--solid bar__nav-cta" href="#contacto" data-i18n="ctaVisit">Agendar visita</a>
+  </nav>
+  <div class="bar__tools">
+    <a class="bar__chip" id="budgetChip" href="#apartamentos" hidden></a>
+    <button class="bar__lang" id="langToggle" type="button" aria-label="Read in English" data-i18n-attr="aria-label:langAria"><span data-i18n="langShort">EN</span></button>
+    <a class="btn btn--solid bar__cta" href="#contacto" data-i18n="ctaVisit">Agendar visita</a>
+    <button class="bar__menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="barNav">
+      <span class="sr" data-i18n="menu">Menú</span>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1 · THRESHOLD: pin + independent planes (page-local choreography) -->
+  <section id="inicio" class="hero" data-sc-act="pin" data-sc-span="2.2" aria-labelledby="heroTitle">
+    <div data-sc-stage class="hero__stage" id="heroStage" data-sc-verify-state="">
+      <div class="hero__plane hero__view" aria-hidden="true">
+        <img id="heroView" src="assets/hero/view.jpg" srcset="assets/hero/view-m.jpg 1100w, assets/hero/view.jpg 1775w" sizes="(max-aspect-ratio: 4/3) 160vh, 100vw" width="1775" height="1334" alt="" decoding="async">
+        <div class="hero__haze"></div>
+      </div>
+
+      <div class="sc-copy hero__beat">
+        <p class="hero__kicker" data-sc-cue="0.56 1 0.3 0.1" data-i18n="beatKicker">Penthouse en Bosques de Escazú</p>
+        <p class="sc-display hero__beat-title" data-sc-cue="0.6 1 0.3 0.1" data-sc-kinetic="lines" data-i18n="beatTitle">Primero, la vista.</p>
+      </div>
+
+      <div class="hero__plane hero__room" id="heroRoom">
+        <img class="hero__room-hole" src="assets/hero/room-hole.webp" srcset="assets/hero/room-hole-m.webp 1100w, assets/hero/room-hole.webp 1775w" sizes="100vw" width="1775" height="1334" alt="" decoding="async">
+        <img class="hero__room-full" id="heroRoomFull" src="assets/hero/room.jpg" srcset="assets/hero/room-m.jpg 1100w, assets/hero/room.jpg 1775w" sizes="100vw" width="1775" height="1334" alt="Sala del penthouse en Bosques de Escazú, con la puerta abierta al balcón y las montañas" data-i18n-attr="alt:heroAlt" fetchpriority="high">
+      </div>
+
+      <div class="vt-scrim vt-scrim--hero" aria-hidden="true"></div>
+
+      <div class="sc-copy hero__copy" data-sc-cue="0 0.31 0 0.16">
+        <h1 class="sc-display hero__title" id="heroTitle" data-i18n="heroTitle">Tu apartamento en Escazú y Santa Ana.</h1>
+        <p class="hero__sub" data-i18n="heroSub">Solo apartamentos. Busca por zona, precio, condominio y piso. Visitas con cita.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--light" href="#apartamentos"><span data-i18n="ctaSee">Ver apartamentos</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost-light js-wa" href="https://wa.me/" target="_blank" rel="noopener" data-wa="general"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span>WhatsApp</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · SPECIALIST: flow, quiet on paper -->
+  <section class="sc-section quiet" data-sc-act="flow" aria-labelledby="quietTitle">
+    <div class="sc-wrap quiet__grid">
+      <h2 class="sc-display quiet__title" id="quietTitle" data-sc-in data-i18n="quietTitle">Solo apartamentos.</h2>
+      <div class="quiet__text" data-sc-in data-sc-stagger="70">
+        <p class="sc-lede" data-i18n="quietLede">Los sitios grandes mezclan casas, lotes, bodegas y oficinas. Nosotros no.</p>
+        <p class="sc-body" data-i18n="quietBody1">Trabajamos solo apartamentos, por ahora en Escazú y Santa Ana. Así encuentras rápido lo que buscas: por zona, precio, condominio y piso.</p>
+        <p class="sc-body" data-i18n="quietBody2">Verti Terra es la marca de bienes raíces de la familia de Vertigreens. Escríbenos directo por WhatsApp.</p>
+        <ul class="quiet__facts">
+          <li data-i18n="fact1">Escazú y Santa Ana</li>
+          <li data-i18n="fact2">Visitas con cita</li>
+          <li data-i18n="fact3">Precio en cada ficha</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · THE LINE (peak): pin, bespoke budget instrument -->
+  <section id="presupuesto" class="line" data-sc-act="pin" data-sc-span="3" aria-labelledby="lineTitle">
+    <div data-sc-stage class="line__stage" id="lineStage" data-sc-verify-state="">
+      <div class="sc-wrap line__head">
+        <h2 class="sc-display line__title" id="lineTitle" data-i18n="lineTitle">¿Hasta cuánto quieres invertir?</h2>
+        <p class="sc-body line__body" data-i18n="lineBody">Cada apartamento está en su precio real. Mueve la línea a tu presupuesto y quedan encendidos los que te alcanzan.</p>
+      </div>
+
+      <div class="sc-wrap line__figure">
+        <p class="line__value"><span class="line__value-label" data-i18n="lineValueLabel">Tu presupuesto</span> <output id="lineOut" for="lineInput">US$100,000</output></p>
+        <div class="line__plot" id="linePlot">
+          <div class="line__pins" id="linePins"></div>
+          <svg class="line__earth" id="lineEarth" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+            <line class="line__rail" x1="0" y1="20" x2="1000" y2="20"/>
+            <path class="line__fill" id="lineFill" d="M0 20 L0 20 Z"/>
+          </svg>
+          <input class="line__input earth-range" id="lineInput" type="range" min="100000" max="600000" step="5000" value="600000"
+                 aria-label="Tu presupuesto en dólares" data-i18n-attr="aria-label:budgetAria">
+          <ol class="line__axis" aria-hidden="true" id="lineAxis"></ol>
+        </div>
+      </div>
+
+      <div class="sc-wrap line__after" id="lineAfter">
+        <p class="line__hint" data-i18n="lineHint">Ahora muévela tú. Y dinos cómo pagarías:</p>
+        <div class="seg" role="radiogroup" aria-label="Forma de pago" data-i18n-attr="aria-label:payAria" id="paySeg">
+          <button type="button" role="radio" aria-checked="false" data-pago="contado" data-i18n="payCash">De contado</button>
+          <button type="button" role="radio" aria-checked="false" data-pago="credito" data-i18n="payCredit">Con crédito</button>
+          <button type="button" role="radio" aria-checked="false" data-pago="nose" data-i18n="payUnsure">Todavía no sé</button>
+        </div>
+        <a class="btn btn--solid" href="#apartamentos" id="lineGo"><span data-i18n="lineGo">Ver los que me alcanzan</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · CATALOGUE: flow, working surface -->
+  <section id="apartamentos" class="sc-section catalog" data-sc-act="flow" aria-labelledby="catTitle">
+    <div class="sc-wrap">
+      <div class="catalog__head">
+        <h2 class="sc-display catalog__title" id="catTitle" data-i18n="catTitle">Apartamentos</h2>
+        <p class="catalog__count" id="catCount" role="status" aria-live="polite"></p>
+      </div>
+
+      <form class="filters" id="filters" role="search" aria-label="Filtrar apartamentos" data-i18n-attr="aria-label:filtersAria" onsubmit="return false">
+        <label class="field">
+          <span data-i18n="fZone">Zona</span>
+          <select id="fZona"><option value="" data-i18n="fAllF">Todas</option></select>
+        </label>
+        <label class="field">
+          <span data-i18n="fCondo">Condominio</span>
+          <select id="fCondo"><option value="" data-i18n="fAllM">Todos</option></select>
+        </label>
+        <label class="field">
+          <span data-i18n="fFloor">Piso o tipo</span>
+          <select id="fPiso"><option value="" data-i18n="fAllM">Todos</option></select>
+        </label>
+        <label class="field">
+          <span data-i18n="fBeds">Habitaciones</span>
+          <select id="fHab">
+            <option value="0" data-i18n="fAny">Cualquiera</option>
+            <option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option>
+          </select>
+        </label>
+        <label class="field">
+          <span data-i18n="fSort">Ordenar</span>
+          <select id="fSort">
+            <option value="asc" data-i18n="sortAsc">Precio: menor a mayor</option>
+            <option value="desc" data-i18n="sortDesc">Precio: mayor a menor</option>
+          </select>
+        </label>
+        <div class="field field--budget">
+          <span id="fBudgetLabel"><span data-i18n="fBudget">Presupuesto máximo</span>: <output id="fBudgetOut" for="fBudget">Sin límite</output></span>
+          <div class="earth-mini">
+            <svg class="earth-mini__svg" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><line class="line__rail" x1="0" y1="20" x2="1000" y2="20"/><path class="line__fill" d="M0 20 Z"/></svg>
+            <input class="earth-range" id="fBudget" type="range" min="100000" max="600000" step="5000" value="600000" aria-labelledby="fBudgetLabel">
+          </div>
+        </div>
+        <button class="btn btn--quiet filters__clear" type="button" id="fClear" data-i18n="fClear">Limpiar filtros</button>
+      </form>
+
+      <ol class="ledger" id="ledger" aria-label="Resultados" data-i18n-attr="aria-label:resultsAria"></ol>
+      <div class="ledger__empty" id="ledgerEmpty" hidden>
+        <p class="sc-lede" data-i18n="emptyTitle">Todavía no tenemos un apartamento con esos filtros.</p>
+        <p class="sc-body" data-i18n="emptyBody">Escríbenos qué buscas y te avisamos cuando entre uno.</p>
+        <a class="btn btn--solid js-wa" data-wa="search" href="https://wa.me/" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="emptyCta">Avísame por WhatsApp</span></a>
+      </div>
+      <noscript><p class="sc-body">Para ver y filtrar los apartamentos activa JavaScript, o escríbenos por WhatsApp al +506 7279-8418.</p></noscript>
+    </div>
+  </section>
+
+  <!-- 5 · OWNERS: flow + reveal wipe -->
+  <section id="propietarios" class="sc-section owners" data-sc-act="flow" aria-labelledby="ownTitle">
+    <div class="sc-wrap owners__grid">
+      <figure class="owners__fig" data-sc-reveal="left" data-sc-reveal-at="0.08 0.4">
+        <img src="assets/hero/piscina-nova.jpg" width="1282" height="720" loading="lazy" decoding="async" alt="Piscina del Condominio Nova Lofts, en Santa Ana" data-i18n-attr="alt:ownersAlt">
+      </figure>
+      <div class="owners__text">
+        <h2 class="sc-display owners__title" id="ownTitle" data-i18n="ownTitle">¿Tienes un apartamento para vender?</h2>
+        <p class="sc-lede" data-i18n="ownLede">Véndelo con nosotros.</p>
+        <p class="sc-body" data-i18n="ownBody">Aquí solo hay apartamentos, así que el tuyo no se pierde entre casas y lotes. Cuéntanos de él y te contactamos.</p>
+
+        <form class="owner-form" id="ownerForm" onsubmit="return false" aria-labelledby="ownTitle">
+          <div class="owner-form__grid">
+            <label class="field"><span data-i18n="oName">Tu nombre</span><input id="oName" type="text" autocomplete="name" required></label>
+            <label class="field"><span data-i18n="oWhere">Zona y condominio</span><input id="oWhere" type="text" placeholder="Ej.: Santa Ana, Condominio..." data-i18n-attr="placeholder:oWherePh"></label>
+            <label class="field"><span data-i18n="oM2">Metros cuadrados</span><input id="oM2" type="text" inputmode="numeric"></label>
+            <label class="field"><span data-i18n="oBeds">Habitaciones</span><input id="oBeds" type="text" inputmode="numeric"></label>
+            <label class="field"><span data-i18n="oFloor">Piso o tipo</span><input id="oFloor" type="text" placeholder="Ej.: 5to piso, penthouse" data-i18n-attr="placeholder:oFloorPh"></label>
+            <label class="field"><span data-i18n="oLived">¿Vive alguien ahí?</span>
+              <select id="oLived"><option value="" data-i18n="oPick">Elige</option><option value="si" data-i18n="yes">Sí</option><option value="no" data-i18n="no">No</option></select>
+            </label>
+          </div>
+          <label class="field"><span data-i18n="oPrice">Precio que tienes en mente (opcional)</span><input id="oPrice" type="text"></label>
+          <div class="form-send">
+            <a class="btn btn--solid js-wa" id="ownerSend" data-wa="owner" href="https://wa.me/" target="_blank" rel="noopener" aria-disabled="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="sendWa">Enviar por WhatsApp</span></a>
+            <p class="form-note" id="ownerNote" data-i18n="sendNote">Se abre WhatsApp con tus respuestas. Este sitio no guarda nada.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · PATHS: flow on forest, pointer tilt -->
+  <section id="caminos" class="sc-section paths" data-sc-act="flow" aria-labelledby="pathTitle">
+    <div class="sc-wrap">
+      <div class="paths__head" data-sc-in data-sc-stagger="60">
+        <h2 class="sc-display paths__title" id="pathTitle" data-i18n="pathTitle">¿Compras, vendes o buscas zona?</h2>
+        <p class="paths__lede" data-i18n="pathLede">Escoge una de las tres.</p>
+      </div>
+      <div class="paths__grid">
+        <article class="path path--big" data-sc-tilt="4">
+          <figure class="path__photo">
+            <img src="assets/novalofts/novalofts-01.jpg" srcset="assets/novalofts/t/novalofts-01.jpg 560w, assets/novalofts/novalofts-01.jpg 1282w" sizes="(max-width: 760px) 92vw, 50vw" width="1282" height="720" loading="lazy" decoding="async" alt="Cocina abierta y sala de doble altura en Nova Lofts, Santa Ana" data-i18n-attr="alt:pathBuyAlt">
+          </figure>
+          <p class="path__tag" data-i18n="pathBuyTag">Comprar</p>
+          <h3 data-i18n="pathBuyTitle">Encuentra tu apartamento</h3>
+          <p data-i18n="pathBuyBody">Filtra por zona, precio, condominio, piso y habitaciones. Cada ficha trae fotos reales, precio y lo que incluye.</p>
+          <a class="path__link" href="#apartamentos"><span data-i18n="ctaSee">Ver apartamentos</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="path" data-sc-tilt="4">
+          <p class="path__tag" data-i18n="pathSellTag">Vender</p>
+          <h3 data-i18n="pathSellTitle">Vende tu apartamento</h3>
+          <p data-i18n="pathSellBody">Cuéntanos de tu apartamento en dos minutos y te contactamos.</p>
+          <a class="path__link" href="#propietarios"><span data-i18n="pathSellCta">Para propietarios</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="path" data-sc-tilt="4">
+          <p class="path__tag" data-i18n="pathZoneTag">Escoger zona</p>
+          <h3 data-i18n="pathZoneTitle">Escazú o Santa Ana</h3>
+          <p data-i18n="pathZoneBody">Ve solo los apartamentos de la zona que te interesa.</p>
+          <div class="path__zones" id="pathZones"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · ALTITUDE: flow + parallax bed -->
+  <section class="altitude" data-sc-act="flow" aria-labelledby="altTitle">
+    <div class="altitude__bed" data-sc-parallax="1.6" aria-hidden="true">
+      <img src="assets/hero/bosque.jpg" width="1600" height="899" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="vt-scrim vt-scrim--alt" aria-hidden="true"></div>
+    <div class="sc-wrap altitude__copy">
+      <h2 class="sc-display altitude__title" id="altTitle" data-i18n="altTitle">Hay apartamentos que se escogen por la vista.</h2>
+      <p class="altitude__cap" data-i18n="altCap">Vista al bosque en RiOro, Santa Ana.</p>
+    </div>
+  </section>
+
+  <!-- 8 · DOUBTS: flow, native accordion -->
+  <section id="preguntas" class="sc-section faq" data-sc-act="flow" aria-labelledby="faqTitle">
+    <div class="sc-wrap faq__grid">
+      <div class="faq__head">
+        <h2 class="sc-display faq__title" id="faqTitle" data-i18n="faqTitle">Antes de comprar, lo que conviene saber.</h2>
+        <p class="sc-body" data-i18n="faqLede">Lo básico, en corto. Esto es información general, no asesoría legal: para tu caso, consulta con un notario o abogado.</p>
+      </div>
+      <div class="faq__list">
+        <details class="qa">
+          <summary data-i18n="q1">¿Un extranjero puede comprar un apartamento en Costa Rica?</summary>
+          <div class="qa__a"><p data-i18n="a1">Sí. En Costa Rica una persona extranjera puede tener una propiedad inscrita a su nombre, con los mismos derechos de propiedad que una persona costarricense. Hay reglas especiales para la zona marítimo terrestre en las costas, que no aplican a apartamentos en Escazú o Santa Ana. Si compras a nombre de una sociedad, el notario te explica qué se necesita.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q2">¿Cómo funciona la compra?</summary>
+          <div class="qa__a"><p data-i18n="a2">En general: acuerdas precio y condiciones con el dueño, se firma un documento de opción o promesa de compraventa, un notario público revisa la finca en el Registro Nacional y hace la escritura, y la escritura se inscribe en el Registro Nacional a tu nombre. Los impuestos y costos de traspaso los calcula el notario según cada caso. Te acompañamos en el proceso, pero no damos asesoría legal.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q3">¿Puedo revisar la finca antes de ofertar?</summary>
+          <div class="qa__a"><p data-i18n="a3">Sí. El Registro Nacional es público: cualquiera puede consultar una finca. En cada ficha te damos el número de finca que tenemos para que lo revises tú o tu notario.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q4">¿Qué es la cuota de condominio?</summary>
+          <div class="qa__a"><p data-i18n="a4">Es lo que paga cada dueño al mes para el mantenimiento, la seguridad y las áreas comunes. La fija cada condominio. Si una ficha todavía no la tiene confirmada, te lo decimos y la averiguamos antes de tu visita.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q5">¿Puedo comprar con crédito?</summary>
+          <div class="qa__a"><p data-i18n="a5">Puedes comprar de contado o con un crédito de un banco. Cuéntanos desde el inicio cuál es tu caso, así te mostramos lo que calza. En cada ficha indicamos si el dueño acepta crédito y si hay descuento por pago de contado, en cuanto el dueño nos lo confirma.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q6">¿Cómo son las visitas?</summary>
+          <div class="qa__a"><p data-i18n="a6">Siempre con cita. Antes te preguntamos tu presupuesto y si compras de contado o con crédito, para no hacerte perder tiempo. Algunos apartamentos están habitados, y ahí la visita se coordina con más anticipación.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q7">¿Venden casas o lotes?</summary>
+          <div class="qa__a"><p data-i18n="a7">No. Solo apartamentos.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · VISIT: flow, the close is an actual input -->
+  <section id="contacto" class="visit" data-sc-act="flow" aria-labelledby="visitTitle">
+    <div class="sc-wrap visit__grid">
+      <div class="visit__head">
+        <h2 class="sc-display visit__title" id="visitTitle" data-i18n="visitTitle">Agenda tu visita.</h2>
+        <p class="sc-body" data-i18n="visitLede">Tres pasos. Al final se abre WhatsApp con tus respuestas listas para enviar.</p>
+      </div>
+
+      <form class="visit-form" id="visitForm" onsubmit="return false" aria-labelledby="visitTitle" novalidate>
+        <ol class="steps" aria-label="Pasos" data-i18n-attr="aria-label:stepsAria">
+          <li class="steps__i is-on" data-step-tab="1"><span data-i18n="step1">El apartamento</span></li>
+          <li class="steps__i" data-step-tab="2"><span data-i18n="step2">Tu presupuesto</span></li>
+          <li class="steps__i" data-step-tab="3"><span data-i18n="step3">Tu visita</span></li>
+        </ol>
+
+        <fieldset class="step" data-step="1">
+          <legend class="step__q" data-i18n="s1q">¿Cuál quieres ver?</legend>
+          <div class="choices" id="vApts"></div>
+        </fieldset>
+
+        <fieldset class="step" data-step="2" hidden>
+          <legend class="step__q" data-i18n="s2q">¿Hasta cuánto y cómo pagarías?</legend>
+          <div class="field field--budget">
+            <span id="vBudgetLabel"><span data-i18n="fBudget">Presupuesto máximo</span>: <output id="vBudgetOut" for="vBudget">Sin límite</output></span>
+            <div class="earth-mini">
+              <svg class="earth-mini__svg" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><line class="line__rail" x1="0" y1="20" x2="1000" y2="20"/><path class="line__fill" d="M0 20 Z"/></svg>
+              <input class="earth-range" id="vBudget" type="range" min="100000" max="600000" step="5000" value="600000" aria-labelledby="vBudgetLabel">
+            </div>
+          </div>
+          <div class="choices choices--row" role="radiogroup" aria-label="Forma de pago" data-i18n-attr="aria-label:payAria" id="vPago">
+            <label class="choice"><input type="radio" name="vPago" value="contado"><span data-i18n="payCash">De contado</span></label>
+            <label class="choice"><input type="radio" name="vPago" value="credito"><span data-i18n="payCredit">Con crédito</span></label>
+            <label class="choice"><input type="radio" name="vPago" value="nose"><span data-i18n="payUnsure">Todavía no sé</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="3" hidden>
+          <legend class="step__q" data-i18n="s3q">¿Cuándo te queda bien?</legend>
+          <label class="field"><span data-i18n="vName">Tu nombre</span><input id="vName" type="text" autocomplete="name" required aria-describedby="vNameErr"></label>
+          <p class="field__err" id="vNameErr" hidden data-i18n="vNameErr">Escribe tu nombre para enviar.</p>
+          <label class="field"><span data-i18n="vWhen">Horario que prefieres</span>
+            <select id="vWhen">
+              <option value="" data-i18n="oPick">Elige</option>
+              <option value="semana-manana" data-i18n="whenAm">Entre semana, en la mañana</option>
+              <option value="semana-tarde" data-i18n="whenPm">Entre semana, en la tarde</option>
+              <option value="sabado" data-i18n="whenSat">Sábado</option>
+              <option value="cualquiera" data-i18n="whenAny">Cualquier día</option>
+            </select>
+          </label>
+          <label class="field"><span data-i18n="vNote">Comentario (opcional)</span><textarea id="vNote" rows="3"></textarea></label>
+        </fieldset>
+
+        <div class="step-nav">
+          <button class="btn btn--quiet" type="button" id="stepBack" hidden><svg class="i i--flip" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> <span data-i18n="back">Atrás</span></button>
+          <button class="btn btn--solid" type="button" id="stepNext"><span data-i18n="next">Siguiente</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a class="btn btn--solid js-wa" id="visitSend" data-wa="visit" href="https://wa.me/" target="_blank" rel="noopener" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="openWa">Abrir WhatsApp</span></a>
+        </div>
+
+        <div class="preview">
+          <p class="preview__label" data-i18n="previewLabel">Así va tu mensaje:</p>
+          <p class="preview__msg" id="visitPreview"></p>
+        </div>
+      </form>
+    </div>
+
+    <footer class="foot">
+      <div class="sc-wrap foot__grid">
+        <div class="foot__brand">
+          <img src="assets/brand/logo-15-2-520.png" width="520" height="271" alt="Verti Terra Bienes Raíces" data-i18n-attr="alt:logoAlt" loading="lazy">
+          <p data-i18n="footLine">Solo apartamentos. Escazú y Santa Ana, Costa Rica.</p>
+        </div>
+        <ul class="foot__links">
+          <li><a class="js-wa" data-wa="general" href="https://wa.me/" target="_blank" rel="noopener"><span>WhatsApp</span> <span class="js-wa-num"></span></a></li>
+          <li><a href="#apartamentos" data-i18n="navApts">Apartamentos</a></li>
+          <li><a href="#propietarios" data-i18n="navOwners">Para propietarios</a></li>
+          <li><a href="#preguntas" data-i18n="navFaq">Preguntas</a></li>
+        </ul>
+        <p class="foot__small" data-i18n="footSmall">Precios en dólares (US$). Los datos marcados como pendientes se confirman antes de la visita.</p>
+        <p class="foot__small">© 2026 Verti Terra</p>
+      </div>
+    </footer>
+  </section>
+
+</main>
+
+<!-- Dossier: one per apartment, opened by #/apto/<id> -->
+<dialog class="dossier" id="dossier" aria-labelledby="dosTitle">
+  <div class="dossier__inner" id="dossierBody"></div>
+</dialog>
+
+<a class="wa-float js-wa" data-wa="general" href="https://wa.me/" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" data-i18n-attr="aria-label:waAria">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><use href="#i-wa"/></svg>
+</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.1 7.9c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2.1.4 0 .6l-.5.6c-.1.2-.1.3 0 .5.6 1 1.4 1.8 2.4 2.4.2.1.4.1.5 0l.6-.7c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5 0 .4-.1 1-.6 1.4-.5.4-1.3.6-2.1.4-1.3-.3-2.6-1.1-3.7-2.2-1.1-1.1-1.9-2.3-2.2-3.6-.2-.8 0-1.5.3-2.1Z" fill="currentColor"/></symbol>
+</svg>
+
+<script src="scrollcraft.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,986 @@
+{
+  "actualizado": "2026-10-26",
+  "moneda": "USD",
+  "taxonomia": {
+    "pisoTipo": [
+      {
+        "id": "penthouse",
+        "es": "Penthouse",
+        "en": "Penthouse"
+      },
+      {
+        "id": "ultimo-atico",
+        "es": "Último piso + ático",
+        "en": "Top floor + loft"
+      },
+      {
+        "id": "piso-6",
+        "es": "6to piso",
+        "en": "6th floor"
+      },
+      {
+        "id": "piso-5",
+        "es": "5to piso",
+        "en": "5th floor"
+      }
+    ]
+  },
+  "apartamentos": [
+    {
+      "id": "bosques-escazu-603a",
+      "codigo": "VT-01",
+      "pais": "Costa Rica",
+      "provincia": "San José",
+      "zona": "Escazú",
+      "condominio": "Bosques de Escazú",
+      "unidad": "603-A",
+      "titulo": {
+        "es": "Penthouse en Bosques de Escazú",
+        "en": "Penthouse in Bosques de Escazú"
+      },
+      "precioUSD": 450000,
+      "m2": 223,
+      "habitaciones": 4,
+      "banos": 4,
+      "banoServicio": true,
+      "pisoTipo": [
+        "penthouse"
+      ],
+      "piso": {
+        "es": "Penthouse",
+        "en": "Penthouse"
+      },
+      "parqueos": 3,
+      "bodega": true,
+      "amueblado": {
+        "es": "Se vende amueblado",
+        "en": "Sold furnished"
+      },
+      "cuotaCondominio": {
+        "es": "₡200,000 al mes",
+        "en": "₡200,000 per month"
+      },
+      "anioConstruccion": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "ocupacion": {
+        "es": "Habitado. Visitas con cita.",
+        "en": "Occupied. Visits by appointment."
+      },
+      "habitado": true,
+      "financiamiento": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descuentoContado": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descripcion": {
+        "es": [
+          "Penthouse de 223 m² en un condominio en Bosques de Escazú, con 4 habitaciones, 4 baños completos y baño de servicio. Se vende amueblado.",
+          "Sala y comedor con ventanales de piso a techo y vista verde a las montañas, balcón para disfrutar el paisaje y cocina con isla y muebles de madera.",
+          "El condominio está en un terreno montañoso con 13,000 m² de reserva y solo 4 torres de baja densidad, de 26 unidades cada una."
+        ],
+        "en": [
+          "A 223 m² penthouse in a condominium in Bosques de Escazú, with 4 bedrooms, 4 full bathrooms and a service bathroom. Sold furnished.",
+          "Living and dining room with floor-to-ceiling windows and a green mountain view, a balcony to enjoy the landscape, and a kitchen with an island and wooden cabinets.",
+          "The condominium sits on hillside land with a 13,000 m² reserve and only 4 low-density towers of 26 units each."
+        ]
+      },
+      "incluye": {
+        "es": [
+          "3 estacionamientos",
+          "Bodega propia",
+          "Estacionamientos y bodega inscritos por separado en el Registro",
+          "Amueblado"
+        ],
+        "en": [
+          "3 parking spaces",
+          "Private storage room",
+          "Parking and storage registered separately",
+          "Furnished"
+        ]
+      },
+      "amenidades": {
+        "es": [
+          "Piscina temperada",
+          "Gimnasio",
+          "Sauna",
+          "Salón de fiestas con pool y bar",
+          "Área de BBQ",
+          "Parque infantil",
+          "Deck de yoga junto a la montaña",
+          "Seguridad 24 horas",
+          "Parqueo de visitas",
+          "Tanque de reserva de agua",
+          "Generadores eléctricos",
+          "Calentadores de agua Termo",
+          "Iluminación LED"
+        ],
+        "en": [
+          "Heated pool",
+          "Gym",
+          "Sauna",
+          "Party room with pool and bar",
+          "BBQ area",
+          "Playground",
+          "Yoga deck by the mountain",
+          "24-hour security",
+          "Visitor parking",
+          "Water reserve tank",
+          "Power generators",
+          "Termo water heaters",
+          "LED lighting"
+        ]
+      },
+      "cerca": {
+        "es": [],
+        "en": []
+      },
+      "registro": {
+        "es": [],
+        "en": []
+      },
+      "portada": 0,
+      "fotos": [
+        {
+          "src": "assets/escazu/escazu-03.jpg",
+          "thumb": "assets/escazu/t/escazu-03.jpg",
+          "w": 1400,
+          "h": 1052,
+          "alt": {
+            "es": "Sala y comedor con ventanales de piso a techo y vista a las montañas",
+            "en": "Living and dining room with floor-to-ceiling windows and mountain view"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-01.jpg",
+          "thumb": "assets/escazu/t/escazu-01.jpg",
+          "w": 1400,
+          "h": 1052,
+          "alt": {
+            "es": "Sala y comedor con lámpara colgante y vista verde",
+            "en": "Living and dining room with pendant lamp and green view"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-02.jpg",
+          "thumb": "assets/escazu/t/escazu-02.jpg",
+          "w": 1400,
+          "h": 1052,
+          "alt": {
+            "es": "Sala con sofás frente a los ventanales",
+            "en": "Living room with sofas facing the windows"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-05.jpg",
+          "thumb": "assets/escazu/t/escazu-05.jpg",
+          "w": 1400,
+          "h": 1052,
+          "alt": {
+            "es": "Sala con ventanales en esquina hacia el balcón",
+            "en": "Living room with corner windows toward the balcony"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-04.jpg",
+          "thumb": "assets/escazu/t/escazu-04.jpg",
+          "w": 1053,
+          "h": 1400,
+          "alt": {
+            "es": "Esquina de la sala con ventanal de doble altura",
+            "en": "Corner of the living room with tall window"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-06.jpg",
+          "thumb": "assets/escazu/t/escazu-06.jpg",
+          "w": 1400,
+          "h": 1052,
+          "alt": {
+            "es": "Puerta corrediza abierta hacia el balcón y las montañas",
+            "en": "Sliding door open to the balcony and the mountains"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-07.jpg",
+          "thumb": "assets/escazu/t/escazu-07.jpg",
+          "w": 1400,
+          "h": 1052,
+          "alt": {
+            "es": "Vista desde el balcón hacia el valle y las montañas",
+            "en": "View from the balcony over the valley and the mountains"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-08.jpg",
+          "thumb": "assets/escazu/t/escazu-08.jpg",
+          "w": 1400,
+          "h": 1052,
+          "alt": {
+            "es": "Balcón con baranda de vidrio y vista verde",
+            "en": "Balcony with glass railing and green view"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-12.jpg",
+          "thumb": "assets/escazu/t/escazu-12.jpg",
+          "w": 1400,
+          "h": 1053,
+          "alt": {
+            "es": "Cocina con isla de madera",
+            "en": "Kitchen with wooden island"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-10.jpg",
+          "thumb": "assets/escazu/t/escazu-10.jpg",
+          "w": 1053,
+          "h": 1400,
+          "alt": {
+            "es": "Cocina con muebles oscuros y sobres de granito",
+            "en": "Kitchen with dark cabinets and granite counters"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-11.jpg",
+          "thumb": "assets/escazu/t/escazu-11.jpg",
+          "w": 1400,
+          "h": 1053,
+          "alt": {
+            "es": "Cocina con horno y microondas empotrados",
+            "en": "Kitchen with built-in oven and microwave"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-09.jpg",
+          "thumb": "assets/escazu/t/escazu-09.jpg",
+          "w": 1053,
+          "h": 1400,
+          "alt": {
+            "es": "Cocina vista desde la entrada, con refrigeradora",
+            "en": "Kitchen seen from the entrance, with fridge"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-13.jpg",
+          "thumb": "assets/escazu/t/escazu-13.jpg",
+          "w": 1053,
+          "h": 1400,
+          "alt": {
+            "es": "Isla de cocina y muebles altos",
+            "en": "Kitchen island and tall cabinets"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-02.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-02.jpg",
+          "w": 960,
+          "h": 1280,
+          "alt": {
+            "es": "Habitación con cama y respaldar de madera",
+            "en": "Bedroom with bed and wooden headboard"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-01.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-01.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Habitación con dos camas y ventana al verde",
+            "en": "Bedroom with two beds and a window to the trees"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-04.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-04.jpg",
+          "w": 960,
+          "h": 1280,
+          "alt": {
+            "es": "Habitación con dos camas",
+            "en": "Bedroom with two beds"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-05.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-05.jpg",
+          "w": 960,
+          "h": 1280,
+          "alt": {
+            "es": "Otra vista de la habitación con dos camas",
+            "en": "Another view of the two-bed bedroom"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-03.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-03.jpg",
+          "w": 1035,
+          "h": 960,
+          "alt": {
+            "es": "Mueble de madera bajo la ventana",
+            "en": "Wooden shelf under the window"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-06.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-06.jpg",
+          "w": 1280,
+          "h": 960,
+          "alt": {
+            "es": "Escritorio y repisas de madera",
+            "en": "Wooden desk and shelves"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-07.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-07.jpg",
+          "w": 630,
+          "h": 1280,
+          "alt": {
+            "es": "Baño con ducha de vidrio",
+            "en": "Bathroom with glass shower"
+          }
+        },
+        {
+          "src": "assets/escazu/escazu-extra-08.jpg",
+          "thumb": "assets/escazu/t/escazu-extra-08.jpg",
+          "w": 1280,
+          "h": 1077,
+          "alt": {
+            "es": "Lavamanos con mueble blanco",
+            "en": "Washbasin with white cabinet"
+          }
+        }
+      ]
+    },
+    {
+      "id": "nova-lofts-santa-ana",
+      "codigo": "VT-02",
+      "pais": "Costa Rica",
+      "provincia": "San José",
+      "zona": "Santa Ana",
+      "condominio": "Nova Lofts",
+      "unidad": null,
+      "titulo": {
+        "es": "Penthouse de dos niveles en Nova Lofts",
+        "en": "Two-level penthouse in Nova Lofts"
+      },
+      "precioUSD": 220000,
+      "m2": 113,
+      "habitaciones": 3,
+      "banos": 2,
+      "banoServicio": false,
+      "pisoTipo": [
+        "penthouse"
+      ],
+      "piso": {
+        "es": "Penthouse de 2 niveles, piso 3",
+        "en": "Two-level penthouse, 3rd floor"
+      },
+      "parqueos": 2,
+      "bodega": true,
+      "amueblado": {
+        "es": "Se vende amueblado",
+        "en": "Sold furnished"
+      },
+      "cuotaCondominio": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "anioConstruccion": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "ocupacion": {
+        "es": "Visitas con cita.",
+        "en": "Visits by appointment."
+      },
+      "habitado": false,
+      "financiamiento": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descuentoContado": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descripcion": {
+        "es": [
+          "Penthouse de dos niveles, 113 m², con 3 habitaciones y 2 baños, en el Condominio Nova Lofts, frente al centro de Santa Ana. Construido en 2022. Se vende amueblado.",
+          "Diseño moderno: cocina abierta con isla central y sala integrada. Habitación principal con baño completo y walk-in closet, segunda habitación y baño completo de visitas.",
+          "En el segundo nivel, una sala de TV o cuarto familiar y la tercera habitación."
+        ],
+        "en": [
+          "A two-level penthouse, 113 m², with 3 bedrooms and 2 bathrooms, in Condominio Nova Lofts, across from downtown Santa Ana. Built in 2022. Sold furnished.",
+          "Modern design: open kitchen with a central island and an integrated living room. Main bedroom with full bathroom and walk-in closet, a second bedroom and a full guest bathroom.",
+          "On the second level, a TV or family room and the third bedroom."
+        ]
+      },
+      "incluye": {
+        "es": [
+          "Derecho de uso exclusivo de un estacionamiento doble (en línea)",
+          "Bodega",
+          "Amueblado"
+        ],
+        "en": [
+          "Exclusive use of a double tandem parking space",
+          "Storage room",
+          "Furnished"
+        ]
+      },
+      "amenidades": {
+        "es": [
+          "Acceso controlado",
+          "Seguridad 24/7",
+          "Casa club",
+          "Piscina"
+        ],
+        "en": [
+          "Controlled access",
+          "24/7 security",
+          "Clubhouse",
+          "Pool"
+        ]
+      },
+      "cerca": {
+        "es": [
+          "3 minutos de la Clínica Bíblica de Santa Ana",
+          "10 minutos de Multiplaza Escazú",
+          "12 minutos del Hospital CIMA",
+          "30 minutos de San José"
+        ],
+        "en": [
+          "3 minutes from Clínica Bíblica Santa Ana",
+          "10 minutes from Multiplaza Escazú",
+          "12 minutes from Hospital CIMA",
+          "30 minutes from San José"
+        ]
+      },
+      "registro": {
+        "es": [],
+        "en": []
+      },
+      "portada": 0,
+      "fotos": [
+        {
+          "src": "assets/novalofts/novalofts-01.jpg",
+          "thumb": "assets/novalofts/t/novalofts-01.jpg",
+          "w": 1282,
+          "h": 720,
+          "alt": {
+            "es": "Cocina abierta y sala de doble altura",
+            "en": "Open kitchen and double-height living room"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-04.jpg",
+          "thumb": "assets/novalofts/t/novalofts-04.jpg",
+          "w": 1109,
+          "h": 720,
+          "alt": {
+            "es": "Comedor junto a la isla, con la sala al fondo",
+            "en": "Dining area by the island, living room behind"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-06.jpg",
+          "thumb": "assets/novalofts/t/novalofts-06.jpg",
+          "w": 1109,
+          "h": 720,
+          "alt": {
+            "es": "Isla central de la cocina",
+            "en": "Central kitchen island"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-07.jpg",
+          "thumb": "assets/novalofts/t/novalofts-07.jpg",
+          "w": 1109,
+          "h": 720,
+          "alt": {
+            "es": "Cocina con encimera eléctrica",
+            "en": "Kitchen with electric cooktop"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-08.jpg",
+          "thumb": "assets/novalofts/t/novalofts-08.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Sala con sofá esquinero",
+            "en": "Living room with corner sofa"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-09.jpg",
+          "thumb": "assets/novalofts/t/novalofts-09.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Sala y escalera al segundo nivel",
+            "en": "Living room and stairs to the second level"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-03.jpg",
+          "thumb": "assets/novalofts/t/novalofts-03.jpg",
+          "w": 1282,
+          "h": 720,
+          "alt": {
+            "es": "Sala de TV en el segundo nivel",
+            "en": "TV room on the second level"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-18.jpg",
+          "thumb": "assets/novalofts/t/novalofts-18.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Sala de TV con sofá de cuero",
+            "en": "TV room with leather sofa"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-10.jpg",
+          "thumb": "assets/novalofts/t/novalofts-10.jpg",
+          "w": 1343,
+          "h": 896,
+          "alt": {
+            "es": "Habitación principal",
+            "en": "Main bedroom"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-11.jpg",
+          "thumb": "assets/novalofts/t/novalofts-11.jpg",
+          "w": 1400,
+          "h": 577,
+          "alt": {
+            "es": "Habitación con TV",
+            "en": "Bedroom with TV"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-14.jpg",
+          "thumb": "assets/novalofts/t/novalofts-14.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Segunda habitación",
+            "en": "Second bedroom"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-15.jpg",
+          "thumb": "assets/novalofts/t/novalofts-15.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Tercera habitación",
+            "en": "Third bedroom"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-16.jpg",
+          "thumb": "assets/novalofts/t/novalofts-16.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Cuarto con escritorio y sofá",
+            "en": "Room with desk and sofa"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-12.jpg",
+          "thumb": "assets/novalofts/t/novalofts-12.jpg",
+          "w": 1400,
+          "h": 577,
+          "alt": {
+            "es": "Walk-in closet",
+            "en": "Walk-in closet"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-13.jpg",
+          "thumb": "assets/novalofts/t/novalofts-13.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Baño con lavamanos y paso a la habitación",
+            "en": "Bathroom with washbasin and door to the bedroom"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-17.jpg",
+          "thumb": "assets/novalofts/t/novalofts-17.jpg",
+          "w": 1026,
+          "h": 1176,
+          "alt": {
+            "es": "Baño con ducha",
+            "en": "Bathroom with shower"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-02.jpg",
+          "thumb": "assets/novalofts/t/novalofts-02.jpg",
+          "w": 1282,
+          "h": 720,
+          "alt": {
+            "es": "Piscina del condominio entre los edificios",
+            "en": "Condominium pool between the buildings"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-19.jpg",
+          "thumb": "assets/novalofts/t/novalofts-19.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Piscina y rancho del condominio",
+            "en": "Condominium pool and covered terrace"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-21.jpg",
+          "thumb": "assets/novalofts/t/novalofts-21.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Área social techada del condominio",
+            "en": "Covered social area of the condominium"
+          }
+        },
+        {
+          "src": "assets/novalofts/novalofts-20.jpg",
+          "thumb": "assets/novalofts/t/novalofts-20.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Sala de ejercicio del condominio",
+            "en": "Condominium exercise room"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rio-oro-b11-santa-ana",
+      "codigo": "VT-03",
+      "pais": "Costa Rica",
+      "provincia": "San José",
+      "zona": "Santa Ana",
+      "condominio": "RiOro",
+      "unidad": "B-11",
+      "titulo": {
+        "es": "Último piso con ático en RiOro",
+        "en": "Top floor with loft in RiOro"
+      },
+      "precioUSD": 180000,
+      "m2": 91,
+      "habitaciones": 2,
+      "banos": 2,
+      "banoServicio": false,
+      "pisoTipo": [
+        "ultimo-atico"
+      ],
+      "piso": {
+        "es": "Último piso + ático (tercer nivel)",
+        "en": "Top floor + loft (third level)"
+      },
+      "parqueos": 2,
+      "bodega": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "amueblado": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "cuotaCondominio": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "anioConstruccion": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "ocupacion": {
+        "es": "Visitas con cita.",
+        "en": "Visits by appointment."
+      },
+      "habitado": false,
+      "financiamiento": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descuentoContado": {
+        "es": "Consultar",
+        "en": "Ask us"
+      },
+      "descripcion": {
+        "es": [
+          "Apartamento de 91 m², con 2 habitaciones y 2 baños, en el último piso del Condominio RiOro, en Santa Ana.",
+          "Techos altos, cocina abierta, sala y comedor integrados, y un balcón con vista al bosque. Área de lavandería."
+        ],
+        "en": [
+          "A 91 m² apartment with 2 bedrooms and 2 bathrooms on the top floor of Condominio RiOro, in Santa Ana.",
+          "High ceilings, open kitchen, integrated living and dining room, and a balcony facing the forest. Laundry area."
+        ]
+      },
+      "incluye": {
+        "es": [
+          "2 estacionamientos",
+          "Parqueo techado frente al edificio"
+        ],
+        "en": [
+          "2 parking spaces",
+          "Covered parking in front of the building"
+        ]
+      },
+      "amenidades": {
+        "es": [
+          "Acceso controlado",
+          "Seguridad 24/7",
+          "Casa club",
+          "Piscina",
+          "Gimnasio",
+          "Área de juegos para niños"
+        ],
+        "en": [
+          "Controlled access",
+          "24/7 security",
+          "Clubhouse",
+          "Pool",
+          "Gym",
+          "Children's play area"
+        ]
+      },
+      "cerca": {
+        "es": [
+          "1 minuto de Fresh Market Río Oro",
+          "5 minutos del centro de Santa Ana, de Automercado Río Oro y de City Place",
+          "15 minutos de Multiplaza Escazú",
+          "30 minutos del aeropuerto"
+        ],
+        "en": [
+          "1 minute from Fresh Market Río Oro",
+          "5 minutes from downtown Santa Ana, Automercado Río Oro and City Place",
+          "15 minutes from Multiplaza Escazú",
+          "30 minutes from the airport"
+        ]
+      },
+      "registro": {
+        "es": [],
+        "en": []
+      },
+      "portada": 0,
+      "fotos": [
+        {
+          "src": "assets/riooro/riooro-06.jpg",
+          "thumb": "assets/riooro/t/riooro-06.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Sala, comedor y cocina abierta",
+            "en": "Living room, dining area and open kitchen"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-04.jpg",
+          "thumb": "assets/riooro/t/riooro-04.jpg",
+          "w": 1240,
+          "h": 805,
+          "alt": {
+            "es": "Sala con sofá y comedor al fondo",
+            "en": "Living room with sofa, dining table behind"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-05.jpg",
+          "thumb": "assets/riooro/t/riooro-05.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Comedor con espejo y lámparas colgantes",
+            "en": "Dining area with mirror and pendant lights"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-07.jpg",
+          "thumb": "assets/riooro/t/riooro-07.jpg",
+          "w": 941,
+          "h": 1288,
+          "alt": {
+            "es": "Comedor frente al balcón",
+            "en": "Dining area facing the balcony"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-10.jpg",
+          "thumb": "assets/riooro/t/riooro-10.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Sala con puertas al balcón",
+            "en": "Living room with doors to the balcony"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-08.jpg",
+          "thumb": "assets/riooro/t/riooro-08.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Cocina con barra y bancos",
+            "en": "Kitchen with bar and stools"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-09.jpg",
+          "thumb": "assets/riooro/t/riooro-09.jpg",
+          "w": 1372,
+          "h": 891,
+          "alt": {
+            "es": "Cocina con refrigeradora y cocina de acero",
+            "en": "Kitchen with steel fridge and stove"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-17.jpg",
+          "thumb": "assets/riooro/t/riooro-17.jpg",
+          "w": 1254,
+          "h": 533,
+          "alt": {
+            "es": "Balcón con vista al bosque",
+            "en": "Balcony with forest view"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-16.jpg",
+          "thumb": "assets/riooro/t/riooro-16.jpg",
+          "w": 706,
+          "h": 966,
+          "alt": {
+            "es": "Balcón con sillas",
+            "en": "Balcony with chairs"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-03.jpg",
+          "thumb": "assets/riooro/t/riooro-03.jpg",
+          "w": 1400,
+          "h": 787,
+          "alt": {
+            "es": "Copas de los árboles, vista al bosque",
+            "en": "Treetops, forest view"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-11.jpg",
+          "thumb": "assets/riooro/t/riooro-11.jpg",
+          "w": 1343,
+          "h": 896,
+          "alt": {
+            "es": "Habitación con cama y ventana",
+            "en": "Bedroom with bed and window"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-13.jpg",
+          "thumb": "assets/riooro/t/riooro-13.jpg",
+          "w": 1098,
+          "h": 713,
+          "alt": {
+            "es": "Habitación con cama",
+            "en": "Bedroom with bed"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-14.jpg",
+          "thumb": "assets/riooro/t/riooro-14.jpg",
+          "w": 1254,
+          "h": 533,
+          "alt": {
+            "es": "Otra vista de la habitación",
+            "en": "Another view of the bedroom"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-12.jpg",
+          "thumb": "assets/riooro/t/riooro-12.jpg",
+          "w": 706,
+          "h": 966,
+          "alt": {
+            "es": "Baño con lavamanos",
+            "en": "Bathroom with washbasin"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-15.jpg",
+          "thumb": "assets/riooro/t/riooro-15.jpg",
+          "w": 706,
+          "h": 966,
+          "alt": {
+            "es": "Baño con ducha",
+            "en": "Bathroom with shower"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-01.jpg",
+          "thumb": "assets/riooro/t/riooro-01.jpg",
+          "w": 1400,
+          "h": 787,
+          "alt": {
+            "es": "Piscina y casa club del condominio",
+            "en": "Condominium pool and clubhouse"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-02.jpg",
+          "thumb": "assets/riooro/t/riooro-02.jpg",
+          "w": 1400,
+          "h": 787,
+          "alt": {
+            "es": "Piscina y edificios del condominio",
+            "en": "Condominium pool and buildings"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-18.jpg",
+          "thumb": "assets/riooro/t/riooro-18.jpg",
+          "w": 1254,
+          "h": 533,
+          "alt": {
+            "es": "Sala de la casa club",
+            "en": "Clubhouse lounge"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-19.jpg",
+          "thumb": "assets/riooro/t/riooro-19.jpg",
+          "w": 1254,
+          "h": 533,
+          "alt": {
+            "es": "Gimnasio del condominio",
+            "en": "Condominium gym"
+          }
+        },
+        {
+          "src": "assets/riooro/riooro-20.jpg",
+          "thumb": "assets/riooro/t/riooro-20.jpg",
+          "w": 1098,
+          "h": 713,
+          "alt": {
+            "es": "Área de juegos para niños",
+            "en": "Children's play area"
+          }
+        }
+      ]
+    }
+  ]
+}
