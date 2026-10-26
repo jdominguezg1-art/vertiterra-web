@@ -179,7 +179,8 @@
   var lineEl = {};
   function buildLine() {
     var sec = $('#presupuesto');
-    lineEl = { sec: sec, stage: $('#lineStage'), plot: $('#linePlot'), pins: $('#linePins'), input: $('#lineInput'), out: $('#lineOut'), axis: $('#lineAxis') };
+    lineEl = { sec: sec, stage: $('#lineStage'), plot: $('#linePlot'), pins: $('#linePins'), input: $('#lineInput'), out: $('#lineOut'), axis: $('#lineAxis'),
+               marks: $('#lineMarks'), ladder: $('#lineLadder'), count: $('#lineCount') };
     lineEl.E = registerEarth(lineEl.input, $('#lineEarth'), lineEl.out, 0, 22);
     // Taking the handle hands the line to the visitor at the value it shows.
     var take = function () {
@@ -193,7 +194,7 @@
     var ticks = [100000, 200000, 300000, 400000, 500000, 600000];
     lineEl.axis.innerHTML = ticks.map(function (t) {
       var pct = (t - B_MIN) / (B_MAX - B_MIN) * 100;
-      return '<li style="left:' + pct + '%">US$' + (t / 1000) + 'k' + (t === B_MAX ? '+' : '') + '</li>';
+      return '<li style="left:' + pct + '%"><span class="line__axis-us">US</span>$' + (t / 1000) + 'k' + (t === B_MAX ? '+' : '') + '</li>';
     }).join('');
     $$('#paySeg [data-pago]').forEach(function (b) {
       b.addEventListener('click', function () { setPago(b.getAttribute('data-pago')); });
@@ -228,11 +229,44 @@
       });
     });
     lineEl.pins.innerHTML = html;
-    $$('.pin__btn', lineEl.pins).forEach(function (b) {
+    renderLadder();
+    $$('.pin__btn, .rung__btn', lineEl.stage).forEach(function (b) {
       b.addEventListener('click', function () { location.hash = '#/apto/' + b.getAttribute('data-open'); });
     });
     layoutPins();
     refreshPins();
+  }
+  // Phones (below 760px): the floating pins give way to a price ladder under
+  // the line, one row per apartment from the cheapest up, each with its photo,
+  // its real name, a short word that tells it apart, and its price. A small
+  // mark on the line sits at each price, so line and rows stay tied. CSS
+  // decides which of the two views shows; both are kept in sync here.
+  // Name: the condominium, plus the unit when it still fits a phone row
+  // ("RiOro B-11"). Second line: what tells it apart (unit, `etiqueta` from
+  // the data) and the zone, unless the condominium already names it.
+  function unitInName(a) { return a.unidad && (a.condominio + ' ' + a.unidad).length <= 16; }
+  function rungName(a) { return a.condominio + (unitInName(a) ? ' ' + a.unidad : ''); }
+  function rungSub(a) {
+    var zoneSaid = a.condominio.toLowerCase().indexOf(String(a.zona).toLowerCase()) > -1;
+    return [a.unidad && !unitInName(a) ? a.unidad : '', L(a.etiqueta) || tagFor(a), zoneSaid ? '' : a.zona].filter(Boolean).join(' · ');
+  }
+  function renderLadder() {
+    var apts = state.data.apartamentos.slice().sort(function (a, b) { return a.precioUSD - b.precioUSD || a.codigo.localeCompare(b.codigo); });
+    lineEl.ladder.innerHTML = apts.map(function (a, i) {
+      var cover = a.fotos[a.portada || 0];
+      return '<li class="rung" data-price="' + a.precioUSD + '" data-id="' + a.id + '" style="--i:' + i + '">' +
+        '<button class="rung__btn" type="button" data-open="' + a.id + '">' +
+          '<span class="rung__pin"><img src="' + cover.thumb + '" alt="" width="96" height="96" loading="lazy" decoding="async"></span>' +
+          '<span class="rung__text"><span class="rung__name">' + esc(rungName(a)) + '</span><span class="rung__sub">' + esc(rungSub(a)) + '</span></span>' +
+          '<span class="rung__price">' + money(a.precioUSD) + '</span>' +
+          '<svg class="i rung__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
+        '</button></li>';
+    }).join('');
+    var seen = {};
+    lineEl.marks.innerHTML = apts.filter(function (a) { return seen[a.precioUSD] ? false : (seen[a.precioUSD] = true); }).map(function (a) {
+      var pct = (clamp(a.precioUSD, B_MIN, B_MAX) - B_MIN) / (B_MAX - B_MIN) * 100;
+      return '<span class="mark" data-price="' + a.precioUSD + '" style="left:' + pct + '%"></span>';
+    }).join('');
   }
   function layoutPins() {
     // Apartments that share a price stand side by side over one stem; groups
@@ -240,7 +274,7 @@
     // width (five apartments on a phone), the groups alternate between two
     // rows: the stems still start at each exact price, only the tip rises.
     var pins = $$('.pin', lineEl.pins);
-    if (!pins.length) return;
+    if (!pins.length || !lineEl.pins.offsetParent) return;   // hidden on phones (the ladder shows instead)
     var W = lineEl.pins.clientWidth, gap = 8, sep = 14, groups = {};
     var plot = lineEl.pins;
     plot.classList.remove('is-stagger');
@@ -307,6 +341,30 @@
     });
     // the "fits / over budget" line changes a pin's size: lay the pins out again when it appears or goes
     if (fitSig !== lineEl.fitSig) { var first = lineEl.fitSig === undefined; lineEl.fitSig = fitSig; if (!first) layoutPins(); }
+    // the ladder rows and the marks on the line follow the same three states
+    var fitN = 0, rungs = $$('.rung', lineEl.ladder);
+    rungs.forEach(function (r) {
+      var price = +r.getAttribute('data-price');
+      var seed = !state.budgetUser && !reduce && price > demoV;
+      var out = state.budgetUser && state.budget != null && price > state.budget;
+      var lit = !seed && !out;
+      if (lit) fitN++;
+      r.classList.toggle('is-seed', seed);
+      r.classList.toggle('is-out', out);
+      r.classList.toggle('is-in', lit);
+      var fitTxt = state.budgetUser && state.budget != null ? (out ? T('over') : T('fits')) : '';
+      r.querySelector('.rung__btn').setAttribute('aria-label', r.querySelector('.rung__name').textContent + ', ' + r.querySelector('.rung__sub').textContent + ', ' + money(price) + (fitTxt ? ', ' + fitTxt : ''));
+    });
+    $$('.mark', lineEl.marks).forEach(function (m) {
+      var price = +m.getAttribute('data-price');
+      m.classList.toggle('is-seed', !state.budgetUser && !reduce && price > demoV);
+      m.classList.toggle('is-out', state.budgetUser && state.budget != null && price > state.budget);
+    });
+    if (lineEl.count && rungs.length) {
+      var t = rungs.length;
+      lineEl.count.textContent = fitN === t ? T('ladderAll', { t: t }) : fitN === 0 ? T('ladderNone') : T('ladderCount', { n: fitN, t: t });
+      lineEl.count.classList.toggle('is-none', fitN === 0);
+    }
     lineEl.stage.setAttribute('data-sc-verify-state', Math.round(showV / 1000) + '|' + $$('.pin.is-seed', lineEl.pins).length);
   }
   function lineFrame() {

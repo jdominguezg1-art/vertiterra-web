@@ -100,9 +100,10 @@
       </div>
 
       <div class="sc-wrap line__figure">
-        <p class="line__value"><span class="line__value-label" data-i18n="lineValueLabel">Tu presupuesto</span> <output id="lineOut" for="lineInput">US$100,000</output></p>
+        <p class="line__value"><span class="line__value-label" data-i18n="lineValueLabel">Tu presupuesto</span> <output id="lineOut" for="lineInput">US$100,000</output><span class="line__count" id="lineCount" aria-hidden="true"></span></p>
         <div class="line__plot" id="linePlot">
           <div class="line__pins" id="linePins"></div>
+          <div class="line__marks" id="lineMarks" aria-hidden="true"></div>
           <svg class="line__earth" id="lineEarth" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
             <line class="line__rail" x1="0" y1="20" x2="1000" y2="20"/>
             <path class="line__fill" id="lineFill" d="M0 20 L0 20 Z"/>
@@ -111,6 +112,7 @@
                  aria-label="Tu presupuesto en dólares" data-i18n-attr="aria-label:budgetAria">
           <ol class="line__axis" aria-hidden="true" id="lineAxis"></ol>
         </div>
+        <ol class="ladder" id="lineLadder" aria-label="Apartamentos por precio" data-i18n-attr="aria-label:ladderAria"></ol>
       </div>
 
       <div class="sc-wrap line__after" id="lineAfter">

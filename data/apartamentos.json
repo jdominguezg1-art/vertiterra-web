@@ -48,6 +48,10 @@
         "es": "Penthouse en Bosques de Escazú",
         "en": "Penthouse in Bosques de Escazú"
       },
+      "etiqueta": {
+        "es": "Penthouse",
+        "en": "Penthouse"
+      },
       "precioUSD": 450000,
       "m2": 223,
       "habitaciones": 4,
@@ -379,6 +383,10 @@
         "es": "Penthouse de dos niveles en Nova Lofts",
         "en": "Two-level penthouse in Nova Lofts"
       },
+      "etiqueta": {
+        "es": "Dúplex",
+        "en": "Duplex"
+      },
       "precioUSD": 220000,
       "m2": 113,
       "habitaciones": 3,
@@ -689,6 +697,10 @@
       "titulo": {
         "es": "Último piso con ático en RiOro",
         "en": "Top floor with loft in RiOro"
+      },
+      "etiqueta": {
+        "es": "Con ático",
+        "en": "With loft"
       },
       "precioUSD": 180000,
       "m2": 91,
@@ -1004,6 +1016,10 @@
         "es": "Apartamento con vista a la montaña en Bosques de Escazú",
         "en": "Mountain-view apartment in Bosques de Escazú"
       },
+      "etiqueta": {
+        "es": "Vista a la montaña",
+        "en": "Mountain view"
+      },
       "precioUSD": 260000,
       "m2": 90,
       "habitaciones": 2,
@@ -1213,6 +1229,10 @@
       "titulo": {
         "es": "Apartamento con rooftop en Bosques de Escazú",
         "en": "Apartment with a rooftop in Bosques de Escazú"
+      },
+      "etiqueta": {
+        "es": "Con rooftop",
+        "en": "With rooftop"
       },
       "precioUSD": 325000,
       "m2": 132,
