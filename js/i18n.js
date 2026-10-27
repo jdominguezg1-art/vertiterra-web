@@ -91,7 +91,7 @@ window.VT_I18N = {
     pathZoneTitle: "Escazú or Santa Ana",
     pathZoneBody: "Tap an area and see only what is there.",
     altTitle: "Some apartments you choose for the view.",
-    altCap: "Forest view at RiOro, Santa Ana.",
+    altCap: "Forest view at Río Oro, Santa Ana.",
     faqTitle: "The legal and practical side, in short.",
     faqLede: "We are not lawyers. This points you the right way; a notary or a lawyer looks at your own case.",
     zoneTitle: "Where they are.",

@@ -243,7 +243,7 @@
   // mark on the line sits at each price, so line and rows stay tied. CSS
   // decides which of the two views shows; both are kept in sync here.
   // Name: the condominium, plus the unit when it still fits a phone row
-  // ("RiOro B-11"). Second line: what tells it apart (unit, `etiqueta` from
+  // ("Río Oro B-11"). Second line: what tells it apart (unit, `etiqueta` from
   // the data) and the zone, unless the condominium already names it.
   function unitInName(a) { return a.unidad && (a.condominio + ' ' + a.unidad).length <= 16; }
   function rungName(a) { return a.condominio + (unitInName(a) ? ' ' + a.unidad : ''); }

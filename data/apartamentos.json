@@ -95,10 +95,10 @@
       },
       "datos": {
         "es": [
-          "Tenemos dos: uno en Nova Lofts y uno en RiOro."
+          "Tenemos dos: uno en Nova Lofts y uno en Río Oro."
         ],
         "en": [
-          "We have two: one in Nova Lofts and one in RiOro."
+          "We have two: one in Nova Lofts and one in Río Oro."
         ]
       }
     },
@@ -129,9 +129,9 @@
     {
       "id": "rioro",
       "tipo": "condominio",
-      "nombre": "RiOro",
+      "nombre": "Río Oro",
       "match": {
-        "condominio": "RiOro"
+        "condominio": "Río Oro"
       },
       "paraQuien": {
         "es": "Para quien quiere un condominio con gimnasio y área de juegos, junto a Fresh Market Río Oro.",
@@ -648,18 +648,8 @@
         ]
       },
       "cerca": {
-        "es": [
-          "3 minutos de la Clínica Bíblica de Santa Ana",
-          "10 minutos de Multiplaza Escazú",
-          "12 minutos del Hospital CIMA",
-          "30 minutos de San José"
-        ],
-        "en": [
-          "3 minutes from Clínica Bíblica Santa Ana",
-          "10 minutes from Multiplaza Escazú",
-          "12 minutes from Hospital CIMA",
-          "30 minutes from San José"
-        ]
+        "es": [],
+        "en": []
       },
       "ubicacion": {
         "lat": 9.935139,
@@ -936,11 +926,11 @@
       "pais": "Costa Rica",
       "provincia": "San José",
       "zona": "Santa Ana",
-      "condominio": "RiOro",
+      "condominio": "Río Oro",
       "unidad": "B-11",
       "titulo": {
-        "es": "Último piso con ático en RiOro",
-        "en": "Top floor with loft in RiOro"
+        "es": "Último piso con ático en Río Oro",
+        "en": "Top floor with loft in Río Oro"
       },
       "etiqueta": {
         "es": "Con ático",
@@ -990,11 +980,11 @@
       },
       "descripcion": {
         "es": [
-          "Apartamento de 91 m², con 2 habitaciones y 2 baños, en el último piso del Condominio RiOro, en Santa Ana.",
+          "Apartamento de 91 m², con 2 habitaciones y 2 baños, en el último piso del Condominio Río Oro, en Santa Ana.",
           "Techos altos, cocina abierta, sala y comedor integrados, y un balcón con vista al bosque. Área de lavandería."
         ],
         "en": [
-          "A 91 m² apartment with 2 bedrooms and 2 bathrooms on the top floor of Condominio RiOro, in Santa Ana.",
+          "A 91 m² apartment with 2 bedrooms and 2 bathrooms on the top floor of Condominio Río Oro, in Santa Ana.",
           "High ceilings, open kitchen, integrated living and dining room, and a balcony facing the forest. Laundry area."
         ]
       },
@@ -1027,18 +1017,8 @@
         ]
       },
       "cerca": {
-        "es": [
-          "1 minuto de Fresh Market Río Oro",
-          "5 minutos del centro de Santa Ana, de Automercado Río Oro y de City Place",
-          "15 minutos de Multiplaza Escazú",
-          "30 minutos del aeropuerto"
-        ],
-        "en": [
-          "1 minute from Fresh Market Río Oro",
-          "5 minutes from downtown Santa Ana, Automercado Río Oro and City Place",
-          "15 minutes from Multiplaza Escazú",
-          "30 minutes from the airport"
-        ]
+        "es": [],
+        "en": []
       },
       "ubicacion": {
         "lat": 9.926062,
