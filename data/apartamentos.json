@@ -277,8 +277,16 @@
         "fuente": "Pin del mapa del anuncio de Jorge en Encuentra24 #33036575 (aproximado, nivel de barrio)"
       },
       "registro": {
-        "es": [],
-        "en": []
+        "es": [
+          "Finca del apartamento: 112725-F",
+          "Finca de la bodega: 112736-F",
+          "Fincas de los parqueos: 112747-F, 112748-F y 112749-F"
+        ],
+        "en": [
+          "Apartment property number: 112725-F",
+          "Storage room property number: 112736-F",
+          "Parking property numbers: 112747-F, 112748-F and 112749-F"
+        ]
       },
       "portada": 0,
       "fotos": [
@@ -659,8 +667,12 @@
         "fuente": "Pin del mapa del anuncio de Jorge en Encuentra24 #33051870 (aproximado, nivel de barrio)"
       },
       "registro": {
-        "es": [],
-        "en": []
+        "es": [
+          "Finca: 128993-F"
+        ],
+        "en": [
+          "Property number: 128993-F"
+        ]
       },
       "portada": 0,
       "fotos": [
@@ -1034,8 +1046,20 @@
         "fuente": "Mapa de la página del dueño (riorosantaana.htm): Calle Cebadilla, Río Oro de Santa Ana, 600 m al sur del Fresh Market"
       },
       "registro": {
-        "es": [],
-        "en": []
+        "es": [
+          "Finca filial B-11, edificio B, tercer nivel + ático, distrito Piedades, Santa Ana",
+          "Finca del apartamento: 195331-F",
+          "Fincas de los parqueos: 195273-F y 195274-F",
+          "Plano: SJ-2158617-2019",
+          "Sin gravámenes según consulta al Registro Nacional del 25 de setiembre de 2026"
+        ],
+        "en": [
+          "Condominium unit B-11, building B, third level + loft, Piedades district, Santa Ana",
+          "Apartment property number: 195331-F",
+          "Parking property numbers: 195273-F and 195274-F",
+          "Survey plan: SJ-2158617-2019",
+          "No liens, per a Registro Nacional search on 25 September 2026"
+        ]
       },
       "portada": 0,
       "fotos": [
