@@ -60,6 +60,7 @@
       "id": "bosques-de-escazu",
       "tipo": "condominio",
       "nombre": "Bosques de Escazú",
+      "slug": "bosques-de-escazu",
       "match": {
         "condominio": "Bosques de Escazú"
       },
@@ -80,7 +81,46 @@
           "Condo fee: ₡150,000 to ₡200,000 per month, depending on the apartment",
           "Year built: Ask us"
         ]
-      }
+      },
+      "amenidades": {
+        "es": [
+          "Piscina temperada",
+          "Gimnasio con vista al bosque",
+          "Sauna",
+          "Salón de fiestas",
+          "Área social",
+          "Área de BBQ",
+          "Parque infantil",
+          "Decks para yoga junto a la montaña",
+          "Senderos para caminar",
+          "Casa club junto al río de Escazú",
+          "Seguridad 24 horas",
+          "Parqueo de visitas",
+          "Ascensor",
+          "Planta eléctrica",
+          "Tanque de reserva de agua",
+          "Admite mascotas"
+        ],
+        "en": [
+          "Heated pool",
+          "Gym with forest views",
+          "Sauna",
+          "Party room",
+          "Social area",
+          "BBQ area",
+          "Playground",
+          "Yoga decks by the mountain",
+          "Walking trails",
+          "Clubhouse next to the Escazú river",
+          "24-hour security",
+          "Visitor parking",
+          "Elevator",
+          "Backup power generator",
+          "Water reserve tank",
+          "Pet friendly"
+        ]
+      },
+      "amenidadesFuente": "Listas de amenidades de VT-01, VT-04 y VT-05 en este archivo (anuncios de Jorge), juntas y sin repetir"
     },
     {
       "id": "santa-ana",
@@ -106,6 +146,7 @@
       "id": "nova-lofts",
       "tipo": "condominio",
       "nombre": "Nova Lofts",
+      "slug": "nova-lofts",
       "match": {
         "condominio": "Nova Lofts"
       },
@@ -124,12 +165,28 @@
           "Condo fee: Ask us",
           "Year built: Ask us"
         ]
-      }
+      },
+      "amenidades": {
+        "es": [
+          "Acceso controlado",
+          "Seguridad 24/7",
+          "Casa club",
+          "Piscina"
+        ],
+        "en": [
+          "Controlled access",
+          "24/7 security",
+          "Clubhouse",
+          "Pool"
+        ]
+      },
+      "amenidadesFuente": "Amenidades de VT-02 en este archivo; propiedad-nova-lofts.md"
     },
     {
       "id": "rioro",
       "tipo": "condominio",
       "nombre": "Río Oro",
+      "slug": "rio-oro",
       "match": {
         "condominio": "Río Oro"
       },
@@ -150,7 +207,26 @@
           "Condo fee: Ask us",
           "Year built: Ask us"
         ]
-      }
+      },
+      "amenidades": {
+        "es": [
+          "Acceso controlado",
+          "Seguridad 24/7",
+          "Casa club",
+          "Piscina",
+          "Gimnasio",
+          "Área de juegos para niños"
+        ],
+        "en": [
+          "Controlled access",
+          "24/7 security",
+          "Clubhouse",
+          "Pool",
+          "Gym",
+          "Children's play area"
+        ]
+      },
+      "amenidadesFuente": "Amenidades de VT-03 en este archivo; propiedad-rio-oro-b11.md"
     }
   ],
   "apartamentos": [

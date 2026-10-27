@@ -1,0 +1,255 @@
+{
+  "id": "primer-apartamento",
+  "publicado": "2026-10-27",
+  "actualizado": "2026-10-27",
+  "titulo": {
+    "es": "Tu primer apartamento en Escazú o Santa Ana: lo que nadie te dice",
+    "en": "Your first apartment in Escazú or Santa Ana: what nobody tells you"
+  },
+  "bajada": {
+    "es": "Ver apartamentos es lo fácil. Lo que toma por sorpresa llega al cerrar: impuestos, timbres, el notario y la cuota de cada mes. Aquí va, con las cifras de la ley y de nuestros propios apartamentos.",
+    "en": "Looking at apartments is the easy part. The surprises come at closing: taxes, stamps, the notary and the monthly fee. Here it is, with the figures from the law and from our own apartments."
+  },
+  "aviso": {
+    "es": "No somos abogados. Esto te orienta; tu caso concreto lo revisa un notario o un abogado.",
+    "en": "We are not lawyers. This points you the right way; a notary or a lawyer looks at your own case."
+  },
+  "bloques": [
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "Al precio súmale entre 3.5% y 5%",
+        "en": "Add 3.5% to 5% to the price"
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "costos-de-cierre-cr.md (The Tico Times, setiembre 2026)",
+      "texto": {
+        "es": "Cerrar una compra tiene costos que no salen en el anuncio. The Tico Times (setiembre de 2026) los pone entre 3.5% y 5% del precio. Se arman así:",
+        "en": "Closing a purchase has costs that are not in the ad. The Tico Times (September 2026) puts them at 3.5% to 5% of the price. This is what they are made of:"
+      }
+    },
+    {
+      "tipo": "lista",
+      "fuente": "costos-de-cierre-cr.md (Ley 6999 art. 8; costaricalaw.com para timbres; Decreto 41457-JP art. 74; Ley 6826 art. 9)",
+      "items": {
+        "es": [
+          "**Impuesto de traspaso: 1.5%** del valor real de la venta (Ley 6999).",
+          "**Timbres y registro: cerca de 0.85%**, más el timbre del Colegio de Abogados, de ₡1,100 a ₡55,000.",
+          "**Notario:** 2% sobre los primeros ₡11 millones, y por tramos baja hasta 1%, con un mínimo de ₡60,500 (Decreto 41457-JP). Sobre sus honorarios se paga 13% de IVA.",
+          "**La venta del apartamento no paga IVA** (Ley 6826)."
+        ],
+        "en": [
+          "**Transfer tax: 1.5%** of the real sale value (Ley 6999).",
+          "**Stamps and registry: about 0.85%**, plus the bar-association stamp, from ₡1,100 to ₡55,000.",
+          "**Notary:** 2% on the first ₡11 million, stepping down to 1%, with a minimum of ₡60,500 (Decreto 41457-JP). Their fee carries 13% IVA.",
+          "**The sale of the apartment itself carries no IVA** (Ley 6826)."
+        ]
+      }
+    },
+    {
+      "tipo": "ejemplo-cierre",
+      "fuente": "closingCosts() de js/site.js (mismas tarifas de costos-de-cierre-cr.md) con el precio más bajo de apartamentos.json y el tipo de cambio de la calculadora"
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "“Mitad y mitad” es la regla, no una obligación",
+        "en": "“Half and half” is the default, not a must"
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "costos-de-cierre-cr.md (Ley 6999 art. 6; arancel art. 68; The Tico Times)",
+      "texto": {
+        "es": "La ley dice que el traspaso lo pagan vendedor y comprador por partes iguales (Ley 6999). Para honorarios, timbres e impuestos, el arancel notarial dice lo mismo, salvo que las partes acuerden otra cosa. En la práctica se negocia. Acuerden quién paga qué antes de firmar la opción o la promesa, y que quede escrito.",
+        "en": "The law says buyer and seller pay the transfer tax in equal parts (Ley 6999). For fees, stamps and taxes, the notary fee rules say the same unless the parties agree otherwise. In practice it is negotiated. Agree on who pays what before you sign the option or the promise of sale, and put it in writing."
+      }
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "El precio de la escritura es una declaración jurada",
+        "en": "The price in the deed is a sworn statement"
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "costos-de-cierre-cr.md (Ley 6999 arts. 7 y 9)",
+      "texto": {
+        "es": "El traspaso se calcula sobre el valor real de la venta, nunca menos que el valor registrado de la finca. Y el valor que se pone en la escritura cuenta como declaración jurada. Por eso en la escritura va el precio real.",
+        "en": "The transfer tax is worked out on the real sale value, never below the registered value of the property. And the value written in the deed counts as a sworn statement. So the deed carries the real price."
+      }
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "Después de firmar hay dos pendientes con plazo",
+        "en": "After signing, two things have a deadline"
+      }
+    },
+    {
+      "tipo": "lista",
+      "fuente": "costos-de-cierre-cr.md (Ley 6999 art. 7)",
+      "items": {
+        "es": [
+          "El impuesto de traspaso se paga dentro de los 15 días hábiles siguientes a la escritura.",
+          "Tú, como comprador, declaras a la municipalidad el valor de la compra. Con ese dato la municipalidad actualiza el valor de la finca para el impuesto de bienes inmuebles."
+        ],
+        "en": [
+          "The transfer tax is paid within 15 business days of the deed.",
+          "You, the buyer, declare the purchase value to the municipality. The municipality uses it to update the property's value for the property tax."
+        ]
+      }
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "La cuota de condominio llega cada mes",
+        "en": "The condo fee comes every month"
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "apartamentos.json (cuotaCondominio)",
+      "texto": {
+        "es": "Además del precio, en un condominio pagas una cuota mensual. Pregúntala antes de ofertar. Esto es lo que sabemos de los nuestros; lo marcado en amarillo todavía lo estamos confirmando.",
+        "en": "On top of the price, a condominium charges a monthly fee. Ask for it before you make an offer. This is what we know about ours; anything in yellow we are still confirming."
+      }
+    },
+    {
+      "tipo": "cuotas",
+      "fuente": "apartamentos.json (precioUSD, m2, cuotaCondominio)"
+    },
+    {
+      "tipo": "p",
+      "fuente": "aritmética",
+      "texto": {
+        "es": "El precio por m² sirve para comparar apartamentos de distinto tamaño.",
+        "en": "Price per m² lets you compare apartments of different sizes."
+      }
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "El parqueo y la bodega pueden ser fincas aparte",
+        "en": "Parking and storage can be separate properties"
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "apartamentos.json (incluye de VT-01 y VT-02); propiedad-bosques-escazu-603a.md (5 fincas); propiedad-nova-lofts.md (una sola finca)",
+      "texto": {
+        "es": "En el Registro Nacional, el apartamento, cada parqueo y la bodega pueden estar inscritos como fincas separadas. Así pasa en {{apto:bosques-escazu-603a}}: sus parqueos y su bodega están inscritos aparte. En otros casos el parqueo no es una finca sino un derecho de uso exclusivo, como en {{apto:nova-lofts-santa-ana}}. Pide que se revisen todas las fincas que compras, no solo la del apartamento.",
+        "en": "At the Registro Nacional, the apartment, each parking space and the storage room can be registered as separate properties. That is the case at {{apto:bosques-escazu-603a}}: its parking and storage are registered on their own. In other cases the parking space is not a property but an exclusive right of use, as at {{apto:nova-lofts-santa-ana}}. Ask for every property you are buying to be checked, not only the apartment."
+      }
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "Mide el viaje a la hora en que lo vas a hacer",
+        "en": "Time the drive at the hour you will make it"
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "apartamentos.json (comoTeMueves, OSRM sin tráfico); propiedad-nova-lofts.md (anuncio: San José 30 min)",
+      "texto": {
+        "es": "En cada ficha te damos los minutos en carro calculados sin tráfico. Desde Nova Lofts, por ejemplo, son {{min:nova-lofts-santa-ana:sanjose}} a San José centro. El anuncio de ese mismo apartamento dice 30 minutos. Nuestro número es sin tráfico, así que en hora pico será más. Si vas a hacer ese viaje todos los días, hazlo una vez a esa hora antes de decidir.",
+        "en": "Each listing gives you the drive in minutes, worked out without traffic. From Nova Lofts, for example, it is {{min:nova-lofts-santa-ana:sanjose}} to downtown San José. The ad for that same apartment says 30 minutes. Our number is without traffic, so at rush hour it will be more. If you will make that drive every day, do it once at that hour before you decide."
+      }
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "Aquí no se necesita licencia para ser corredor",
+        "en": "No license is needed to be a broker here"
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "cr-real-estate-license-and-referral-legal.md (sección 1: Quatro Legal 2023, columna de junio 2026)",
+      "texto": {
+        "es": "En Costa Rica no hay una ley que exija licencia a los corredores de bienes raíces: cualquiera puede ofrecer un apartamento y cobrar comisión. Pregunta siempre a quién representa la persona que te lo enseña y quién le paga.",
+        "en": "Costa Rica has no law that requires real estate brokers to hold a license: anyone can offer an apartment and charge a commission. Always ask who the person showing it to you represents and who pays them."
+      }
+    },
+    {
+      "tipo": "p",
+      "fuente": "cr-real-estate-license-and-referral-legal.md (sección 3: Ley 7786 art. 15 bis b y e, art. 16)",
+      "texto": {
+        "es": "Lo que sí aplica es la ley contra el lavado de dinero (Ley 7786): quienes se dedican a comprar y vender inmuebles, y los notarios que hacen estas compras para sus clientes, tienen que identificar al cliente. Lleva tu identificación.",
+        "en": "What does apply is the anti-money-laundering law (Ley 7786): people who buy and sell property for a living, and notaries handling these purchases for clients, must identify the client. Bring your ID."
+      }
+    },
+    {
+      "tipo": "h",
+      "texto": {
+        "es": "Antes de ofertar, revisa esto",
+        "en": "Before you make an offer, check this"
+      }
+    },
+    {
+      "tipo": "lista",
+      "check": true,
+      "fuente": "resumen de los bloques anteriores; amueblado y financiamiento de apartamentos.json",
+      "items": {
+        "es": [
+          "El precio por m², comparado con otros del mismo tamaño y zona.",
+          "La cuota de condominio, y si el apartamento se vende amueblado.",
+          "Qué fincas compras: apartamento, parqueos y bodega.",
+          "Quién paga qué al cerrar, por escrito.",
+          "Cuánto te cuesta cerrar: [usa la calculadora](#calculadora).",
+          "Si el dueño acepta crédito bancario. En nuestras fichas lo marcamos en amarillo mientras no lo sabemos.",
+          "El viaje a tu trabajo, a la hora pico."
+        ],
+        "en": [
+          "The price per m², compared with others of the same size and area.",
+          "The condo fee, and whether the apartment is sold furnished.",
+          "Which properties you are buying: apartment, parking and storage.",
+          "Who pays what at closing, in writing.",
+          "What closing will cost you: [use the calculator](#calculadora).",
+          "Whether the owner accepts a bank loan. Our listings mark it in yellow while we do not know.",
+          "The drive to work, at rush hour."
+        ]
+      }
+    }
+  ],
+  "ayuda": {
+    "titulo": {
+      "es": "Cómo te ayudamos",
+      "en": "How we help"
+    },
+    "texto": {
+      "es": "Te enseñamos cada apartamento con su precio y fotos reales, coordinamos la visita con cita y te pasamos el número de finca que tenemos para que tu notario lo estudie. La asesoría legal y el monto final de impuestos los da el notario.",
+      "en": "We show you each apartment with its price and real photos, set up the visit by appointment and give you the property number we have so your notary can study it. Legal advice and the final tax amount come from the notary."
+    },
+    "whatsapp": {
+      "es": "Hola, leí la guía de Verti Terra para comprar y tengo una pregunta.",
+      "en": "Hi, I read the Verti Terra buying guide and I have a question."
+    }
+  },
+  "fuentes": {
+    "es": [
+      "Ley 6999, impuesto de traspaso de bienes inmuebles (arts. 6 a 9)",
+      "Decreto 41457-JP, arancel de honorarios de notarios (arts. 68 y 74)",
+      "Ley 6826, impuesto al valor agregado (art. 9)",
+      "Ley 7786, contra la legitimación de capitales (arts. 15 bis y 16)",
+      "costaricalaw.com, timbres y derechos de registro (fuente secundaria)",
+      "The Tico Times, setiembre de 2026, costos de cierre",
+      "Quatro Legal (2023) y una columna de junio de 2026 sobre la falta de licencia para corredores",
+      "Nuestros anuncios y los datos de cada apartamento en este sitio"
+    ],
+    "en": [
+      "Ley 6999, property transfer tax (arts. 6 to 9)",
+      "Decreto 41457-JP, notary fee scale (arts. 68 and 74)",
+      "Ley 6826, value added tax (art. 9)",
+      "Ley 7786, anti-money-laundering law (arts. 15 bis and 16)",
+      "costaricalaw.com, stamps and registry fees (secondary source)",
+      "The Tico Times, September 2026, closing costs",
+      "Quatro Legal (2023) and a June 2026 column on brokers needing no license",
+      "Our own ads and the data of each apartment on this site"
+    ]
+  }
+}

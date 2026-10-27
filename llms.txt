@@ -23,8 +23,20 @@ English: Verti Terra lists apartments only, in Escazú and Santa Ana, Costa Rica
 - [Tu presupuesto](https://vertiterra.com/#presupuesto): línea de precios, muestra qué apartamentos te alcanzan
 - [Apartamentos](https://vertiterra.com/#apartamentos): lista con filtros; cada apartamento abre su ficha en https://vertiterra.com/#/apto/<id>
 - [Para propietarios](https://vertiterra.com/#propietarios): para dueños que quieren vender su apartamento
+- [Zonas](https://vertiterra.com/#zonas): Escazú y Santa Ana, con sus condominios y minutos en carro
+- [Cómo comprar](https://vertiterra.com/#comprar): pasos de una compra, costos de cierre y calculadora
 - [Preguntas](https://vertiterra.com/#preguntas): compra para extranjeros, pasos de una compra, Registro Nacional, cuota de condominio, crédito, visitas
 - [Agendar visita](https://vertiterra.com/#contacto)
+
+## Condominios
+
+- [Bosques de Escazú](https://vertiterra.com/#/edificio/bosques-de-escazu): Escazú. Nuestros apartamentos: VT-04 (US$260,000), VT-05 (US$325,000), VT-01 (US$450,000). Tiene: Piscina temperada, Gimnasio con vista al bosque, Sauna, Salón de fiestas, Área social, Área de BBQ, Parque infantil, Decks para yoga junto a la montaña, Senderos para caminar, Casa club junto al río de Escazú, Seguridad 24 horas, Parqueo de visitas, Ascensor, Planta eléctrica, Tanque de reserva de agua, Admite mascotas.
+- [Nova Lofts](https://vertiterra.com/#/edificio/nova-lofts): Santa Ana. Nuestros apartamentos: VT-02 (US$220,000). Tiene: Acceso controlado, Seguridad 24/7, Casa club, Piscina.
+- [Río Oro](https://vertiterra.com/#/edificio/rio-oro): Santa Ana. Nuestros apartamentos: VT-03 (US$180,000). Tiene: Acceso controlado, Seguridad 24/7, Casa club, Piscina, Gimnasio, Área de juegos para niños.
+
+## Guía
+
+- [Tu primer apartamento en Escazú o Santa Ana: lo que nadie te dice](https://vertiterra.com/#/guia/primer-apartamento): costos de cierre (traspaso 1.5%, timbres, notario + IVA), quién paga qué, la escritura como declaración jurada, plazos después de firmar, cuota de condominio, parqueos y bodegas como fincas aparte, tiempos de viaje y qué revisar antes de ofertar. Actualizada: 2026-10-27.
 
 ## Notas
 

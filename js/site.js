@@ -35,6 +35,7 @@
     budgetUser: false,     // the visitor has moved a line
     pago: null,
     data: null,
+    guide: null,           // data/guia-primer-apartamento.json
     f: { zona: '', condo: '', piso: '', hab: 0, sort: 'asc' },
     visitApt: '',
     step: 1,
@@ -556,11 +557,184 @@
             '<ul class="condo__apts">' + aptsWhere(c.match).map(function (a) {
               return '<li><a href="#/apto/' + a.id + '"><span class="condo__code">' + esc(a.codigo) + '</span><span class="condo__t">' + esc(L(a.titulo)) + '</span><span class="condo__p">' + money(a.precioUSD) + '</span></a></li>';
             }).join('') + '</ul>' +
+            '<a class="condo__more" href="#/edificio/' + esc(condoSlug(c)) + '">' + esc(T('condoMore', { c: c.nombre })) + ' <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>' +
           '</section>';
         }).join('') +
       '</article>';
     }).join('');
+    // footer: one link per condominium page
+    var fc = $('#footCondos');
+    if (fc) fc.innerHTML = condos().map(function (c) { return '<li><a href="#/edificio/' + esc(condoSlug(c)) + '">' + esc(c.nombre) + '</a></li>'; }).join('');
     relayoutSoon();
+  }
+
+  /* ------------------------------------------ one page per condominium -- */
+  // #/edificio/<slug>. Everything comes from data.zonas (the condominium's
+  // facts, amenities, who it suits) and from its apartments (prices, photos,
+  // drive minutes), so a new apartment shows up here by itself.
+  function condos() { return (state.data && state.data.zonas || []).filter(function (c) { return c.tipo === 'condominio' && aptsWhere(c.match).length; }); }
+  function condoSlug(c) { return c.slug || c.id; }
+  function zoneOf(c) {
+    var a = aptsWhere(c.match)[0];
+    return (state.data.zonas || []).filter(function (z) { return z.tipo === 'zona' && a && z.match.zona === a.zona; })[0];
+  }
+  function newestDate(list) { return list.map(function (a) { return a.actualizado || ''; }).sort().pop(); }
+  function pageTop(label) {
+    return '<div class="dos__top"><span class="dos__code">' + esc(label) + '</span>' +
+      '<button class="dos__close" type="button" id="dosClose" aria-label="' + esc(T('closePage')) + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>';
+  }
+  var ARROW = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var WA_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>';
+  function renderBuilding(c) {
+    var apts = aptsWhere(c.match), z = zoneOf(c), a0 = apts[0];
+    var near = nearRange(apts);
+    var cover = a0.fotos[a0.portada || 0];
+    var fecha = apts.map(function (a) { return a.comoTeMueves && a.comoTeMueves.fecha; }).filter(Boolean).sort().pop();
+    var max = Math.max.apply(null, apts.reduce(function (m, a) { return m.concat((a.comoTeMueves && a.comoTeMueves.destinos || []).map(function (d) { return d.min; })); }, [30]));
+    var hiOf = function (name) { var hi = 0; apts.forEach(function (a) { (a.comoTeMueves && a.comoTeMueves.destinos || []).forEach(function (d) { if (L(d.nombre) === name) hi = Math.max(hi, d.min); }); }); return hi; };
+    var others = condos().filter(function (o) { return o.id !== c.id; });
+    return pageTop(T('pageCondoKicker', { z: a0.zona })) +
+      '<article class="page" data-page="edificio" data-condo-id="' + esc(c.id) + '">' +
+        '<figure class="page__hero"><img src="' + cover.src + '" srcset="' + cover.thumb + ' 560w, ' + cover.src + ' ' + cover.w + 'w" sizes="(max-width: 900px) 100vw, 1180px" width="' + cover.w + '" height="' + cover.h + '" alt="' + esc(L(cover.alt)) + '"></figure>' +
+        '<div class="page__wrap">' +
+          '<header class="page__head">' +
+            '<p class="page__crumbs"><a href="#zonas">' + esc(T('navZonesShort')) + '</a> <span aria-hidden="true">/</span> ' + esc(z ? z.nombre : a0.zona) + '</p>' +
+            '<h2 class="page__title" id="dosTitle">' + esc(c.nombre) + '</h2>' +
+            '<p class="page__where">' + esc(T('bWhereLine', { z: a0.zona, p: a0.provincia })) + '</p>' +
+            '<div class="page__for"><span class="zone__h">' + esc(T('zoneFor')) + '</span><p>' + txt(L(c.paraQuien)) + '</p></div>' +
+          '</header>' +
+          '<div class="page__grid">' +
+            '<section class="page__sec">' +
+              '<h3 class="page__h">' + esc(T('bHas')) + '</h3>' +
+              (c.amenidades ? '<ul class="amen">' + L(c.amenidades).map(function (s) { return '<li>' + txt(s) + '</li>'; }).join('') + '</ul>' : '') +
+              '<h3 class="page__h">' + esc(T('bFacts')) + '</h3>' +
+              '<ul class="page__facts">' + L(c.datos).map(function (s) { return '<li>' + txt(s) + '</li>'; }).join('') + '</ul>' +
+            '</section>' +
+            '<section class="page__sec dos__move">' +
+              '<h3 class="page__h">' + esc(T('bWhere')) + '</h3>' +
+              (near.length ? '<ul class="move">' + near.map(function (n) {
+                return '<li class="move__row"><span class="move__name">' + esc(n.name) + '</span>' +
+                  '<span class="move__bar" aria-hidden="true"><span style="width:' + (Math.max(hiOf(n.name), 1) / max * 100).toFixed(1) + '%"></span></span>' +
+                  '<span class="move__min">' + esc(n.text) + '</span></li>';
+              }).join('') + '</ul>' + (fecha ? '<p class="move__note">' + esc(T('moveNote', { d: dateText(fecha) })) + '</p>' : '') : '') +
+              (z ? '<p class="page__zone"><strong>' + esc(z.nombre) + ':</strong> ' + txt(L(z.paraQuien)) + '</p>' : '') +
+            '</section>' +
+          '</div>' +
+          '<section class="page__sec">' +
+            '<h3 class="page__h">' + esc(T('zoneOurs')) + ' <span class="page__count">' + apts.length + '</span></h3>' +
+            '<ul class="page__apts">' + apts.map(function (a) {
+              var f = a.fotos[a.portada || 0];
+              return '<li class="apt" data-id="' + a.id + '">' +
+                '<a class="apt__media" href="#/apto/' + a.id + '" tabindex="-1" aria-hidden="true"><img src="' + f.thumb + '" alt="" width="560" height="420" loading="lazy" decoding="async"></a>' +
+                '<div class="apt__body">' +
+                  '<p class="apt__code">' + esc(a.codigo) + (a.unidad ? ' · ' + esc(a.unidad) : '') + '</p>' +
+                  '<h4 class="apt__title"><a href="#/apto/' + a.id + '">' + esc(L(a.titulo)) + '</a></h4>' +
+                  '<p class="apt__price">' + money(a.precioUSD) + '</p>' +
+                  '<ul class="chips">' + chipsFor(a) + '</ul>' +
+                  '<div class="apt__actions"><a class="btn btn--solid" href="#/apto/' + a.id + '">' + esc(T('seeListing')) + '</a>' +
+                  '<a class="btn btn--quiet" href="#calculadora" data-calc-price="' + a.precioUSD + '">' + esc(T('bCalc')) + '</a></div>' +
+                '</div></li>';
+            }).join('') + '</ul>' +
+          '</section>' +
+          '<div class="page__cta">' +
+            '<a class="btn btn--solid" target="_blank" rel="noopener" href="' + waLink(T('msgCondo', { c: c.nombre })) + '">' + WA_ICON + ' ' + esc(T('bAsk', { c: c.nombre })) + '</a>' +
+            '<a class="btn btn--quiet" href="#/guia/' + GUIDE_ID + '">' + esc(T('bGuide')) + ' ' + ARROW + '</a>' +
+          '</div>' +
+          (others.length ? '<nav class="page__others" aria-label="' + esc(T('bOthers')) + '"><span class="zone__h">' + esc(T('bOthers')) + '</span>' + others.map(function (o) {
+            return '<a href="#/edificio/' + esc(condoSlug(o)) + '">' + esc(o.nombre) + ' ' + ARROW + '</a>';
+          }).join('') + '</nav>' : '') +
+          '<p class="page__note">' + esc(T('bSourceNote')) + (newestDate(apts) ? ' ' + esc(T('updated', { d: dateText(newestDate(apts)) })) + '.' : '') + '</p>' +
+        '</div>' +
+      '</article>';
+  }
+
+  /* ------------------------------------------------- the buyer guide -- */
+  // #/guia/primer-apartamento, text in data/guia-primer-apartamento.json. Marks
+  // like {{apto:<id>}} or {{min:<id>:<place>}} are filled from the apartments,
+  // so prices and minutes are never typed twice. **bold** and [text](#link)
+  // (internal links only) are the only markup.
+  var GUIDE_ID = 'primer-apartamento';
+  function aptById(id) { return state.data.apartamentos.filter(function (a) { return a.id === id; })[0]; }
+  function rich(s) {
+    var h = esc(s).replace(/\{\{(apto|precio|codigo|min):([\w-]+)(?::([\w-]+))?\}\}/g, function (m, k, id, place) {
+      var a = aptById(id); if (!a) return m;
+      if (k === 'apto') return '<a href="#/apto/' + a.id + '">' + esc(a.codigo + ' · ' + L(a.titulo)) + '</a>';
+      if (k === 'precio') return money(a.precioUSD);
+      if (k === 'codigo') return esc(a.codigo);
+      var d = (a.comoTeMueves && a.comoTeMueves.destinos || []).filter(function (x) { return x.id === place; })[0];
+      return d ? esc(T('moveMin', { n: d.min })) : m;
+    });
+    h = h.replace(/\[([^\]]+)\]\((#[^)\s]*)\)/g, function (m, t, href) { return /^(FALTA|MISSING)/.test(t) ? m : '<a href="' + href + '">' + t + '</a>'; });
+    h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    return h.replace(/\[(FALTA|MISSING)[^\]]*\]/g, function (m) { return '<mark class="missing">' + m + '</mark>'; });
+  }
+  function guideBlock(b, n) {
+    if (b.tipo === 'h') return '<h3 class="guide__h"><span class="guide__n">' + (n < 10 ? '0' : '') + n + '</span>' + esc(L(b.texto)) + '</h3>';
+    if (b.tipo === 'p') return '<p>' + rich(L(b.texto)) + '</p>';
+    if (b.tipo === 'lista') return '<ul class="guide__list' + (b.check ? ' is-check' : '') + '">' + L(b.items).map(function (s) { return '<li>' + rich(s) + '</li>'; }).join('') + '</ul>';
+    if (b.tipo === 'ejemplo-cierre') {
+      var a = state.data.apartamentos.slice().sort(function (x, y) { return x.precioUSD - y.precioUSD; })[0];
+      var c = closingCosts(a.precioUSD, CALC_RATE);
+      return '<div class="guide__calc" data-total="' + Math.round(c.total) + '">' +
+        '<p>' + esc(T('guideExample', { code: a.codigo, price: money(a.precioUSD), pct: c.pct.toFixed(1) })) + '</p>' +
+        '<div class="guide__figs"><p><span>' + esc(T('calcColTotal')) + '</span><strong>' + money(Math.round(c.total)) + '</strong></p>' +
+        '<p><span>' + esc(T('calcColHalf')) + '</span><strong>' + money(Math.round(c.half)) + '</strong></p></div>' +
+        '<p class="guide__small">' + esc(T('guideRate', { r: CALC_RATE })) + ' <a href="#calculadora" data-calc-price="' + a.precioUSD + '">' + esc(T('guideCalcLink')) + '</a></p>' +
+      '</div>';
+    }
+    if (b.tipo === 'cuotas') {
+      return '<ul class="fees">' + state.data.apartamentos.slice().sort(function (x, y) { return x.precioUSD - y.precioUSD || x.codigo.localeCompare(y.codigo); }).map(function (a) {
+        return '<li class="fee" data-id="' + a.id + '"><a class="fee__name" href="#/apto/' + a.id + '"><span class="fee__code">' + esc(a.codigo) + '</span>' + esc(a.condominio + (a.unidad ? ' ' + a.unidad : '')) + '</a>' +
+          '<span class="fee__n"><strong>' + money(a.precioUSD) + '</strong><small>' + esc(T('perM2', { v: money(Math.round(a.precioUSD / a.m2)) })) + '</small></span>' +
+          '<span class="fee__c"><small>' + esc(T('fFee')) + '</small>' + txt(L(a.cuotaCondominio)) + '</span></li>';
+      }).join('') + '</ul>';
+    }
+    return '';
+  }
+  function renderGuide(g) {
+    var n = 0;
+    var apts = state.data.apartamentos.slice().sort(function (a, b) { return a.precioUSD - b.precioUSD || a.codigo.localeCompare(b.codigo); });
+    return pageTop(T('guideKicker')) +
+      '<article class="page guide" data-page="guia">' +
+        '<header class="guide__head">' +
+          '<p class="guide__kicker">' + esc(T('guideKicker')) + '</p>' +
+          '<h2 class="guide__title" id="dosTitle">' + esc(L(g.titulo)) + '</h2>' +
+          '<p class="guide__lede">' + esc(L(g.bajada)) + '</p>' +
+          '<p class="guide__meta" id="guideUpdated">' + esc(T('updated', { d: dateText(g.actualizado) })) + '</p>' +
+          '<p class="guide__aviso">' + esc(L(g.aviso)) + '</p>' +
+        '</header>' +
+        g.bloques.map(function (b) { if (b.tipo === 'h') n++; return guideBlock(b, n); }).join('') +
+        '<div class="buy__help guide__help">' +
+          '<h3 class="buy__h">' + esc(L(g.ayuda.titulo)) + '</h3><p>' + esc(L(g.ayuda.texto)) + '</p>' +
+          '<ul class="guide__apts">' + apts.map(function (a) { return '<li><a href="#/apto/' + a.id + '"><span>' + esc(a.codigo + ' · ' + L(a.titulo)) + '</span><strong>' + money(a.precioUSD) + '</strong></a></li>'; }).join('') + '</ul>' +
+          '<div class="page__cta"><a class="btn btn--light" href="#apartamentos">' + esc(T('guideSeeApts')) + '</a>' +
+          '<a class="btn btn--light" target="_blank" rel="noopener" href="' + waLink(L(g.ayuda.whatsapp)) + '">' + WA_ICON + ' ' + esc(T('guideAsk')) + '</a></div>' +
+        '</div>' +
+        '<nav class="page__others" aria-label="' + esc(T('bCondos')) + '"><span class="zone__h">' + esc(T('bCondos')) + '</span>' + condos().map(function (o) {
+          return '<a href="#/edificio/' + esc(condoSlug(o)) + '">' + esc(o.nombre) + ' ' + ARROW + '</a>';
+        }).join('') + '</nav>' +
+        '<section class="guide__sources"><h3>' + esc(T('guideSources')) + '</h3><ul>' + L(g.fuentes).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></section>' +
+      '</article>';
+  }
+
+  // Open a condominium page or the guide in the same dialog as the dossiers.
+  function openPage(kind, id) {
+    var html = '', title = '';
+    if (kind === 'edificio') {
+      var c = condos().filter(function (x) { return condoSlug(x) === id; })[0];
+      if (c) { html = renderBuilding(c); title = c.nombre; }
+    } else if (kind === 'guia' && state.guide && id === state.guide.id) {
+      html = renderGuide(state.guide); title = L(state.guide.titulo);
+    }
+    if (!html) { if (dlg.open) closeDossier(); return; }   // unknown page: never leave the previous one open
+    gal = { i: 0, a: null };
+    dlg.setAttribute('data-kind', kind);
+    $('#dossierBody').innerHTML = html;
+    $('#dosClose').addEventListener('click', closeDossier);
+    document.title = title + ' · Verti Terra';
+    if (!dlg.open) { dlg.showModal(); document.documentElement.classList.add('has-dialog'); }
+    $('#dossierBody').scrollTop = 0;
+    $('#dosClose').focus();
   }
 
   /* ------------------------------------------ closing-cost calculator -- */
@@ -714,6 +888,8 @@
         '<div>' + listBlock(T('includes'), L(a.incluye)) + listBlock(T('near'), L(a.cerca)) + '</div>' +
         '<div>' + listBlock(T('amenities'), L(a.amenidades)) + listBlock(T('registry'), L(a.registro)) + '</div>' +
       '</div>';
+    dlg.setAttribute('data-kind', 'apto');
+    document.title = T('title');
     $('#dossierBody').innerHTML = html;
     $('#dosClose').addEventListener('click', closeDossier);
     $('#galPrev').addEventListener('click', function () { showPhoto(gal.i - 1); });
@@ -737,16 +913,29 @@
     if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     var next = new Image(); next.src = a.fotos[(gal.i + 1) % n].src; // warm the next one
   }
+  // Where a closed dialog leaves the address: an apartment goes back to the
+  // list, a condominium page to "Dónde quedan", the guide to "Cómo comprar".
+  var PAGE_RE = /^#\/(apto|edificio|guia)\//;
+  var BACK_TO = { apto: '#apartamentos', edificio: '#zonas', guia: '#comprar' };
+  function backHash() { var m = location.hash.match(PAGE_RE); return m ? BACK_TO[m[1]] : null; }
   function closeDossier(keepHashToContact) {
+    var back = backHash();
     if (dlg.open) dlg.close();
     document.documentElement.classList.remove('has-dialog');
-    if (/^#\/apto\//.test(location.hash)) history.replaceState(null, '', keepHashToContact === true ? '#contacto' : '#apartamentos');
+    document.title = T('title');
+    if (back) history.replaceState(null, '', keepHashToContact === true ? '#contacto' : back);
     if (keepHashToContact === true) document.getElementById('contacto').scrollIntoView({ behavior: 'auto' });
   }
   function route() {
-    var m = location.hash.match(/^#\/apto\/([\w-]+)/);
-    if (m) openDossier(m[1]);
-    else if (dlg.open) closeDossier();
+    var m = location.hash.match(/^#\/(apto|edificio|guia)\/([\w-]+)/);
+    if (m && m[1] === 'apto') openDossier(m[2]);
+    else if (m) openPage(m[1], m[2]);
+    else if (dlg.open) {
+      // a link inside a page to a section of the home page (#calculadora, #zonas...)
+      closeDossier();
+      var t = /^#[\w-]+$/.test(location.hash) && document.getElementById(location.hash.slice(1));
+      if (t) t.scrollIntoView({ behavior: 'auto' });
+    }
   }
 
   /* --------------------------------------------------- visit form -- */
@@ -951,6 +1140,7 @@
       renderCalc();
       syncBudgetUI(); refreshWa(); renderDone();
       if (dlg.open && gal.a) { var i = gal.i; openDossier(gal.a.id); showPhoto(i); }
+      else if (dlg.open) route();   // a condominium page or the guide: draw it again in the new language
     });
     var bar = $('#bar'), mt = $('#menuToggle');
     mt.addEventListener('click', function () {
@@ -961,7 +1151,15 @@
     $$('#barNav a').forEach(function (a) { a.addEventListener('click', function () { bar.classList.remove('is-open'); mt.setAttribute('aria-expanded', 'false'); }); });
     dlg.addEventListener('close', function () {
       document.documentElement.classList.remove('has-dialog');
-      if (/^#\/apto\//.test(location.hash)) history.replaceState(null, '', '#apartamentos');
+      document.title = T('title');
+      var back = backHash(); if (back) history.replaceState(null, '', back);
+    });
+    // "Costos de cierre" links in the pages carry a price for the calculator
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('[data-calc-price]');
+      if (!a || !$('#calcPrice')) return;
+      $('#calcPrice').value = Number(a.getAttribute('data-calc-price')).toLocaleString('en-US');
+      renderCalc();
     });
     dlg.addEventListener('click', function (e) { if (e.target === dlg) closeDossier(); });
     dlg.addEventListener('keydown', function (e) {
@@ -979,8 +1177,14 @@
     addEventListener('resize', function () { heroLayout(); layoutPins(); syncBudgetUI(); if (!state.budgetUser) drawEarth(lineEl.E, demoV); });
     addEventListener('hashchange', route);
 
+    // The buyer guide is optional: if it fails to load, the rest of the site still works.
+    var guide = fetch('data/guia-primer-apartamento.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (g) { state.guide = g; })
+      .catch(function (err) { console.warn('[verti-terra] guide not loaded', err); });
     fetch('data/apartamentos.json', { cache: 'no-cache' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (data) { return guide.then(function () { return data; }); })
       .then(function (data) {
         state.data = data;
         populateFilters();
@@ -1003,7 +1207,7 @@
 
     requestAnimationFrame(loop);
     // test hook for the verification scripts (read-only view of state)
-    window.__vt = { state: state, filtered: function () { return state.data ? filtered().map(function (a) { return a.id; }) : []; }, WA_NUMBER: WA_NUMBER, closingCosts: closingCosts };
+    window.__vt = { state: state, filtered: function () { return state.data ? filtered().map(function (a) { return a.id; }) : []; }, WA_NUMBER: WA_NUMBER, closingCosts: closingCosts, route: route };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
