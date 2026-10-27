@@ -281,6 +281,8 @@
   <nav class="bar__nav" id="barNav" aria-label="Principal" data-i18n-attr="aria-label:navLabel">
     <a href="#apartamentos" data-i18n="navApts">Apartamentos</a>
     <a href="#presupuesto" data-i18n="navBudget">Tu presupuesto</a>
+    <a href="#zonas" data-i18n="navZones">Zonas</a>
+    <a href="#comprar" data-i18n="navBuy">Cómo comprar</a>
     <a href="#propietarios" data-i18n="navOwners">Para propietarios</a>
     <a href="#preguntas" data-i18n="navFaq">Preguntas</a>
     <a class="btn btn--solid bar__nav-cta" href="#contacto" data-i18n="ctaVisit">Agendar visita</a>
@@ -470,6 +472,17 @@
     </div>
   </section>
 
+  <!-- 4b · AREAS: flow, one card per zone with its condominiums (from data/apartamentos.json "zonas") -->
+  <section id="zonas" class="sc-section zones" data-sc-act="flow" aria-labelledby="zoneTitle">
+    <div class="sc-wrap">
+      <div class="zones__head" data-sc-in data-sc-stagger="60">
+        <h2 class="sc-display zones__title" id="zoneTitle" data-i18n="zoneTitle">Dónde quedan.</h2>
+        <p class="sc-body zones__lede" data-i18n="zoneLede">Dos zonas y tres condominios. Los minutos son en carro, aprox. y sin tráfico.</p>
+      </div>
+      <div class="zones__grid" id="zonesGrid"></div>
+    </div>
+  </section>
+
   <!-- 5 · OWNERS: flow + reveal wipe -->
   <section id="propietarios" class="sc-section owners" data-sc-act="flow" aria-labelledby="ownTitle">
     <div class="sc-wrap owners__grid">
@@ -512,6 +525,81 @@
     <div class="sc-wrap altitude__copy">
       <h2 class="sc-display altitude__title" id="altTitle" data-i18n="altTitle">Hay apartamentos que se escogen por la vista.</h2>
       <p class="altitude__cap" data-i18n="altCap">Vista al bosque en RiOro, Santa Ana.</p>
+    </div>
+  </section>
+
+  <!-- 7b · HOW TO BUY: flow, steps + closing costs + calculator.
+       Facts only from KNOWLEDGE/verti_terra_kb/WIKI/costos-de-cierre-cr.md and
+       cr-real-estate-license-and-referral-legal.md (steps as in FAQ q2). -->
+  <section id="comprar" class="sc-section buy" data-sc-act="flow" aria-labelledby="buyTitle">
+    <div class="sc-wrap">
+      <div class="buy__head" data-sc-in data-sc-stagger="60">
+        <h2 class="sc-display buy__title" id="buyTitle" data-i18n="buyTitle">Cómo comprar, paso a paso.</h2>
+        <p class="sc-lede buy__lede" data-i18n="buyLede">Así va la compra de un apartamento en Escazú o Santa Ana.</p>
+        <p class="sc-body" data-i18n="faqLede">No somos abogados. Esto te orienta; tu caso concreto lo revisa un notario o un abogado.</p>
+      </div>
+
+      <ol class="buy__steps">
+        <li class="buy__step">
+          <h3 data-i18n="buyS1t">Se ponen de acuerdo</h3>
+          <p data-i18n="buyS1">Tú y el dueño acuerdan el precio y las condiciones, y firman una opción o una promesa de compraventa.</p>
+        </li>
+        <li class="buy__step">
+          <h3 data-i18n="buyS2t">El notario estudia la finca</h3>
+          <p data-i18n="buyS2">Un notario público revisa la finca en el Registro Nacional y redacta la escritura. Antes de ofertar puedes buscarla tú: el Registro es público.</p>
+        </li>
+        <li class="buy__step">
+          <h3 data-i18n="buyS3t">Firman la escritura</h3>
+          <p data-i18n="buyS3">El precio de la escritura vale como declaración jurada, así que va el real. El impuesto de traspaso se paga dentro de los 15 días hábiles siguientes.</p>
+        </li>
+        <li class="buy__step">
+          <h3 data-i18n="buyS4t">Queda a tu nombre</h3>
+          <p data-i18n="buyS4">La escritura se inscribe en el Registro Nacional. Tú declaras el valor de la compra a la municipalidad, que con eso actualiza el impuesto de bienes inmuebles.</p>
+        </li>
+      </ol>
+
+      <div class="buy__grid">
+        <div class="buy__col">
+          <h3 class="buy__h" data-i18n="buyCostsT">Lo que cuesta cerrar</h3>
+          <ul class="buy__list">
+            <li data-i18n="buyC1"><strong>Impuesto de traspaso: 1.5%</strong> del valor real de la venta, nunca menos que el valor registrado. Por ley se paga mitad el vendedor y mitad el comprador (Ley 6999).</li>
+            <li data-i18n="buyC2"><strong>Timbres y registro: cerca de 0.85%</strong> (Registro 0.50%, agrario 0.15%, municipal 0.20%), más el timbre fijo del Colegio de Abogados, de ₡1,100 a ₡55,000.</li>
+            <li data-i18n="buyC3"><strong>Honorarios del notario:</strong> tabla oficial (Decreto 41457-JP), del 2% sobre los primeros ₡11 millones bajando hasta el 1%, con un mínimo de ₡60,500. Llevan 13% de IVA.</li>
+            <li data-i18n="buyC4"><strong>La venta del apartamento no paga IVA</strong> (Ley 6826, art. 9).</li>
+            <li data-i18n="buyC5"><strong>Quién paga qué:</strong> si no acuerdan otra cosa, honorarios, timbres e impuestos van mitad y mitad. En la práctica se negocia.</li>
+            <li data-i18n="buyC6"><strong>En total,</strong> The Tico Times (setiembre de 2026) lo pone entre 3.5% y 5% del precio.</li>
+          </ul>
+
+          <h3 class="buy__h" data-i18n="buyCheckT">Qué revisa el notario</h3>
+          <ul class="buy__list">
+            <li data-i18n="buyK1">La finca en el Registro Nacional, antes de redactar la escritura.</li>
+            <li data-i18n="buyK2">Que el precio de la escritura sea el real, porque cuenta como declaración jurada.</li>
+            <li data-i18n="buyK3">Cuánto pagas de traspaso, timbres y honorarios en tu caso.</li>
+            <li data-i18n="buyK4">Quién eres: la Ley 7786, contra el lavado de dinero, pide identificar al cliente en estas compras. Lleva tu identificación.</li>
+            <li data-i18n="buyK5">Si compras con una sociedad, qué papeles hacen falta.</li>
+          </ul>
+        </div>
+
+        <!-- Closing-cost calculator: pure JS, nothing stored (closingCosts in site.js) -->
+        <form class="calc" id="calculadora" onsubmit="return false" aria-labelledby="calcTitle">
+          <h3 class="calc__title" id="calcTitle" data-i18n="calcTitle">¿Cuánto cuesta cerrar?</h3>
+          <p class="calc__lede" data-i18n="calcLede">Escribe el precio y te damos un estimado con las tarifas de “Lo que cuesta cerrar”.</p>
+          <label class="field"><span data-i18n="calcPrice">Precio del apartamento (US$)</span>
+            <input id="calcPrice" type="text" inputmode="numeric" autocomplete="off" placeholder="220,000"></label>
+          <div class="calc__quick" id="calcQuick" aria-label="Usar el precio de un apartamento" data-i18n-attr="aria-label:calcQuickAria"></div>
+          <label class="field"><span data-i18n="calcRate">Tipo de cambio (₡ por US$)</span>
+            <input id="calcRate" type="text" inputmode="decimal" autocomplete="off" value="456.32"></label>
+          <p class="calc__note" data-i18n="calcRateNote">456.32 es el de venta del 26 de octubre de 2026 (referencia del BCCR, publicada por Hacienda). Cámbialo si quieres.</p>
+          <div class="calc__out" id="calcOut" aria-live="polite"></div>
+          <p class="calc__note" data-i18n="calcFoot">Es un estimado, no un cálculo oficial: el monto exacto lo saca el notario. No incluye comisión ni gastos de un préstamo. Esta calculadora no guarda nada.</p>
+        </form>
+      </div>
+
+      <div class="buy__help">
+        <h3 class="buy__h" data-i18n="buyHelpT">Cómo te ayudamos</h3>
+        <p data-i18n="buyHelp">Te enseñamos cada apartamento con su precio y fotos reales, coordinamos la visita con cita y te pasamos el número de finca que tenemos para que tu notario lo estudie. Vamos contigo en cada paso. La asesoría legal y el monto final de impuestos los da el notario.</p>
+        <a class="btn btn--solid js-wa" data-wa="general" href="https://wa.me/" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="buyHelpCta">Pregúntanos por WhatsApp</span></a>
+      </div>
     </div>
   </section>
 
@@ -631,6 +719,8 @@
         <ul class="foot__links">
           <li><a class="js-wa" data-wa="general" href="https://wa.me/" target="_blank" rel="noopener"><span>WhatsApp</span> <span class="js-wa-num"></span></a></li>
           <li><a href="#apartamentos" data-i18n="navApts">Apartamentos</a></li>
+          <li><a href="#zonas" data-i18n="navZones">Zonas</a></li>
+          <li><a href="#comprar" data-i18n="navBuy">Cómo comprar</a></li>
           <li><a href="#propietarios" data-i18n="navOwners">Para propietarios</a></li>
           <li><a href="#preguntas" data-i18n="navFaq">Preguntas</a></li>
         </ul>

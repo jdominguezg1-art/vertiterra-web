@@ -35,6 +35,124 @@
       }
     ]
   },
+  "zonas": [
+    {
+      "id": "escazu",
+      "tipo": "zona",
+      "nombre": "Escazú",
+      "match": {
+        "zona": "Escazú"
+      },
+      "paraQuien": {
+        "es": "Para quien quiere vivir junto a la montaña.",
+        "en": "For those who want to live next to the mountain."
+      },
+      "datos": {
+        "es": [
+          "Los tres apartamentos que tenemos aquí están en Bosques de Escazú."
+        ],
+        "en": [
+          "The three apartments we have here are in Bosques de Escazú."
+        ]
+      }
+    },
+    {
+      "id": "bosques-de-escazu",
+      "tipo": "condominio",
+      "nombre": "Bosques de Escazú",
+      "match": {
+        "condominio": "Bosques de Escazú"
+      },
+      "paraQuien": {
+        "es": "Para quien busca poca densidad y naturaleza cerca.",
+        "en": "For those who want low density and nature close by."
+      },
+      "datos": {
+        "es": [
+          "Terreno montañoso con 13,000 m² de reserva y 4 torres de baja densidad, de 26 unidades cada una",
+          "Piscina temperada, gimnasio, sauna y seguridad 24 horas",
+          "Cuota de condominio: ₡150,000 a ₡200,000 al mes, según el apartamento",
+          "Año de construcción: Consultar"
+        ],
+        "en": [
+          "Hillside land with a 13,000 m² reserve and 4 low-density towers of 26 units each",
+          "Heated pool, gym, sauna and 24-hour security",
+          "Condo fee: ₡150,000 to ₡200,000 per month, depending on the apartment",
+          "Year built: Ask us"
+        ]
+      }
+    },
+    {
+      "id": "santa-ana",
+      "tipo": "zona",
+      "nombre": "Santa Ana",
+      "match": {
+        "zona": "Santa Ana"
+      },
+      "paraQuien": {
+        "es": "Para quien quiere el centro de Santa Ana a pocos minutos.",
+        "en": "For those who want downtown Santa Ana a few minutes away."
+      },
+      "datos": {
+        "es": [
+          "Tenemos dos: uno en Nova Lofts y uno en RiOro."
+        ],
+        "en": [
+          "We have two: one in Nova Lofts and one in RiOro."
+        ]
+      }
+    },
+    {
+      "id": "nova-lofts",
+      "tipo": "condominio",
+      "nombre": "Nova Lofts",
+      "match": {
+        "condominio": "Nova Lofts"
+      },
+      "paraQuien": {
+        "es": "Para quien quiere vivir frente al centro de Santa Ana.",
+        "en": "For those who want to live across from downtown Santa Ana."
+      },
+      "datos": {
+        "es": [
+          "Acceso controlado, seguridad 24/7, casa club y piscina",
+          "Cuota de condominio: Consultar",
+          "Año de construcción: Consultar"
+        ],
+        "en": [
+          "Controlled access, 24/7 security, clubhouse and pool",
+          "Condo fee: Ask us",
+          "Year built: Ask us"
+        ]
+      }
+    },
+    {
+      "id": "rioro",
+      "tipo": "condominio",
+      "nombre": "RiOro",
+      "match": {
+        "condominio": "RiOro"
+      },
+      "paraQuien": {
+        "es": "Para quien quiere un condominio con gimnasio y área de juegos, junto a Fresh Market Río Oro.",
+        "en": "For those who want a condominium with a gym and a playground, next to Fresh Market Río Oro."
+      },
+      "datos": {
+        "es": [
+          "En Río Oro, distrito de Piedades, Santa Ana",
+          "Acceso controlado, seguridad 24/7, casa club, piscina, gimnasio y área de juegos",
+          "Cuota de condominio: Consultar",
+          "Año de construcción: Consultar"
+        ],
+        "en": [
+          "In Río Oro, Piedades district, Santa Ana",
+          "Controlled access, 24/7 security, clubhouse, pool, gym and playground",
+          "Condo fee: Ask us",
+          "Year built: Ask us"
+        ]
+      }
+    }
+  ],
   "apartamentos": [
     {
       "id": "bosques-escazu-603a",
@@ -152,6 +270,11 @@
       "cerca": {
         "es": [],
         "en": []
+      },
+      "ubicacion": {
+        "lat": 9.915958,
+        "lon": -84.14821,
+        "fuente": "Pin del mapa del anuncio de Jorge en Encuentra24 #33036575 (aproximado, nivel de barrio)"
       },
       "registro": {
         "es": [],
@@ -369,7 +492,59 @@
             "en": "Washbasin with white cabinet"
           }
         }
-      ]
+      ],
+      "actualizado": "2026-10-26",
+      "comoTeMueves": {
+        "fecha": "2026-10-27",
+        "fuente": "OSRM (router.project-osrm.org, datos de OpenStreetMap), en carro y sin tráfico",
+        "destinos": [
+          {
+            "id": "multiplaza",
+            "nombre": {
+              "es": "Multiplaza Escazú",
+              "en": "Multiplaza Escazú"
+            },
+            "min": 10,
+            "km": 4.3
+          },
+          {
+            "id": "hospital",
+            "nombre": {
+              "es": "Hospital CIMA",
+              "en": "Hospital CIMA"
+            },
+            "min": 12,
+            "km": 5.7
+          },
+          {
+            "id": "super",
+            "nombre": {
+              "es": "Auto Mercado Escazú centro",
+              "en": "Auto Mercado, Escazú centre"
+            },
+            "min": 6,
+            "km": 2.6
+          },
+          {
+            "id": "sanjose",
+            "nombre": {
+              "es": "San José centro (Teatro Nacional)",
+              "en": "Downtown San José (Teatro Nacional)"
+            },
+            "min": 16,
+            "km": 9.9
+          },
+          {
+            "id": "aeropuerto",
+            "nombre": {
+              "es": "Aeropuerto Juan Santamaría",
+              "en": "Juan Santamaría Airport"
+            },
+            "min": 29,
+            "km": 16.8
+          }
+        ]
+      }
     },
     {
       "id": "nova-lofts-santa-ana",
@@ -477,6 +652,11 @@
           "12 minutes from Hospital CIMA",
           "30 minutes from San José"
         ]
+      },
+      "ubicacion": {
+        "lat": 9.935139,
+        "lon": -84.18625,
+        "fuente": "Pin del mapa del anuncio de Jorge en Encuentra24 #33051870 (aproximado, nivel de barrio)"
       },
       "registro": {
         "es": [],
@@ -684,7 +864,59 @@
             "en": "Condominium exercise room"
           }
         }
-      ]
+      ],
+      "actualizado": "2026-10-26",
+      "comoTeMueves": {
+        "fecha": "2026-10-27",
+        "fuente": "OSRM (router.project-osrm.org, datos de OpenStreetMap), en carro y sin tráfico",
+        "destinos": [
+          {
+            "id": "multiplaza",
+            "nombre": {
+              "es": "Multiplaza Escazú",
+              "en": "Multiplaza Escazú"
+            },
+            "min": 8,
+            "km": 6.8
+          },
+          {
+            "id": "hospital",
+            "nombre": {
+              "es": "Clínica Bíblica Santa Ana",
+              "en": "Clínica Bíblica Santa Ana"
+            },
+            "min": 2,
+            "km": 1.8
+          },
+          {
+            "id": "super",
+            "nombre": {
+              "es": "Auto Mercado Río Oro",
+              "en": "Auto Mercado, Río Oro"
+            },
+            "min": 1,
+            "km": 0.7
+          },
+          {
+            "id": "sanjose",
+            "nombre": {
+              "es": "San José centro (Teatro Nacional)",
+              "en": "Downtown San José (Teatro Nacional)"
+            },
+            "min": 18,
+            "km": 15.4
+          },
+          {
+            "id": "aeropuerto",
+            "nombre": {
+              "es": "Aeropuerto Juan Santamaría",
+              "en": "Juan Santamaría Airport"
+            },
+            "min": 17,
+            "km": 9.8
+          }
+        ]
+      }
     },
     {
       "id": "rio-oro-b11-santa-ana",
@@ -795,6 +1027,11 @@
           "15 minutes from Multiplaza Escazú",
           "30 minutes from the airport"
         ]
+      },
+      "ubicacion": {
+        "lat": 9.926062,
+        "lon": -84.201018,
+        "fuente": "Mapa de la página del dueño (riorosantaana.htm): Calle Cebadilla, Río Oro de Santa Ana, 600 m al sur del Fresh Market"
       },
       "registro": {
         "es": [],
@@ -1002,7 +1239,59 @@
             "en": "Children's play area"
           }
         }
-      ]
+      ],
+      "actualizado": "2026-10-26",
+      "comoTeMueves": {
+        "fecha": "2026-10-27",
+        "fuente": "OSRM (router.project-osrm.org, datos de OpenStreetMap), en carro y sin tráfico",
+        "destinos": [
+          {
+            "id": "multiplaza",
+            "nombre": {
+              "es": "Multiplaza Escazú",
+              "en": "Multiplaza Escazú"
+            },
+            "min": 12,
+            "km": 8.8
+          },
+          {
+            "id": "hospital",
+            "nombre": {
+              "es": "Clínica Bíblica Santa Ana",
+              "en": "Clínica Bíblica Santa Ana"
+            },
+            "min": 6,
+            "km": 3.8
+          },
+          {
+            "id": "super",
+            "nombre": {
+              "es": "Auto Mercado Río Oro",
+              "en": "Auto Mercado, Río Oro"
+            },
+            "min": 5,
+            "km": 2.2
+          },
+          {
+            "id": "sanjose",
+            "nombre": {
+              "es": "San José centro (Teatro Nacional)",
+              "en": "Downtown San José (Teatro Nacional)"
+            },
+            "min": 22,
+            "km": 17.4
+          },
+          {
+            "id": "aeropuerto",
+            "nombre": {
+              "es": "Aeropuerto Juan Santamaría",
+              "en": "Juan Santamaría Airport"
+            },
+            "min": 21,
+            "km": 11.9
+          }
+        ]
+      }
     },
     {
       "id": "bosques-escazu-vista-montana",
@@ -1130,6 +1419,11 @@
         "es": [],
         "en": []
       },
+      "ubicacion": {
+        "lat": 9.915518,
+        "lon": -84.14722,
+        "fuente": "Pin del mapa del anuncio de Jorge en Encuentra24 #33144306 (aproximado, nivel de barrio)"
+      },
       "registro": {
         "es": [],
         "en": []
@@ -1216,7 +1510,59 @@
             "en": "View of the forest and the condominium pool from the balcony"
           }
         }
-      ]
+      ],
+      "actualizado": "2026-10-26",
+      "comoTeMueves": {
+        "fecha": "2026-10-27",
+        "fuente": "OSRM (router.project-osrm.org, datos de OpenStreetMap), en carro y sin tráfico",
+        "destinos": [
+          {
+            "id": "multiplaza",
+            "nombre": {
+              "es": "Multiplaza Escazú",
+              "en": "Multiplaza Escazú"
+            },
+            "min": 9,
+            "km": 4.0
+          },
+          {
+            "id": "hospital",
+            "nombre": {
+              "es": "Hospital CIMA",
+              "en": "Hospital CIMA"
+            },
+            "min": 11,
+            "km": 5.5
+          },
+          {
+            "id": "super",
+            "nombre": {
+              "es": "Auto Mercado Escazú centro",
+              "en": "Auto Mercado, Escazú centre"
+            },
+            "min": 5,
+            "km": 2.4
+          },
+          {
+            "id": "sanjose",
+            "nombre": {
+              "es": "San José centro (Teatro Nacional)",
+              "en": "Downtown San José (Teatro Nacional)"
+            },
+            "min": 15,
+            "km": 9.6
+          },
+          {
+            "id": "aeropuerto",
+            "nombre": {
+              "es": "Aeropuerto Juan Santamaría",
+              "en": "Juan Santamaría Airport"
+            },
+            "min": 28,
+            "km": 16.5
+          }
+        ]
+      }
     },
     {
       "id": "bosques-escazu-rooftop",
@@ -1338,6 +1684,11 @@
       "cerca": {
         "es": [],
         "en": []
+      },
+      "ubicacion": {
+        "lat": 9.915518,
+        "lon": -84.14722,
+        "fuente": "Pin del mapa del anuncio de Jorge en Encuentra24 #33143486 (aproximado, nivel de barrio)"
       },
       "registro": {
         "es": [],
@@ -1465,7 +1816,59 @@
             "en": "View of the forest and the condominium pool"
           }
         }
-      ]
+      ],
+      "actualizado": "2026-10-26",
+      "comoTeMueves": {
+        "fecha": "2026-10-27",
+        "fuente": "OSRM (router.project-osrm.org, datos de OpenStreetMap), en carro y sin tráfico",
+        "destinos": [
+          {
+            "id": "multiplaza",
+            "nombre": {
+              "es": "Multiplaza Escazú",
+              "en": "Multiplaza Escazú"
+            },
+            "min": 9,
+            "km": 4.0
+          },
+          {
+            "id": "hospital",
+            "nombre": {
+              "es": "Hospital CIMA",
+              "en": "Hospital CIMA"
+            },
+            "min": 11,
+            "km": 5.5
+          },
+          {
+            "id": "super",
+            "nombre": {
+              "es": "Auto Mercado Escazú centro",
+              "en": "Auto Mercado, Escazú centre"
+            },
+            "min": 5,
+            "km": 2.4
+          },
+          {
+            "id": "sanjose",
+            "nombre": {
+              "es": "San José centro (Teatro Nacional)",
+              "en": "Downtown San José (Teatro Nacional)"
+            },
+            "min": 15,
+            "km": 9.6
+          },
+          {
+            "id": "aeropuerto",
+            "nombre": {
+              "es": "Aeropuerto Juan Santamaría",
+              "en": "Juan Santamaría Airport"
+            },
+            "min": 28,
+            "km": 16.5
+          }
+        ]
+      }
     }
   ]
 }

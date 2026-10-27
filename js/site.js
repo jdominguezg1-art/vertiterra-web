@@ -507,8 +507,151 @@
     });
   }
 
+  /* ------------------------------------------------------ the areas -- */
+  // One card per zone, its condominiums inside. Facts come from data.zonas
+  // (KB property cards); which apartments are where and the drive minutes are
+  // read from the apartments themselves, so nothing is typed twice.
+  function aptsWhere(match) {
+    return state.data.apartamentos.filter(function (a) { return Object.keys(match).every(function (k) { return a[k] === match[k]; }); })
+      .sort(function (a, b) { return a.precioUSD - b.precioUSD || a.codigo.localeCompare(b.codigo); });
+  }
+  function nearRange(list) {
+    var by = {}, order = [];
+    list.forEach(function (a) {
+      var m = a.comoTeMueves; if (!m || !m.destinos) return;
+      m.destinos.forEach(function (d) {
+        var k = d.nombre.es;
+        if (!by[k]) { by[k] = { name: L(d.nombre), lo: d.min, hi: d.min }; order.push(k); }
+        by[k].lo = Math.min(by[k].lo, d.min); by[k].hi = Math.max(by[k].hi, d.min);
+      });
+    });
+    return order.map(function (k) { var r = by[k]; return { name: r.name, text: r.lo === r.hi ? T('moveMin', { n: r.lo }) : T('minRange', { a: r.lo, b: r.hi }) }; });
+  }
+  function renderZones() {
+    var grid = $('#zonesGrid'); if (!grid || !state.data.zonas) return;
+    var zs = state.data.zonas;
+    var list = function (arr) { return arr && arr.length ? '<ul class="zone__facts">' + arr.map(function (s) { return '<li>' + txt(s) + '</li>'; }).join('') + '</ul>' : ''; };
+    grid.innerHTML = zs.filter(function (z) { return z.tipo === 'zona'; }).map(function (z) {
+      var apts = aptsWhere(z.match);
+      var near = nearRange(apts);
+      var condos = zs.filter(function (c) {
+        if (c.tipo !== 'condominio') return false;
+        var ca = aptsWhere(c.match);
+        return ca.length && ca.every(function (a) { return a.zona === z.match.zona; });
+      });
+      return '<article class="zone" data-zone-id="' + esc(z.id) + '">' +
+        '<h3 class="zone__name">' + esc(z.nombre) + '</h3>' +
+        '<p class="zone__for">' + txt(L(z.paraQuien)) + '</p>' +
+        list(L(z.datos)) +
+        (near.length ? '<h4 class="zone__h">' + esc(T('zoneNear')) + '</h4><ul class="zone__near">' + near.map(function (n) {
+          return '<li><span>' + esc(n.name) + '</span><span class="zone__min">' + esc(n.text) + '</span></li>';
+        }).join('') + '</ul>' : '') +
+        condos.map(function (c) {
+          return '<section class="condo" data-condo-id="' + esc(c.id) + '">' +
+            '<p class="condo__kicker">' + esc(T('zoneCondo')) + '</p>' +
+            '<h4 class="condo__name">' + esc(c.nombre) + '</h4>' +
+            '<p class="zone__for">' + txt(L(c.paraQuien)) + '</p>' +
+            list(L(c.datos)) +
+            '<p class="zone__h">' + esc(T('zoneOurs')) + '</p>' +
+            '<ul class="condo__apts">' + aptsWhere(c.match).map(function (a) {
+              return '<li><a href="#/apto/' + a.id + '"><span class="condo__code">' + esc(a.codigo) + '</span><span class="condo__t">' + esc(L(a.titulo)) + '</span><span class="condo__p">' + money(a.precioUSD) + '</span></a></li>';
+            }).join('') + '</ul>' +
+          '</section>';
+        }).join('') +
+      '</article>';
+    }).join('');
+    relayoutSoon();
+  }
+
+  /* ------------------------------------------ closing-cost calculator -- */
+  // Buyer's estimate from KNOWLEDGE/verti_terra_kb/WIKI/costos-de-cierre-cr.md:
+  // transfer tax 1.5% (Ley 6999 art. 8); Registro 0.50% + agrarian 0.15% +
+  // municipal 0.20% stamps (costaricalaw.com); bar-association stamp, fixed,
+  // at most ₡55,000, + archive ₡20; notary scale of Decreto 41457-JP art. 74
+  // (2% to ₡11M, 1.5% to ₡16.5M, 1.25% to ₡33M, 1% above, minimum ₡60,500)
+  // + 13% IVA on the fee. Split half and half unless agreed (art. 68).
+  // Pure: reads two numbers, writes the table, stores nothing.
+  var CALC_RATE = 456.32;   // BCCR selling rate 26-oct-2026 via api.hacienda.go.cr (KB RAW/2026-10-26-comparables-encuentra24/_source.md)
+  function notaryFeeCRC(crc) {
+    var tiers = [[11000000, 0.02], [16500000, 0.015], [33000000, 0.0125], [Infinity, 0.01]];
+    var fee = 0, prev = 0;
+    tiers.forEach(function (t) { if (crc > prev) fee += (Math.min(crc, t[0]) - prev) * t[1]; prev = t[0]; });
+    return Math.max(fee, 60500);
+  }
+  function closingCosts(usd, rate) {
+    var notary = notaryFeeCRC(usd * rate) / rate;
+    var c = { transfer: usd * 0.015, stamps: usd * 0.0085, bar: 55020 / rate, notary: notary, iva: notary * 0.13 };
+    c.total = c.transfer + c.stamps + c.bar + c.notary + c.iva;
+    c.half = c.total / 2;
+    c.pct = c.total / usd * 100;
+    return c;
+  }
+  function num(s) { s = String(s || '').replace(/[^\d.,]/g, ''); if (s.indexOf('.') < 0) s = s.replace(',', '.'); else s = s.replace(/,/g, ''); return parseFloat(s); }
+  function renderCalc() {
+    var out = $('#calcOut'); if (!out) return;
+    var usd = Math.round(num($('#calcPrice').value.replace(/[.,]\d{1,2}$/, '').replace(/[.,]/g, '')));
+    var rate = num($('#calcRate').value);
+    if (!(rate >= 100 && rate <= 5000)) rate = CALC_RATE;
+    if (!(usd >= 1000)) { out.innerHTML = '<p class="calc__empty">' + esc(T('calcEmpty')) + '</p>'; out.setAttribute('data-total', ''); return; }
+    var c = closingCosts(usd, rate);
+    var row = function (k, v, cls) { return '<tr' + (cls ? ' class="' + cls + '"' : '') + ' data-k="' + k + '"><th scope="row">' + esc(T(k)) + '</th><td>' + money(Math.round(v)) + '</td><td>' + money(Math.round(v / 2)) + '</td></tr>'; };
+    out.innerHTML = '<table class="calc__table"><thead><tr><th></th><th scope="col">' + esc(T('calcColTotal')) + '</th><th scope="col">' + esc(T('calcColHalf')) + '</th></tr></thead><tbody>' +
+      row('calcTransfer', c.transfer) + row('calcStamps', c.stamps) + row('calcBar', c.bar) + row('calcNotary', c.notary) + row('calcIva', c.iva) +
+      row('calcTotal', c.total, 'calc__total') +
+      '</tbody></table>' +
+      '<p class="calc__big"><span>' + esc(T('calcHalf')) + '</span><strong id="calcHalf">' + money(Math.round(c.half)) + '</strong></p>' +
+      '<p class="calc__pct">' + esc(T('calcPct', { p: c.pct.toFixed(1) })) + '</p>';
+    out.setAttribute('data-total', String(Math.round(c.total)));
+  }
+  function renderCalcQuick() {
+    var q = $('#calcQuick'); if (!q) return;
+    q.innerHTML = state.data.apartamentos.slice().sort(function (a, b) { return a.precioUSD - b.precioUSD || a.codigo.localeCompare(b.codigo); }).map(function (a) {
+      return '<button class="btn btn--quiet calc__chip" type="button" data-price="' + a.precioUSD + '">' + esc(a.codigo) + ' · ' + money(a.precioUSD) + '</button>';
+    }).join('');
+    $$('[data-price]', q).forEach(function (b) {
+      b.addEventListener('click', function () { $('#calcPrice').value = Number(b.getAttribute('data-price')).toLocaleString('en-US'); renderCalc(); });
+    });
+  }
+  function bindCalc() {
+    if (!$('#calculadora')) return;
+    ['calcPrice', 'calcRate'].forEach(function (id) { $('#' + id).addEventListener('input', renderCalc); });
+    renderCalc();
+  }
+
   /* ------------------------------------------------------ dossiers -- */
   var dlg, gal = { i: 0, a: null };
+  // "2026-10-26" -> "26 de octubre de 2026" / "October 26, 2026" (own month
+  // names: Intl would print "septiembre", the site writes "setiembre").
+  function dateText(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!m) return iso || '';
+    return T('date', { d: +m[3], m: T('months')[+m[2] - 1], y: m[1] });
+  }
+  // Four key figures under the price, plus price per m² and the update date.
+  function summaryBlock(a) {
+    var fig = function (n, label) { return '<li><span class="dos__fig">' + esc(n) + '</span><span class="dos__fig-l">' + esc(label) + '</span></li>'; };
+    return '<ul class="dos__sum">' +
+        fig(a.m2 + ' m²', T('fArea').toLowerCase()) +
+        fig(String(a.habitaciones), T('sumBeds')) +
+        fig(a.banos + (a.banoServicio ? ' + 1' : ''), T('sumBaths')) +
+        fig(String(a.parqueos), T('sumParking')) +
+      '</ul>' +
+      '<p class="dos__meta">' + esc(T('perM2', { v: money(Math.round(a.precioUSD / a.m2)) })) +
+        (a.actualizado ? ' · ' + esc(T('updated', { d: dateText(a.actualizado) })) : '') + '</p>';
+  }
+  // "Cómo te mueves": drive minutes from tools/drive-times.py (OSRM, no traffic).
+  function moveBlock(a) {
+    var m = a.comoTeMueves;
+    var head = '<div class="dos__move"><h3>' + esc(T('move')) + '</h3>';
+    // no location: tools/drive-times.py writes a "falta" note ({es, en}) instead of minutes
+    if (!m || !m.destinos) return m && m.falta ? head + '<p>' + txt(L(m.falta)) + '</p></div>' : '';
+    var max = Math.max.apply(null, m.destinos.map(function (d) { return d.min; }).concat([30]));
+    return head + '<ul class="move">' + m.destinos.map(function (d) {
+      return '<li class="move__row" data-place="' + esc(d.id) + '"><span class="move__name">' + esc(L(d.nombre)) + '</span>' +
+        '<span class="move__bar" aria-hidden="true"><span style="width:' + (Math.max(d.min, 1) / max * 100).toFixed(1) + '%"></span></span>' +
+        '<span class="move__min">' + esc(T('moveMin', { n: d.min })) + '</span></li>';
+    }).join('') + '</ul><p class="move__note">' + esc(T('moveNote', { d: dateText(m.fecha) })) + '</p></div>';
+  }
   function factRow(label, value) { return '<div><dt>' + esc(label) + '</dt><dd>' + txt(value) + '</dd></div>'; }
   function listBlock(title, arr) {
     if (!arr || !arr.length) return '';
@@ -539,6 +682,7 @@
           '<h2 class="dos__title" id="dosTitle">' + esc(L(a.titulo)) + '</h2>' +
           '<p class="dos__where">' + esc(a.condominio + (a.unidad ? ' ' + a.unidad : '') + ', ' + a.zona + ', ' + a.provincia + ', ' + a.pais) + '</p>' +
           '<p class="dos__price">' + money(a.precioUSD) + '</p>' +
+          summaryBlock(a) +
           '<dl class="dos__facts">' +
             factRow(T('fArea'), a.m2 + ' m²') +
             factRow(T('fBeds'), String(a.habitaciones)) +
@@ -552,6 +696,7 @@
             factRow(T('fYear'), L(a.anioConstruccion)) +
             factRow(T('fCondo'), a.condominio + (a.unidad ? ', ' + T('fUnit').toLowerCase() + ' ' + a.unidad : '')) +
           '</dl>' +
+          moveBlock(a) +
           '<div class="dos__note">' +
             '<p><strong>' + esc(T('byAppt')) + '.</strong> ' + (a.habitado ? esc(T('occupiedNote')) : '') + '</p>' +
             '<p><strong>' + esc(T('financing')) + ':</strong> ' + txt(L(a.financiamiento)) + '</p>' +
@@ -788,7 +933,7 @@
     buildLine();
     registerEarth($('#fBudget'), $('.filters .earth-mini__svg'), $('#fBudgetOut'), 15, 12);
     registerEarth($('#vBudget'), $('.visit-form .earth-mini__svg'), $('#vBudgetOut'), 15, 12);
-    bindFilters(); bindVisit(); bindOwner();
+    bindFilters(); bindVisit(); bindOwner(); bindCalc();
     if (state.pago) setPago(state.pago);
     goStep(1);
     refreshWa();
@@ -802,7 +947,8 @@
       if (scApi) scApi.acts.forEach(function (a) { a.cues.forEach(function (q) {
         if (q.kinetic) { q.el.__scSplit = null; q.units = null; q.el.classList.remove('sc-is-split'); }
       }); });
-      if (state.data) { populateFilters(); renderLedger(); renderPins(); renderVisitChoices(); refreshVisit(); }
+      if (state.data) { populateFilters(); renderLedger(); renderPins(); renderVisitChoices(); refreshVisit(); renderZones(); renderCalcQuick(); }
+      renderCalc();
       syncBudgetUI(); refreshWa(); renderDone();
       if (dlg.open && gal.a) { var i = gal.i; openDossier(gal.a.id); showPhoto(i); }
     });
@@ -841,6 +987,8 @@
         renderLedger();
         renderPins();
         renderVisitChoices();
+        renderZones();
+        renderCalcQuick();
         syncBudgetUI();
         if (!state.budgetUser) drawEarth(lineEl.E, demoV);
         refreshVisit();
@@ -855,7 +1003,7 @@
 
     requestAnimationFrame(loop);
     // test hook for the verification scripts (read-only view of state)
-    window.__vt = { state: state, filtered: function () { return state.data ? filtered().map(function (a) { return a.id; }) : []; }, WA_NUMBER: WA_NUMBER };
+    window.__vt = { state: state, filtered: function () { return state.data ? filtered().map(function (a) { return a.id; }) : []; }, WA_NUMBER: WA_NUMBER, closingCosts: closingCosts };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
