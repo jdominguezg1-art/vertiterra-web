@@ -26,7 +26,7 @@ English: Verti Terra lists apartments only, in Escazú and Santa Ana, Costa Rica
 - [Zonas](https://vertiterra.com/#zonas): Escazú y Santa Ana, con sus condominios y minutos en carro
 - [Cómo comprar](https://vertiterra.com/#comprar): pasos de una compra, costos de cierre y calculadora
 - [Preguntas](https://vertiterra.com/#preguntas): compra para extranjeros, pasos de una compra, Registro Nacional, cuota de condominio, crédito, visitas
-- [Agendar visita](https://vertiterra.com/#contacto)
+- [Agendar visita](https://vertiterra.com/#/visita): formulario «Antes de tu visita» (apartamento, presupuesto, forma de pago, días); desde una ficha abre https://vertiterra.com/#/visita/<id> con ese apartamento escogido. Arma un mensaje que el visitante manda por WhatsApp
 
 ## Condominios
 

@@ -25,6 +25,11 @@
    "url": "https://vertiterra.com/",
    "logo": "https://vertiterra.com/assets/brand/logo-15-2-520.png",
    "telephone": "+50672798418",
+   "potentialAction": {
+    "@type": "ScheduleAction",
+    "name": "Agendar visita",
+    "target": "https://vertiterra.com/#/visita"
+   },
    "areaServed": [
     {
      "@type": "Place",
@@ -540,12 +545,12 @@
     <a href="#comprar" data-i18n="navBuy">Cómo comprar</a>
     <a href="#propietarios" data-i18n="navOwners">Para propietarios</a>
     <a href="#preguntas" data-i18n="navFaq">Preguntas</a>
-    <a class="btn btn--solid bar__nav-cta" href="#contacto" data-i18n="ctaVisit">Agendar visita</a>
+    <a class="btn btn--solid bar__nav-cta" href="#/visita" data-i18n="ctaVisit">Agendar visita</a>
   </nav>
   <div class="bar__tools">
     <a class="bar__chip" id="budgetChip" href="#apartamentos" hidden></a>
     <button class="bar__lang" id="langToggle" type="button" aria-label="Read in English" data-i18n-attr="aria-label:langAria"><span data-i18n="langShort">EN</span></button>
-    <a class="btn btn--solid bar__cta" href="#contacto" data-i18n="ctaVisit">Agendar visita</a>
+    <a class="btn btn--solid bar__cta" href="#/visita" data-i18n="ctaVisit">Agendar visita</a>
     <button class="bar__menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="barNav">
       <span class="sr" data-i18n="menu">Menú</span>
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -695,17 +700,26 @@
         </label>
         <label class="field">
           <span data-i18n="fBeds">Habitaciones</span>
-          <select id="fHab">
-            <option value="0" data-i18n="fAny">Cualquiera</option>
-            <option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option>
-          </select>
+          <select id="fHab"><option value="0" data-i18n="fAny">Cualquiera</option></select>
         </label>
         <label class="field">
+          <span data-i18n="fBaths">Baños</span>
+          <select id="fBan"><option value="0" data-i18n="fAny">Cualquiera</option></select>
+        </label>
+        <label class="field">
+          <span data-i18n="fParking">Parqueos</span>
+          <select id="fPark"><option value="0" data-i18n="fAny">Cualquiera</option></select>
+        </label>
+        <label class="field field--sort">
           <span data-i18n="fSort">Ordenar</span>
           <select id="fSort">
             <option value="asc" data-i18n="sortAsc">Precio: menor a mayor</option>
             <option value="desc" data-i18n="sortDesc">Precio: mayor a menor</option>
           </select>
+        </label>
+        <label class="field field--pmin">
+          <span data-i18n="fPriceMin">Precio desde</span>
+          <select id="fPMin"><option value="0" data-i18n="fAnyPrice">Cualquier precio</option></select>
         </label>
         <div class="field field--budget">
           <span id="fBudgetLabel"><span data-i18n="fBudget">Presupuesto máximo</span>: <output id="fBudgetOut" for="fBudget">Sin límite</output></span>
@@ -721,7 +735,10 @@
       <div class="ledger__empty" id="ledgerEmpty" hidden>
         <p class="sc-lede" data-i18n="emptyTitle">Todavía no tenemos un apartamento con esos filtros.</p>
         <p class="sc-body" data-i18n="emptyBody">Escríbenos qué buscas y te avisamos cuando entre uno.</p>
-        <a class="btn btn--solid js-wa" data-wa="search" href="https://wa.me/" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="emptyCta">Avísame por WhatsApp</span></a>
+        <div class="ledger__empty-actions">
+          <button class="btn btn--quiet" type="button" id="emptyReset" data-i18n="emptyReset">Ver todos los apartamentos</button>
+          <a class="btn btn--solid js-wa" data-wa="search" href="https://wa.me/" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="emptyCta">Avísame por WhatsApp</span></a>
+        </div>
       </div>
       <noscript><p class="sc-body">Para ver y filtrar los apartamentos activa JavaScript, o escríbenos por WhatsApp al +506 7279-8418.</p></noscript>
     </div>
@@ -904,71 +921,17 @@
     </div>
   </section>
 
-  <!-- 9 · VISIT: flow, the close is an actual input -->
+  <!-- 9 · VISIT: one button to the "Antes de tu visita" form (#/visita). id="contacto" stays so old links still land here -->
   <section id="contacto" class="visit" data-sc-act="flow" aria-labelledby="visitTitle">
     <div class="sc-wrap visit__grid">
       <div class="visit__head">
         <h2 class="sc-display visit__title" id="visitTitle" data-i18n="visitTitle">Agenda tu visita.</h2>
-        <p class="sc-body" data-i18n="visitLede">Escoge el apartamento, tu tope y un horario. Con eso armamos el mensaje y tú lo mandas desde tu WhatsApp.</p>
+        <p class="sc-body" data-i18n="visitLede">Cuéntanos qué apartamento quieres ver, tu presupuesto y qué días puedes. Con eso armamos el mensaje y tú lo mandas desde tu WhatsApp.</p>
       </div>
-
-      <form class="visit-form" id="visitForm" onsubmit="return false" aria-labelledby="visitTitle" novalidate>
-        <ol class="steps" aria-label="Pasos" data-i18n-attr="aria-label:stepsAria">
-          <li class="steps__i is-on" data-step-tab="1"><span data-i18n="step1">El apartamento</span></li>
-          <li class="steps__i" data-step-tab="2"><span data-i18n="step2">Tu presupuesto</span></li>
-          <li class="steps__i" data-step-tab="3"><span data-i18n="step3">Tu visita</span></li>
-        </ol>
-
-        <fieldset class="step" data-step="1">
-          <legend class="step__q" data-i18n="s1q">¿Cuál quieres ver?</legend>
-          <div class="choices" id="vApts"></div>
-        </fieldset>
-
-        <fieldset class="step" data-step="2" hidden>
-          <legend class="step__q" data-i18n="s2q">¿Hasta cuánto y cómo pagarías?</legend>
-          <div class="field field--budget">
-            <span id="vBudgetLabel"><span data-i18n="fBudget">Presupuesto máximo</span>: <output id="vBudgetOut" for="vBudget">Sin límite</output></span>
-            <div class="earth-mini">
-              <svg class="earth-mini__svg" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><line class="line__rail" x1="0" y1="20" x2="1000" y2="20"/><path class="line__fill" d="M0 20 Z"/></svg>
-              <input class="earth-range" id="vBudget" type="range" min="100000" max="600000" step="5000" value="600000" aria-labelledby="vBudgetLabel">
-            </div>
-          </div>
-          <div class="choices choices--row" role="radiogroup" aria-label="Forma de pago" data-i18n-attr="aria-label:payAria" id="vPago">
-            <label class="choice"><input type="radio" name="vPago" value="contado"><span data-i18n="payCash">De contado</span></label>
-            <label class="choice"><input type="radio" name="vPago" value="credito"><span data-i18n="payCredit">Con crédito</span></label>
-            <label class="choice"><input type="radio" name="vPago" value="nose"><span data-i18n="payUnsure">Todavía no sé</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="step" data-step="3" hidden>
-          <legend class="step__q" data-i18n="s3q">¿Cuándo te queda bien?</legend>
-          <label class="field"><span data-i18n="vName">Tu nombre</span><input id="vName" type="text" autocomplete="name" required aria-describedby="vNameErr"></label>
-          <p class="field__err" id="vNameErr" hidden data-i18n="vNameErr">Escribe tu nombre para enviar.</p>
-          <label class="field"><span data-i18n="vWhen">Horario que prefieres</span>
-            <select id="vWhen">
-              <option value="" data-i18n="oPick">Elige</option>
-              <option value="semana-manana" data-i18n="whenAm">Entre semana, en la mañana</option>
-              <option value="semana-tarde" data-i18n="whenPm">Entre semana, en la tarde</option>
-              <option value="sabado" data-i18n="whenSat">Sábado</option>
-              <option value="cualquiera" data-i18n="whenAny">Cualquier día</option>
-            </select>
-          </label>
-          <label class="field"><span data-i18n="vNote">Comentario (opcional)</span><textarea id="vNote" rows="3"></textarea></label>
-        </fieldset>
-
-        <div class="step-nav">
-          <button class="btn btn--quiet" type="button" id="stepBack" hidden><svg class="i i--flip" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> <span data-i18n="back">Atrás</span></button>
-          <button class="btn btn--solid" type="button" id="stepNext"><span data-i18n="next">Siguiente</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <a class="btn btn--solid js-wa" id="visitSend" data-wa="visit" href="https://wa.me/" target="_blank" rel="noopener" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="openWa">Abrir WhatsApp</span></a>
-        </div>
-
-        <p class="form-done" id="visitDone" role="status" hidden></p>
-
-        <div class="preview">
-          <p class="preview__label" data-i18n="previewLabel">Así va tu mensaje:</p>
-          <p class="preview__msg" id="visitPreview"></p>
-        </div>
-      </form>
+      <div class="visit__cta">
+        <a class="btn btn--solid visit__go" id="visitGo" href="#/visita"><span data-i18n="ctaVisit">Agendar visita</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="visit__alt"><span data-i18n="visitAlt">¿Prefieres escribir directo?</span> <a class="js-wa" data-wa="general" href="https://wa.me/" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> <span>WhatsApp</span> <span class="js-wa-num"></span></a></p>
+      </div>
     </div>
 
     <footer class="foot">
@@ -984,6 +947,7 @@
             <ul id="footCondos" aria-label="Condominios" data-i18n-attr="aria-label:footCondosAria"></ul></li>
           <li><a href="#comprar" data-i18n="navBuy">Cómo comprar</a></li>
           <li><a href="#/guia/primer-apartamento" data-i18n="footGuide">Guía: tu primer apartamento</a></li>
+          <li><a href="#/visita" data-i18n="footVisita">Antes de tu visita</a></li>
           <li><a href="#propietarios" data-i18n="navOwners">Para propietarios</a></li>
           <li><a href="#preguntas" data-i18n="navFaq">Preguntas</a></li>
         </ul>
@@ -995,7 +959,7 @@
 
 </main>
 
-<!-- Dossier: one per apartment (#/apto/<id>); the same dialog shows a condominium page (#/edificio/<slug>) and the buyer guide (#/guia/primer-apartamento) -->
+<!-- Dossier: one per apartment (#/apto/<id>); the same dialog shows a condominium page (#/edificio/<slug>), the buyer guide (#/guia/primer-apartamento) and the "Antes de tu visita" form (#/visita, #/visita/<id>) -->
 <dialog class="dossier" id="dossier" aria-labelledby="dosTitle">
   <div class="dossier__inner" id="dossierBody"></div>
 </dialog>

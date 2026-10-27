@@ -36,10 +36,8 @@
     pago: null,
     data: null,
     guide: null,           // data/guia-primer-apartamento.json
-    f: { zona: '', condo: '', piso: '', hab: 0, sort: 'asc' },
-    visitApt: '',
-    step: 1,
-    sent: { visit: false, owner: false }   // the visitor opened WhatsApp from that form
+    f: { zona: '', condo: '', piso: '', hab: 0, ban: 0, park: 0, pmin: 0, sort: 'asc' },
+    sent: { owner: false }   // the visitor opened WhatsApp from the owner form
   };
   (function restore() {
     var b = parseInt(store.get('budget'), 10);
@@ -100,11 +98,13 @@
       if (f.condo) lines.push((state.lang === 'en' ? 'Condominium' : 'Condominio') + ': ' + f.condo);
       if (f.piso) { var tx = state.data.taxonomia.pisoTipo.filter(function (t) { return t.id === f.piso; })[0]; if (tx) lines.push((state.lang === 'en' ? 'Floor or type' : 'Piso o tipo') + ': ' + L(tx)); }
       if (f.hab) lines.push((state.lang === 'en' ? 'Bedrooms' : 'Habitaciones') + ': ' + f.hab + '+');
+      if (f.ban) lines.push(T('msgBaths') + ': ' + f.ban + '+');
+      if (f.park) lines.push(T('msgParking') + ': ' + f.park + '+');
+      if (f.pmin) lines.push(T('msgPriceMin') + ': ' + money(f.pmin));
       lines.push(T('msgBudget') + ': ' + (state.budget == null ? T('noLimit') : T('upTo', { v: money(state.budget) })));
       return lines.join('\n');
     }
     if (kind === 'owner') return ownerMsg();
-    if (kind === 'visit') return visitMsg();
     return T('msgGeneral');
   }
   function refreshWa() {
@@ -154,7 +154,6 @@
     syncBudgetUI(source);
     renderLedger();
     refreshPins();
-    refreshVisit();
   }
   function syncBudgetUI(source) {
     var v = state.budget == null ? B_MAX : state.budget;
@@ -391,8 +390,6 @@
   function setPago(p) {
     state.pago = p; store.set('pago', p);
     $$('#paySeg [data-pago]').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-pago') === p)); });
-    $$('#vPago input').forEach(function (i) { i.checked = i.value === p; });
-    refreshVisit();
   }
 
   /* --------------------------------------------------- the catalogue -- */
@@ -414,8 +411,31 @@
     var pisos = state.data.taxonomia.pisoTipo.filter(function (t) { return pisoCount(t) > 0; });
     if (state.f.piso && !pisos.some(function (t) { return t.id === state.f.piso; })) state.f.piso = '';
     fill($('#fPiso'), pisos, function (t) { return L(t) + ' (' + pisoCount(t) + ')'; });
+    // Bedrooms, baths and parking: "N+" for every whole number an apartment
+    // has, with how many have at least that many (2.5 baths counts for 2+).
+    var mins = function (k) {
+      return apts.map(function (a) { return Math.floor(a[k]); }).filter(function (v, i, arr) { return v > 0 && arr.indexOf(v) === i; }).sort(function (a, b) { return a - b; })
+        .map(function (n) { return { id: String(n), n: n, c: count(function (a) { return a[k] >= n; }) }; });
+    };
+    var minLabel = function (o) { return T('optMin', { n: o.n, c: o.c }); };
+    [['fHab', 'habitaciones', 'hab'], ['fBan', 'banos', 'ban'], ['fPark', 'parqueos', 'park']].forEach(function (x) {
+      var opts = mins(x[1]);
+      if (state.f[x[2]] && !opts.some(function (o) { return o.n === state.f[x[2]]; })) state.f[x[2]] = 0;
+      fill($('#' + x[0]), opts, minLabel);
+    });
+    // Price from: US$50,000 steps between the cheapest and the dearest
+    // apartment, keeping only steps that change the result.
+    var prices = apts.map(function (a) { return a.precioUSD; });
+    var pmins = [], lastC = apts.length;
+    for (var v = Math.ceil((Math.min.apply(null, prices) + 1) / 50000) * 50000; v <= Math.max.apply(null, prices); v += 50000) {
+      var c = count(function (a) { return a.precioUSD >= v; });
+      if (c && c < lastC) { pmins.push({ id: String(v), v: v, c: c }); lastC = c; }
+    }
+    if (state.f.pmin && !pmins.some(function (o) { return o.v === state.f.pmin; })) state.f.pmin = 0;
+    fill($('#fPMin'), pmins, function (o) { return T('optFrom', { v: money(o.v), c: o.c }); });
     $('#fZona').value = state.f.zona; $('#fCondo').value = state.f.condo; $('#fPiso').value = state.f.piso;
-    $('#fHab').value = String(state.f.hab); $('#fSort').value = state.f.sort;
+    $('#fHab').value = String(state.f.hab); $('#fBan').value = String(state.f.ban); $('#fPark').value = String(state.f.park);
+    $('#fPMin').value = String(state.f.pmin); $('#fSort').value = state.f.sort;
     // zone shortcuts in the paths block
     $('#pathZones').innerHTML = uniq('zona').map(function (z) {
       return '<button class="btn btn--quiet" type="button" data-zone="' + esc(z) + '">' + esc(T('zoneBtn', { z: z, n: count(function (a) { return a.zona === z; }) })) + '</button>';
@@ -434,6 +454,9 @@
       if (f.condo && a.condominio !== f.condo) return false;
       if (f.piso && a.pisoTipo.indexOf(f.piso) < 0) return false;
       if (f.hab && a.habitaciones < f.hab) return false;
+      if (f.ban && a.banos < f.ban) return false;
+      if (f.park && a.parqueos < f.park) return false;
+      if (f.pmin && a.precioUSD < f.pmin) return false;
       if (state.budget != null && a.precioUSD > state.budget) return false;
       return true;
     });
@@ -480,32 +503,31 @@
           (state.budget != null ? '<p class="lot__fit">' + esc(T('fits')) + ' (' + esc(T('upTo', { v: money(state.budget) })) + ')</p>' : '') +
           '<p class="lot__code">' + esc(a.codigo) + '</p>' +
           '<div class="lot__actions"><a class="btn btn--solid" href="' + href + '">' + esc(T('seeListing')) + '</a>' +
-          '<a class="btn btn--quiet" href="#contacto" data-visit="' + a.id + '">' + esc(T('visit')) + '</a></div>' +
+          '<a class="btn btn--quiet" href="#/visita/' + a.id + '">' + esc(T('visit')) + '</a></div>' +
         '</div></li>';
     }).join('');
     $('#ledgerEmpty').hidden = list.length > 0;
-    bindVisitLinks($('#ledger'));
     refreshWa();
     relayoutSoon();
   }
   function bindFilters() {
-    var map = { fZona: 'zona', fCondo: 'condo', fPiso: 'piso', fHab: 'hab', fSort: 'sort' };
+    var map = { fZona: 'zona', fCondo: 'condo', fPiso: 'piso', fHab: 'hab', fBan: 'ban', fPark: 'park', fPMin: 'pmin', fSort: 'sort' };
+    var numeric = { hab: 1, ban: 1, park: 1, pmin: 1 };
     Object.keys(map).forEach(function (id) {
       $('#' + id).addEventListener('change', function (e) {
-        var k = map[id]; state.f[k] = k === 'hab' ? parseInt(e.target.value, 10) || 0 : e.target.value;
+        var k = map[id]; state.f[k] = numeric[k] ? parseInt(e.target.value, 10) || 0 : e.target.value;
         renderLedger();
       });
     });
-    $('#fClear').addEventListener('click', function () {
-      state.f = { zona: '', condo: '', piso: '', hab: 0, sort: 'asc' };
-      $('#fZona').value = ''; $('#fCondo').value = ''; $('#fPiso').value = ''; $('#fHab').value = '0'; $('#fSort').value = 'asc';
+    var clear = function () {
+      state.f = { zona: '', condo: '', piso: '', hab: 0, ban: 0, park: 0, pmin: 0, sort: 'asc' };
+      $('#fZona').value = ''; $('#fCondo').value = ''; $('#fPiso').value = ''; $('#fSort').value = 'asc';
+      ['fHab', 'fBan', 'fPark', 'fPMin'].forEach(function (id) { $('#' + id).value = '0'; });
       setBudget(null, true);
-    });
-  }
-  function bindVisitLinks(root) {
-    $$('[data-visit]', root).forEach(function (a) {
-      a.addEventListener('click', function () { chooseVisitApt(a.getAttribute('data-visit')); goStep(2); });
-    });
+    };
+    $('#fClear').addEventListener('click', clear);
+    // "no results": one tap back to every apartment, focus goes to the first filter
+    $('#emptyReset').addEventListener('click', function () { clear(); $('#fZona').focus(); });
   }
 
   /* ------------------------------------------------------ the areas -- */
@@ -725,12 +747,15 @@
       if (c) { html = renderBuilding(c); title = c.nombre; }
     } else if (kind === 'guia' && state.guide && id === state.guide.id) {
       html = renderGuide(state.guide); title = L(state.guide.titulo);
+    } else if (kind === 'visita' && state.data) {
+      vfFromHash(id); html = renderVisita(); title = T('vfKicker');
     }
     if (!html) { if (dlg.open) closeDossier(); return; }   // unknown page: never leave the previous one open
     gal = { i: 0, a: null };
     dlg.setAttribute('data-kind', kind);
     $('#dossierBody').innerHTML = html;
     $('#dosClose').addEventListener('click', closeDossier);
+    if (kind === 'visita') bindVisita();
     document.title = title + ' · Verti Terra';
     if (!dlg.open) { dlg.showModal(); document.documentElement.classList.add('has-dialog'); }
     $('#dossierBody').scrollTop = 0;
@@ -878,7 +903,7 @@
             fitLine +
           '</div>' +
           '<div class="dos__actions">' +
-            '<a class="btn btn--solid" href="#contacto" data-visit="' + a.id + '" id="dosVisit">' + esc(T('visit')) + '</a>' +
+            '<a class="btn btn--solid" href="#/visita/' + a.id + '" id="dosVisit">' + esc(T('visit')) + '</a>' +
             '<a class="btn btn--quiet" target="_blank" rel="noopener" href="' + waLink(T('msgListing', { code: a.codigo, title: L(a.titulo), price: money(a.precioUSD) })) + '"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> ' + esc(T('waListing')) + '</a>' +
           '</div>' +
         '</div>' +
@@ -895,7 +920,6 @@
     $('#galPrev').addEventListener('click', function () { showPhoto(gal.i - 1); });
     $('#galNext').addEventListener('click', function () { showPhoto(gal.i + 1); });
     $$('#galThumbs button').forEach(function (b) { b.addEventListener('click', function () { showPhoto(+b.getAttribute('data-i')); }); });
-    $('#dosVisit').addEventListener('click', function () { chooseVisitApt(a.id); goStep(2); closeDossier(true); });
     showPhoto(0);
     if (!dlg.open) { dlg.showModal(); document.documentElement.classList.add('has-dialog'); }
     $('#dossierBody').scrollTop = 0;
@@ -915,19 +939,18 @@
   }
   // Where a closed dialog leaves the address: an apartment goes back to the
   // list, a condominium page to "Dónde quedan", the guide to "Cómo comprar".
-  var PAGE_RE = /^#\/(apto|edificio|guia)\//;
-  var BACK_TO = { apto: '#apartamentos', edificio: '#zonas', guia: '#comprar' };
+  var PAGE_RE = /^#\/(apto|edificio|guia|visita)(\/|$)/;
+  var BACK_TO = { apto: '#apartamentos', edificio: '#zonas', guia: '#comprar', visita: '#apartamentos' };
   function backHash() { var m = location.hash.match(PAGE_RE); return m ? BACK_TO[m[1]] : null; }
-  function closeDossier(keepHashToContact) {
+  function closeDossier() {
     var back = backHash();
     if (dlg.open) dlg.close();
     document.documentElement.classList.remove('has-dialog');
     document.title = T('title');
-    if (back) history.replaceState(null, '', keepHashToContact === true ? '#contacto' : back);
-    if (keepHashToContact === true) document.getElementById('contacto').scrollIntoView({ behavior: 'auto' });
+    if (back) history.replaceState(null, '', back);
   }
   function route() {
-    var m = location.hash.match(/^#\/(apto|edificio|guia)\/([\w-]+)/);
+    var m = location.hash.match(/^#\/(apto|edificio|guia)\/([\w-]+)/) || location.hash.match(/^#\/(visita)(?:\/([\w-]+))?\/?$/);
     if (m && m[1] === 'apto') openDossier(m[2]);
     else if (m) openPage(m[1], m[2]);
     else if (dlg.open) {
@@ -938,67 +961,188 @@
     }
   }
 
-  /* --------------------------------------------------- visit form -- */
-  function renderVisitChoices() {
-    var apts = state.data.apartamentos.slice().sort(function (a, b) { return a.precioUSD - b.precioUSD || a.codigo.localeCompare(b.codigo); });
-    $('#vApts').innerHTML = apts.map(function (a) {
-      var c = a.fotos[a.portada || 0];
-      return '<label class="choice"><input type="radio" name="vApt" value="' + a.id + '"' + (state.visitApt === a.id ? ' checked' : '') + '>' +
-        '<img src="' + c.thumb + '" alt="" width="52" height="40" loading="lazy"><span>' + esc(L(a.titulo)) + '<br><small>' + esc(a.zona) + '</small></span>' +
-        '<span class="choice__meta">' + money(a.precioUSD) + '</span></label>';
-    }).join('') +
-      '<label class="choice"><input type="radio" name="vApt" value="nose"' + (state.visitApt === 'nose' ? ' checked' : '') + '><span>' + esc(T('notSure')) + '<br><small>' + esc(T('notSureSub')) + '</small></span></label>';
-    $$('#vApts input').forEach(function (i) { i.addEventListener('change', function () { state.visitApt = i.value; refreshVisit(); }); });
+  /* ------------------------------------------- "Antes de tu visita" -- */
+  // #/visita, or #/visita/<id> with that apartment already chosen. Same dialog
+  // as the dossiers. Nothing is stored and nothing is sent: on submit the
+  // answers become one message and WhatsApp opens with it, and the visitor
+  // sends it or not. The answers live only in `vf` (memory, gone on reload) so
+  // a language switch redraws the form without losing them.
+  var VF_DAYS = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'dom'];
+  var VF_TIMES = ['manana', 'mediodia', 'tarde'];
+  var VF_STEP = 50000;
+  var vf = { name: '', apt: '', min: '', max: '', pago: '', pre: '', people: '', days: [], times: [], note: '', consent: false, tried: false, sent: false, init: false, hashId: null };
+  function vfFromHash(id) {
+    if (!vf.init) {
+      // what the visitor already told the page (budget line, payment) carries in
+      vf.init = true;
+      if (state.budgetUser && state.budget != null) vf.max = String(state.budget);
+      if (state.pago) vf.pago = state.pago;
+    }
+    id = id || null;
+    if (id !== vf.hashId) { vf.hashId = id; if (id && aptById(id)) vf.apt = id; }
   }
-  function chooseVisitApt(id) {
-    state.visitApt = id;
-    $$('#vApts input').forEach(function (i) { i.checked = i.value === id; });
-    refreshVisit();
+  function vfAmounts(from, to, extra) {
+    var out = [];
+    for (var v = from; v <= to; v += VF_STEP) out.push(String(v));
+    if (extra && /^\d+$/.test(extra) && out.indexOf(extra) < 0) out.push(extra);
+    return out.sort(function (a, b) { return a - b; });
   }
-  function goStep(n) {
-    state.step = clamp(n, 1, 3);
-    $$('[data-step]').forEach(function (s) { s.hidden = +s.getAttribute('data-step') !== state.step; });
-    $$('[data-step-tab]').forEach(function (t) { t.classList.toggle('is-on', +t.getAttribute('data-step-tab') <= state.step); });
-    $('#stepBack').hidden = state.step === 1;
-    $('#stepNext').hidden = state.step === 3;
-    $('#visitSend').hidden = state.step !== 3;
-    relayoutSoon();
+  function vfOptions(values, cur, label) {
+    return values.map(function (v) { return '<option value="' + esc(v) + '"' + (String(cur) === String(v) ? ' selected' : '') + '>' + esc(label(v)) + '</option>'; }).join('');
   }
-  function visitMsg() {
-    var a = state.data && state.data.apartamentos.filter(function (x) { return x.id === state.visitApt; })[0];
-    // Only what the visitor actually picked goes in the message: nothing is
-    // pre-answered for them.
-    var lines = [T('msgVisitHead')];
-    if (a) lines.push(T('msgApt') + ': ' + a.codigo + ', ' + L(a.titulo) + ' (' + money(a.precioUSD) + ')');
-    else if (state.visitApt === 'nose') lines.push(T('msgApt') + ': ' + T('msgAptAny'));
-    if (state.budgetUser) lines.push(T('msgBudget') + ': ' + (state.budget == null ? T('noLimit') : T('upTo', { v: money(state.budget) })));
-    if (state.pago) lines.push(T('msgPay') + ': ' + T('pay')[state.pago]);
-    var when = T('when')[$('#vWhen').value];
-    if (when) lines.push(T('msgWhen') + ': ' + when);
-    var name = $('#vName').value.trim();
+  function vfChecks(name, ids, labels, cur) {
+    return ids.map(function (id) {
+      return '<label class="choice vf__chip"><input type="checkbox" name="' + name + '" value="' + id + '"' + (cur.indexOf(id) > -1 ? ' checked' : '') + '><span>' + esc(labels[id]) + '</span></label>';
+    }).join('');
+  }
+  function vfRadios(name, ids, labels, cur) {
+    return ids.map(function (id) {
+      return '<label class="choice"><input type="radio" name="' + name + '" value="' + id + '"' + (cur === id ? ' checked' : '') + '><span>' + esc(labels[id]) + '</span></label>';
+    }).join('');
+  }
+  function vfSorted() { return state.data.apartamentos.slice().sort(function (a, b) { return a.precioUSD - b.precioUSD || a.codigo.localeCompare(b.codigo); }); }
+  function renderVisita() {
+    var pick = '<option value="">' + esc(T('vfPick')) + '</option>';
+    var people = ['1', '2', '3', '4', '5', '6'];
+    var yn = { si: T('yes'), no: T('no') };
+    return pageTop(T('byAppt')) +
+      '<article class="page vf" data-page="visita">' +
+        '<div class="page__wrap">' +
+          '<header class="page__head">' +
+            '<h2 class="page__title" id="dosTitle">' + esc(T('vfTitle')) + '</h2>' +
+            '<p class="page__where">' + esc(T('vfLede')) + '</p>' +
+          '</header>' +
+          '<form class="vf__form" id="vfForm" novalidate>' +
+            '<div class="vf__grid">' +
+              '<div class="vf__cell"><label class="field"><span>' + esc(T('vfName')) + '</span><input id="vfName" type="text" autocomplete="name" required aria-required="true" aria-describedby="vfNameErr" value="' + esc(vf.name) + '"></label>' +
+                '<p class="field__err" id="vfNameErr" hidden>' + esc(T('vfNameErr')) + '</p></div>' +
+              '<label class="field vf__wide"><span>' + esc(T('vfApt')) + '</span><select id="vfApt">' + pick +
+                vfSorted().map(function (a) { return '<option value="' + a.id + '"' + (vf.apt === a.id ? ' selected' : '') + '>' + esc(a.codigo + ' · ' + money(a.precioUSD) + ' · ' + L(a.titulo)) + '</option>'; }).join('') +
+                '<option value="cualquiera"' + (vf.apt === 'cualquiera' ? ' selected' : '') + '>' + esc(T('vfAptAny')) + '</option></select></label>' +
+            '</div>' +
+            '<fieldset class="vf__set"><legend class="vf__q">' + esc(T('vfBudget')) + '</legend>' +
+              '<div class="vf__grid vf__grid--pair">' +
+                '<label class="field"><span>' + esc(T('vfMin')) + '</span><select id="vfMin">' + pick + vfOptions(vfAmounts(B_MIN, B_MAX - VF_STEP, vf.min), vf.min, function (v) { return money(v); }) + '</select></label>' +
+                '<label class="field"><span>' + esc(T('vfMax')) + '</span><select id="vfMax">' + pick + vfOptions(vfAmounts(B_MIN + VF_STEP, B_MAX, vf.max), vf.max, function (v) { return money(v); }) +
+                  '<option value="sin-tope"' + (vf.max === 'sin-tope' ? ' selected' : '') + '>' + esc(T('vfNoTop')) + '</option></select></label>' +
+              '</div>' +
+              '<p class="vf__hint" id="vfRangeNote" hidden>' + esc(T('vfRangeNote')) + '</p>' +
+            '</fieldset>' +
+            '<div class="vf__fit" id="vfFit" aria-live="polite"></div>' +
+            '<fieldset class="vf__set"><legend class="vf__q">' + esc(T('vfPay')) + '</legend>' +
+              '<div class="choices choices--row">' + vfRadios('vfPago', ['contado', 'credito', 'nose'], T('pay'), vf.pago) + '</div>' +
+            '</fieldset>' +
+            '<fieldset class="vf__set" id="vfPreSet"' + (vf.pago === 'credito' ? '' : ' hidden') + '><legend class="vf__q">' + esc(T('vfPre')) + '</legend>' +
+              '<div class="choices choices--row vf__yn">' + vfRadios('vfPre', ['si', 'no'], yn, vf.pre) + '</div>' +
+            '</fieldset>' +
+            '<div class="vf__grid"><label class="field"><span>' + esc(T('vfPeople')) + '</span><select id="vfPeople">' + pick +
+              vfOptions(people, vf.people, function (n) { return n === '6' ? T('vfSixPlus') : n; }) + '</select></label></div>' +
+            '<fieldset class="vf__set"><legend class="vf__q">' + esc(T('vfDaysQ')) + '</legend>' +
+              '<div class="vf__chips">' + vfChecks('vfDay', VF_DAYS, T('vfDays'), vf.days) + '</div>' +
+            '</fieldset>' +
+            '<fieldset class="vf__set"><legend class="vf__q">' + esc(T('vfTimesQ')) + '</legend>' +
+              '<div class="vf__chips">' + vfChecks('vfTime', VF_TIMES, T('vfTimes'), vf.times) + '</div>' +
+            '</fieldset>' +
+            '<label class="field"><span>' + esc(T('vfNote')) + '</span><textarea id="vfNote" rows="3">' + esc(vf.note) + '</textarea></label>' +
+            '<div class="vf__consent-box">' +
+              '<label class="vf__consent"><input type="checkbox" id="vfConsent" required aria-required="true" aria-describedby="vfConsentErr vfPrivacy"' + (vf.consent ? ' checked' : '') + '><span>' + esc(T('vfConsent')) + '</span></label>' +
+              '<p class="field__err" id="vfConsentErr" hidden>' + esc(T('vfConsentErr')) + '</p>' +
+              '<p class="vf__privacy" id="vfPrivacy">' + esc(T('vfPrivacy', { n: WA_DISPLAY })) + '</p>' +
+            '</div>' +
+            '<div class="vf__actions"><button class="btn btn--solid" type="submit" id="vfSend">' + WA_ICON + ' ' + esc(T('vfSend')) + '</button></div>' +
+            '<p class="form-done" id="vfDone" role="status"' + (vf.sent ? '' : ' hidden') + '></p>' +
+            '<div class="preview"><p class="preview__label">' + esc(T('vfPreviewLabel')) + '</p><p class="preview__msg" id="vfPreview"></p></div>' +
+          '</form>' +
+        '</div>' +
+      '</article>';
+  }
+  function vfMaxNum() { return /^\d+$/.test(vf.max) ? +vf.max : null; }
+  // The broker's budget check: never blocks, only tells the visitor kindly
+  // and shows what fits.
+  function vfFitHtml() {
+    var max = vfMaxNum();
+    if (max == null) return '';
+    var a = aptById(vf.apt);
+    var fits = vfSorted().filter(function (x) { return x.precioUSD <= max; });
+    if (a && a.precioUSD <= max) return '<p class="vf__fit-ok">' + esc(T('vfFitOk', { code: a.codigo })) + '</p>';
+    var list = fits.length ? '<p>' + esc(T('vfFitList', { max: money(max) })) + '</p><ul class="vf__fits">' + fits.map(function (x) {
+      return '<li><button class="vf__pick" type="button" data-pick="' + x.id + '"><span class="vf__pick-code">' + esc(x.codigo) + '</span>' +
+        '<span class="vf__pick-t">' + esc(L(x.titulo)) + '</span><strong>' + money(x.precioUSD) + '</strong>' +
+        '<span class="vf__pick-go">' + esc(T('vfFitPick')) + '</span></button></li>';
+    }).join('') + '</ul>' : '<p>' + esc(T('vfFitNone', { max: money(max) })) + '</p>';
+    return (a ? '<p><strong>' + esc(T('vfFitOver', { code: a.codigo, price: money(a.precioUSD), max: money(max) })) + '</strong></p>' : '') + list;
+  }
+  function vfMsg() {
+    var lines = [T('vfMsgHead')];
+    var name = vf.name.trim();
     if (name) lines.push(T('msgName') + ': ' + name);
-    var note = $('#vNote').value.trim();
-    if (note) lines.push(T('msgNote') + ': ' + note);
+    var a = aptById(vf.apt);
+    if (a) lines.push(T('msgApt') + ': ' + a.codigo + ', ' + L(a.titulo) + ' (' + money(a.precioUSD) + ')');
+    else if (vf.apt === 'cualquiera') lines.push(T('msgApt') + ': ' + T('vfMsgAny'));
+    var lo = /^\d+$/.test(vf.min) ? money(+vf.min) : '', hi = vfMaxNum() != null ? money(vfMaxNum()) : '';
+    var b = lo && hi ? T('vfRange', { a: lo, b: hi }) : lo && vf.max === 'sin-tope' ? T('vfFrom', { a: lo }) + ', ' + T('vfNoTop').toLowerCase()
+      : lo ? T('vfFrom', { a: lo }) : hi ? T('vfTo', { b: hi }) : vf.max === 'sin-tope' ? T('vfNoTop') : '';
+    if (b) lines.push(T('msgBudget') + ': ' + b);
+    if (vf.pago) lines.push(T('msgPay') + ': ' + T('pay')[vf.pago] + (vf.pago === 'credito' && vf.pre ? ' (' + T('vfMsgPre', { v: (vf.pre === 'si' ? T('yes') : T('no')).toLowerCase() }) + ')' : ''));
+    if (vf.people) lines.push(T('vfMsgPeople') + ': ' + (vf.people === '6' ? T('vfSixPlus') : vf.people));
+    if (vf.days.length) lines.push(T('vfMsgDays') + ': ' + VF_DAYS.filter(function (d) { return vf.days.indexOf(d) > -1; }).map(function (d) { return T('vfDays')[d]; }).join(', '));
+    if (vf.times.length) lines.push(T('vfMsgTimes') + ': ' + VF_TIMES.filter(function (t) { return vf.times.indexOf(t) > -1; }).map(function (t) { return T('vfTimes')[t]; }).join(', '));
+    var note = vf.note.trim();
+    if (note) lines.push(T('vfMsgNote') + ': ' + note);
+    if (vf.consent) lines.push(T('vfConsent'));
     return lines.join('\n');
   }
-  function refreshVisit() {
-    if (!state.data) return;
-    $('#visitPreview').textContent = visitMsg();
-    var ok = $('#vName').value.trim().length > 0;
-    var send = $('#visitSend');
-    send.href = waLink(visitMsg());
-    send.setAttribute('aria-disabled', String(!ok));
-    if (ok) $('#vNameErr').hidden = true;
+  function vfRead() {
+    var f = $('#vfForm'); if (!f) return;
+    var checked = function (n) { return $$('input[name="' + n + '"]:checked', f).map(function (i) { return i.value; }); };
+    vf.name = $('#vfName').value; vf.apt = $('#vfApt').value; vf.min = $('#vfMin').value; vf.max = $('#vfMax').value;
+    vf.pago = checked('vfPago')[0] || ''; vf.pre = checked('vfPre')[0] || '';
+    vf.people = $('#vfPeople').value; vf.days = checked('vfDay'); vf.times = checked('vfTime');
+    vf.note = $('#vfNote').value; vf.consent = $('#vfConsent').checked;
   }
-  function bindVisit() {
-    $('#stepNext').addEventListener('click', function () { goStep(state.step + 1); var s = $('[data-step="' + state.step + '"] input, [data-step="' + state.step + '"] select'); if (s) s.focus(); });
-    $('#stepBack').addEventListener('click', function () { goStep(state.step - 1); });
-    $$('#vPago input').forEach(function (i) { i.addEventListener('change', function () { setPago(i.value); }); });
-    ['vName', 'vNote', 'vWhen'].forEach(function (id) { $('#' + id).addEventListener('input', refreshVisit); $('#' + id).addEventListener('change', refreshVisit); });
-    $('#visitSend').addEventListener('click', function (e) {
-      if ($('#vName').value.trim()) { state.sent.visit = true; renderDone(); return; }  // the link opens WhatsApp with the message
-      e.preventDefault(); $('#vNameErr').hidden = false; $('#vName').focus();
+  function vfErrors() {
+    var e = [];
+    if (!vf.name.trim()) e.push('vfName');
+    if (!vf.consent) e.push('vfConsent');
+    return e;
+  }
+  function refreshVisita() {
+    if (!$('#vfForm')) return;
+    $('#vfPreSet').hidden = vf.pago !== 'credito';
+    $('#vfRangeNote').hidden = !(/^\d+$/.test(vf.min) && vfMaxNum() != null && vfMaxNum() < +vf.min);
+    var fit = vfFitHtml(), box = $('#vfFit');
+    if (box.innerHTML !== fit) box.innerHTML = fit;   // empty box is hidden by CSS (:empty)
+    var bad = vf.tried ? vfErrors() : [];
+    $('#vfNameErr').hidden = bad.indexOf('vfName') < 0;
+    $('#vfConsentErr').hidden = bad.indexOf('vfConsent') < 0;
+    $('#vfName').setAttribute('aria-invalid', String(bad.indexOf('vfName') > -1));
+    $('#vfConsent').setAttribute('aria-invalid', String(bad.indexOf('vfConsent') > -1));
+    $('#vfPreview').textContent = vfMsg();
+    var done = $('#vfDone');
+    if (vf.sent) { var reply = T('replyTime'); done.innerHTML = esc(T('sentWa')) + (reply ? ' ' + txt(reply) : ''); }
+  }
+  function vfUrl() { return waLink(vfMsg()); }
+  function bindVisita() {
+    var f = $('#vfForm');
+    var upd = function () { vfRead(); refreshVisita(); };
+    f.addEventListener('input', upd);
+    f.addEventListener('change', upd);
+    // "these fit": choosing one swaps the apartment and keeps focus on the choice
+    $('#vfFit').addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-pick]'); if (!b) return;
+      $('#vfApt').value = b.getAttribute('data-pick'); upd(); $('#vfApt').focus();
     });
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      vfRead(); vf.tried = true;
+      var bad = vfErrors();
+      refreshVisita();
+      if (bad.length) { $('#' + bad[0]).focus(); return; }
+      // the visitor's own WhatsApp opens with the message; the page sends nothing
+      window.open(vfUrl(), '_blank', 'noopener');
+      vf.sent = true; $('#vfDone').hidden = false; refreshVisita();
+    });
+    refreshVisita();
   }
 
   // After the WhatsApp link opens: say what is left to do, plus the reply-time
@@ -1008,7 +1152,7 @@
   function renderDone() {
     var reply = T('replyTime');
     var html = esc(T('sentWa')) + (reply ? ' ' + txt(reply) : '');
-    [['visit', '#visitDone'], ['owner', '#ownerDone']].forEach(function (k) {
+    [['owner', '#ownerDone']].forEach(function (k) {
       var el = $(k[1]); if (!el) return;
       el.hidden = !state.sent[k[0]];
       if (state.sent[k[0]]) el.innerHTML = html;
@@ -1121,10 +1265,8 @@
     buildHero();
     buildLine();
     registerEarth($('#fBudget'), $('.filters .earth-mini__svg'), $('#fBudgetOut'), 15, 12);
-    registerEarth($('#vBudget'), $('.visit-form .earth-mini__svg'), $('#vBudgetOut'), 15, 12);
-    bindFilters(); bindVisit(); bindOwner(); bindCalc();
+    bindFilters(); bindOwner(); bindCalc();
     if (state.pago) setPago(state.pago);
-    goStep(1);
     refreshWa();
 
     scApi = window.ScrollCraft.mount(document.body);
@@ -1136,7 +1278,7 @@
       if (scApi) scApi.acts.forEach(function (a) { a.cues.forEach(function (q) {
         if (q.kinetic) { q.el.__scSplit = null; q.units = null; q.el.classList.remove('sc-is-split'); }
       }); });
-      if (state.data) { populateFilters(); renderLedger(); renderPins(); renderVisitChoices(); refreshVisit(); renderZones(); renderCalcQuick(); }
+      if (state.data) { populateFilters(); renderLedger(); renderPins(); renderZones(); renderCalcQuick(); }
       renderCalc();
       syncBudgetUI(); refreshWa(); renderDone();
       if (dlg.open && gal.a) { var i = gal.i; openDossier(gal.a.id); showPhoto(i); }
@@ -1190,12 +1332,10 @@
         populateFilters();
         renderLedger();
         renderPins();
-        renderVisitChoices();
         renderZones();
         renderCalcQuick();
         syncBudgetUI();
         if (!state.budgetUser) drawEarth(lineEl.E, demoV);
-        refreshVisit();
         route();
         relayoutSoon();
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutPins);
@@ -1207,7 +1347,8 @@
 
     requestAnimationFrame(loop);
     // test hook for the verification scripts (read-only view of state)
-    window.__vt = { state: state, filtered: function () { return state.data ? filtered().map(function (a) { return a.id; }) : []; }, WA_NUMBER: WA_NUMBER, closingCosts: closingCosts, route: route };
+    window.__vt = { state: state, filtered: function () { return state.data ? filtered().map(function (a) { return a.id; }) : []; }, WA_NUMBER: WA_NUMBER, closingCosts: closingCosts, route: route,
+      visita: { state: vf, url: function () { return state.data ? vfUrl() : ''; } } };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
