@@ -37,7 +37,8 @@
     data: null,
     f: { zona: '', condo: '', piso: '', hab: 0, sort: 'asc' },
     visitApt: '',
-    step: 1
+    step: 1,
+    sent: { visit: false, owner: false }   // the visitor opened WhatsApp from that form
   };
   (function restore() {
     var b = parseInt(store.get('budget'), 10);
@@ -661,8 +662,22 @@
     $$('#vPago input').forEach(function (i) { i.addEventListener('change', function () { setPago(i.value); }); });
     ['vName', 'vNote', 'vWhen'].forEach(function (id) { $('#' + id).addEventListener('input', refreshVisit); $('#' + id).addEventListener('change', refreshVisit); });
     $('#visitSend').addEventListener('click', function (e) {
-      if ($('#vName').value.trim()) return;  // the link opens WhatsApp with the message
+      if ($('#vName').value.trim()) { state.sent.visit = true; renderDone(); return; }  // the link opens WhatsApp with the message
       e.preventDefault(); $('#vNameErr').hidden = false; $('#vName').focus();
+    });
+  }
+
+  // After the WhatsApp link opens: say what is left to do, plus the reply-time
+  // line. The reply time is Jorge's promise to make, so until he writes it the
+  // line is a [FALTA]; build-public.py blanks it and then only the first
+  // sentence shows online.
+  function renderDone() {
+    var reply = T('replyTime');
+    var html = esc(T('sentWa')) + (reply ? ' ' + txt(reply) : '');
+    [['visit', '#visitDone'], ['owner', '#ownerDone']].forEach(function (k) {
+      var el = $(k[1]); if (!el) return;
+      el.hidden = !state.sent[k[0]];
+      if (state.sent[k[0]]) el.innerHTML = html;
     });
   }
 
@@ -688,7 +703,7 @@
     };
     $$('#ownerForm input, #ownerForm select').forEach(function (i) { i.addEventListener('input', upd); i.addEventListener('change', upd); });
     send.addEventListener('click', function (e) {
-      if ($('#oName').value.trim()) return;
+      if ($('#oName').value.trim()) { state.sent.owner = true; renderDone(); return; }
       e.preventDefault(); note.textContent = T('ownerNeedName'); $('#oName').focus();
     });
     upd();
@@ -788,7 +803,7 @@
         if (q.kinetic) { q.el.__scSplit = null; q.units = null; q.el.classList.remove('sc-is-split'); }
       }); });
       if (state.data) { populateFilters(); renderLedger(); renderPins(); renderVisitChoices(); refreshVisit(); }
-      syncBudgetUI(); refreshWa();
+      syncBudgetUI(); refreshWa(); renderDone();
       if (dlg.open && gal.a) { var i = gal.i; openDossier(gal.a.id); showPhoto(i); }
     });
     var bar = $('#bar'), mt = $('#menuToggle');

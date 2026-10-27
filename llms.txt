@@ -1,0 +1,33 @@
+# Verti Terra
+
+> Verti Terra es la marca de bienes raíces de la familia de Vertigreens. Solo vende apartamentos, por ahora en Escazú y Santa Ana (San José, Costa Rica). Cada apartamento se publica con su precio en dólares. Las visitas son con cita y se piden por WhatsApp.
+
+English: Verti Terra lists apartments only, in Escazú and Santa Ana, Costa Rica, each with its price in US dollars. Visits by appointment, booked on WhatsApp.
+
+## Contacto
+
+- WhatsApp y llamadas: +506 7279-8418 (https://wa.me/50672798418)
+- El sitio no tiene formulario que guarde datos: cada formulario arma un mensaje que el visitante manda desde su propio WhatsApp.
+
+## Apartamentos
+
+- [VT-03 · Último piso con ático en RiOro](https://vertiterra.com/#/apto/rio-oro-b11-santa-ana): US$180,000. RiOro B-11, Santa Ana. 91 m², 2 habitaciones, 2 baños.
+- [VT-02 · Penthouse de dos niveles en Nova Lofts](https://vertiterra.com/#/apto/nova-lofts-santa-ana): US$220,000. Nova Lofts, Santa Ana. 113 m², 3 habitaciones, 2 baños.
+- [VT-04 · Apartamento con vista a la montaña en Bosques de Escazú](https://vertiterra.com/#/apto/bosques-escazu-vista-montana): US$260,000. Bosques de Escazú, Escazú. 90 m², 2 habitaciones, 2 baños.
+- [VT-05 · Apartamento con rooftop en Bosques de Escazú](https://vertiterra.com/#/apto/bosques-escazu-rooftop): US$325,000. Bosques de Escazú, Escazú. 132 m², 3 habitaciones, 2.5 baños.
+- [VT-01 · Penthouse en Bosques de Escazú](https://vertiterra.com/#/apto/bosques-escazu-603a): US$450,000. Bosques de Escazú 603-A, Escazú. 223 m², 4 habitaciones, 4 baños.
+
+## Páginas
+
+- [Inicio](https://vertiterra.com/): buscador por zona, precio, condominio, piso y habitaciones
+- [Tu presupuesto](https://vertiterra.com/#presupuesto): línea de precios, muestra qué apartamentos te alcanzan
+- [Apartamentos](https://vertiterra.com/#apartamentos): lista con filtros; cada apartamento abre su ficha en https://vertiterra.com/#/apto/<id>
+- [Para propietarios](https://vertiterra.com/#propietarios): para dueños que quieren vender su apartamento
+- [Preguntas](https://vertiterra.com/#preguntas): compra para extranjeros, pasos de una compra, Registro Nacional, cuota de condominio, crédito, visitas
+- [Agendar visita](https://vertiterra.com/#contacto)
+
+## Notas
+
+- Precios en dólares (US$).
+- No venden casas ni lotes.
+- Datos actualizados: 2026-10-26.

@@ -479,6 +479,8 @@ body { background: var(--sc-canvas); }
 .owner-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sc-4); }
 .form-send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
 .form-note { margin: 0; font-size: var(--sc-t-xs); color: var(--sc-ink-soft); max-width: 36ch; }
+/* shown after the visitor opens WhatsApp from a form (renderDone in site.js) */
+.form-done { margin: var(--sc-3) 0 0; padding: 10px 14px; border-left: 3px solid currentColor; border-radius: 4px; font-size: var(--sc-t-sm); line-height: 1.45; max-width: 52ch; background: color-mix(in srgb, currentColor 6%, transparent); }
 @media (max-width: 820px) {
   .owners__grid { grid-template-columns: 1fr; }
   .owners__fig { position: relative; top: 0; }
