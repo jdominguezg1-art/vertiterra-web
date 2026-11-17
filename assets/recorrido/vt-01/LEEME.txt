@@ -2,11 +2,35 @@ Suelta los archivos en esta carpeta y recarga el recorrido
 (#/recorrido/bosques-escazu-603a, página recorrido.html).
 No hace falta editar el HTML: la página los detecta sola.
 
-  dusk.jpg       Torre al atardecer. Abre el recorrido. Opcional: dusk-m.jpg en pantallas angostas.
+  dusk.jpg       Torre al atardecer. Pasa a abrir el recorrido. Opcional: dusk-m.jpg en pantallas angostas.
   planta.jpg     Planta isométrica o corte 3D. Cierra el recorrido. Opcional: planta-m.jpg.
   walk.mp4       Video del recorrido, sincronizado con el scroll. Opcional: walk-m.mp4 para el teléfono.
-  walk.jpg       Fotograma quieto del video. Se usa cuando el sistema pide menos movimiento.
+  walk.jpg       Fotograma quieto del video. Se ve mientras el video carga y cuando el sistema
+                 pide menos movimiento. Súbelo siempre junto con walk.mp4.
   frames/001.webp, 002.webp, 003.webp…   Secuencia de cuadros, si no hay walk.mp4.
                  Tres dígitos, desde 001, hasta 180 cuadros.
 
-Mientras el archivo no esté, la escena muestra el espacio reservado con esta misma ruta.
+Mientras un archivo no esté, su escena no existe para el comprador: no se ve
+ningún aviso, ninguna ruta de archivo y ningún punto en el riel. Sin dusk.jpg el
+recorrido abre en la escena de la vista, y los botones de cierre quedan en la
+última escena que sí exista (hoy, la piscina).
+
+Con movimiento reducido el video no se reproduce: la escena del video solo
+aparece si hay walk.jpg (o frames/001.webp) para mostrar como imagen fija.
+
+Antes de publicar en buscadores
+  recorrido.html lleva <meta name="robots" content="noindex, nofollow">. Quítalo cuando el
+  recorrido tenga su material definitivo.
+
+Datos escritos a mano
+  El precio, el área (223 m²) y los datos de la ventana del apartamento están
+  escritos en recorrido.html (título, descripción y ventana de datos) y, en inglés,
+  en js/i18n.js (claves rwCap…, rwForest y rwFb…). Solo se ven si
+  data/apartamentos.json no carga, pero si el precio o el área cambian en el
+  JSON hay que cambiarlos también ahí.
+
+La foto de la piscina
+  La escena de la piscina usa assets/vistamontana/vista-montana-08.jpg, que es de
+  otro apartamento del mismo condominio (VT-04). Por eso el texto habla de la
+  piscina del condominio y no del balcón del 603-A. Si se cambia la foto, revisar
+  el texto (clave rwPiscinaB y el alt en recorrido.html).

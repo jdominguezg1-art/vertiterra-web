@@ -13,9 +13,6 @@ body {
   background: #F6F7F3; color: #11302A;
 }
 
-/* Before the engine's first read, the opening scene is the only one visible. */
-#vuelo [data-sc-segment]:first-child { opacity: 1; }
-
 #vuelo .sc-world { background: #0F3B33; }
 /* The copy sits on its own paper plate, so the scrim only needs a short lift
    at the bottom and should leave the photograph alone. */
@@ -49,7 +46,7 @@ body {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .rw-scene__n {
-  color: var(--vt-forest); font-variant-numeric: tabular-nums; margin-right: 0.35rem;
+  color: var(--vt-forest); font-variant-numeric: tabular-nums; margin-right: 0.1rem;
 }
 .rw-tools { display: flex; align-items: center; gap: 8px; flex: none; }
 .rw-unit {
@@ -78,7 +75,7 @@ body {
   margin: 0; padding: 0;
 }
 .rw-rail button {
-  width: 44px; height: 22px; padding: 0; border: 0; background: transparent;
+  width: 44px; height: 26px; padding: 0; border: 0; background: transparent;
   display: grid; place-items: center; cursor: pointer;
 }
 .rw-rail__dot {
@@ -146,6 +143,10 @@ body {
   font-weight: 600; font-size: 0.82rem;
   font-variant-numeric: tabular-nums;
 }
+/* If the listing data fails to load there are no chips; leave no empty gap or orphan label. */
+.rw-chips:empty { display: none; }
+.rw-chip-label:has(+ .rw-chips:empty),
+.rw-pop__h:has(+ .rw-pop__amen:empty) { display: none; }
 .rw-chip-label {
   margin: 0.65rem 0 0; font-size: 0.75rem; font-weight: 600; color: var(--sc-ink-soft);
 }
@@ -172,40 +173,9 @@ body {
   to { opacity: 1; transform: none; }
 }
 
-/* ------------------------------------------------------------- placeholders */
-.rw-slot {
-  position: absolute; inset: 0; z-index: 2;
-  display: grid; place-items: center; text-align: center;
-  padding: calc(var(--rw-bar) + env(safe-area-inset-top) + 1.5rem) 1.25rem 11rem;
-}
-.rw-slot__inner { display: grid; justify-items: center; gap: 0.7rem; max-width: 26rem; }
-.rw-slot--dusk {
-  color: #F6F7F3;
-  background:
-    radial-gradient(90% 70% at 50% 18%, #245048 0%, #11302A 46%, #0F3B33 100%);
-}
-.rw-slot--video {
-  color: #F6F7F3;
-  background: linear-gradient(180deg, #164A40 0%, #0F3B33 100%);
-}
-.rw-slot--plan {
-  color: #11302A;
-  background:
-    linear-gradient(180deg, #F6F7F3 0%, #EEF1EA 100%);
-}
-.rw-slot__frame, .rw-slot__iso { width: min(46vw, 220px); height: auto; }
-.rw-slot__flag {
-  margin: 0; padding: 0.35rem 0.8rem; border-radius: 999px;
-  border: 1px solid color-mix(in oklab, currentColor 50%, transparent);
-  font-weight: 600; font-size: 0.86rem;
-}
-.rw-slot__path, .rw-slot__help, .rw-slot__held { margin: 0; font-size: 0.78rem; line-height: 1.4; }
-.rw-slot code { font-family: ui-monospace, "Geist", monospace; font-size: 0.92em; user-select: all; }
-.rw-slot.is-held .rw-slot__flag,
-.rw-slot.is-held .rw-slot__path,
-.rw-slot.is-held .rw-slot__help { display: none; }
+/* ------------------------------------------------------------ optional media */
+/* A photo that has not been requested yet shows the stage colour, never a broken image. */
 img.sc-world__poster:not([src]) { visibility: hidden; }
-.sc-world__seg.sc-has-clip .rw-slot { opacity: 0; visibility: hidden; }
 #seg-video canvas { z-index: 1; background: #0F3B33; }
 
 /* ------------------------------------------------------------------- popup */
@@ -253,11 +223,10 @@ img.sc-world__poster:not([src]) { visibility: hidden; }
 .rw-pop__note { margin: 0.85rem 0 0; font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
 .rw-pop__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
 
-.rw-bar .btn--solid:focus-visible,
-.rw-copy .btn--solid:focus-visible { outline-color: #fff; }
-
 /* ----------------------------------------------------------------- mobile */
 @media (max-width: 860px) {
+  /* A blur over full-bleed moving photos is expensive on small phones. */
+  .rw-bar { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
   .rw-bar__logo img { height: 34px; }
   .rw-back, .rw-scene { display: none; }
   .rw-cta__long { display: none; }
@@ -274,7 +243,6 @@ img.sc-world__poster:not([src]) { visibility: hidden; }
     bottom: calc(3.4rem + env(safe-area-inset-bottom));
     max-width: calc(100% - var(--sc-gutter) * 2);
   }
-  .rw-slot { padding-bottom: 13rem; }
 }
 @media (max-height: 520px) {
   .rw-title { font-size: 1.45rem; }

@@ -904,7 +904,6 @@
           '</div>' +
           '<div class="dos__actions">' +
             '<a class="btn btn--solid" href="#/visita/' + a.id + '" id="dosVisit">' + esc(T('visit')) + '</a>' +
-            (a.id === 'bosques-escazu-603a' ? '<a class="btn btn--quiet" href="recorrido.html" id="dosTour">' + esc(T('tour')) + '</a>' : '') +
             '<a class="btn btn--quiet" target="_blank" rel="noopener" href="' + waLink(T('msgListing', { code: a.codigo, title: L(a.titulo), price: money(a.precioUSD) })) + '"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> ' + esc(T('waListing')) + '</a>' +
           '</div>' +
         '</div>' +
@@ -952,7 +951,7 @@
   }
   function route() {
     if (/^#\/recorrido\/bosques-escazu-603a\/?$/.test(location.hash)) {
-      location.assign('recorrido.html');
+      location.replace('recorrido.html');
       return;
     }
     var m = location.hash.match(/^#\/(apto|edificio|guia)\/([\w-]+)/) || location.hash.match(/^#\/(visita)(?:\/([\w-]+))?\/?$/);
