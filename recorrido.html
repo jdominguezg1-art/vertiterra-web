@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recorrido · VT-01 · Verti Terra</title>
+<meta name="description" content="Recorrido del penthouse VT-01, Bosques de Escazú 603-A. 223 m², vista al valle, y la visita se agenda por WhatsApp.">
+<link rel="canonical" href="https://vertiterra.com/recorrido.html">
+<meta name="theme-color" content="#0F3B33">
+<link rel="icon" type="image/png" href="assets/brand/icono-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Geist:wght@400;500;600&display=swap">
+<link rel="preload" as="image" href="assets/escazu/escazu-07.jpg">
+<link rel="stylesheet" href="scrollcraft.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/recorrido.css">
+<!--
+  Medios que todavía no existen. Suéltalos y recarga; ver assets/recorrido/vt-01/LEEME.txt
+  y el objeto MEDIA en js/recorrido.js.
+
+    assets/recorrido/vt-01/dusk.jpg      torre al atardecer (apertura). Opcional: dusk-m.jpg
+    assets/recorrido/vt-01/planta.jpg    planta isométrica / corte 3D (cierre). Opcional: planta-m.jpg
+    assets/recorrido/vt-01/walk.mp4      video sincronizado con el scroll. Opcional: walk-m.mp4
+    assets/recorrido/vt-01/walk.jpg      fotograma quieto, por si el sistema pide menos movimiento
+    assets/recorrido/vt-01/frames/001.webp   secuencia de cuadros (002, 003…) si no hay video
+-->
+</head>
+<body>
+
+<a class="skip" href="#rwVisit" data-i18n="rwSkip">Saltar a agendar la visita</a>
+<noscript><p class="rw-noscript">Este recorrido necesita JavaScript para avanzar con el scroll.</p></noscript>
+
+<header class="rw-bar">
+  <a class="rw-bar__logo" href="index.html" aria-label="Verti Terra, inicio" data-i18n-attr="aria-label:brandHome">
+    <img src="assets/brand/logo-15-2-520.png" width="520" height="271" alt="Verti Terra Bienes Raíces" data-i18n-attr="alt:logoAlt">
+  </a>
+  <a class="rw-back" href="index.html#/apto/bosques-escazu-603a" data-i18n="rwBack" data-i18n-attr="aria-label:rwBackAria" aria-label="Volver a la ficha">Ficha</a>
+  <p class="rw-scene" id="rwScene" aria-live="polite"><span class="rw-scene__n" id="rwSceneN">01</span><span id="rwSceneL">Torre</span></p>
+  <div class="rw-tools">
+    <button class="rw-unit" id="rwUnit" type="button" aria-haspopup="dialog" aria-controls="rwPop" data-i18n-attr="aria-label:rwUnitAria" aria-label="Datos del apartamento"><span data-fill="unit">603-A</span></button>
+    <button class="rw-lang" id="langToggle" type="button" aria-label="Read in English" data-i18n-attr="aria-label:langAria"><span data-i18n="langShort">EN</span></button>
+    <a class="btn btn--solid rw-cta" href="index.html#/visita/bosques-escazu-603a">
+      <span class="rw-cta__long" data-i18n="ctaVisit">Agendar visita</span>
+      <span class="rw-cta__short" data-i18n="rwVisitShort">Visita</span>
+    </a>
+  </div>
+  <div data-sc-progress aria-hidden="true"></div>
+</header>
+
+<nav class="rw-rail" id="rwRail" aria-label="Escenas del recorrido" data-i18n-attr="aria-label:rwRail">
+  <button type="button" data-go="0" aria-current="true"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpDusk">Torre</span></button>
+  <button type="button" data-go="1"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpVista">La vista</span></button>
+  <button type="button" data-go="2"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpSala">Sala</span></button>
+  <button type="button" data-go="3"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpCocina">Cocina</span></button>
+  <button type="button" data-go="4"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpBalcon">Balcón</span></button>
+  <button type="button" data-go="5"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpHab">Habitaciones</span></button>
+  <button type="button" data-go="6"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpBosque">Reserva</span></button>
+  <button type="button" data-go="7"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpPiscina">Piscina</span></button>
+  <button type="button" data-go="8"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpVideo">Video</span></button>
+  <button type="button" data-go="9"><span class="rw-rail__dot"></span><span class="sr" data-i18n="rwWpPlanta">Planta</span></button>
+</nav>
+
+<main id="vuelo" data-sc-mode="worldflight" data-sc-seam="0.14">
+  <div class="sc-world" data-sc-world>
+    <!-- 1 · OPENING. Placeholder until assets/recorrido/vt-01/dusk.jpg exists. -->
+    <div data-sc-segment data-sc-w="1.45" data-sc-linger="0.28" data-sc-waypoint="dusk" id="seg-dusk">
+      <img class="sc-world__poster" alt="" data-slot-img="dusk" hidden width="1600" height="1000" decoding="async">
+      <div class="rw-slot rw-slot--dusk" data-slot="dusk">
+        <div class="rw-slot__inner">
+          <svg class="rw-slot__frame" viewBox="0 0 160 100" aria-hidden="true">
+            <path d="M6 26 V6 H26 M134 6 H154 V26 M154 74 V94 H134 M26 94 H6 V74" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M48 78 V48 H70 V78 M90 78 V38 H112 V78" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.7"/>
+          </svg>
+          <p class="rw-slot__flag" data-i18n="rwSoon">Foto por llegar</p>
+          <p class="rw-slot__path"><code>assets/recorrido/vt-01/dusk.jpg</code></p>
+          <p class="rw-slot__help" data-i18n="rwSlotHelp">Suelta el archivo y recarga. La página lo toma sola.</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-sc-segment data-sc-w="1.35" data-sc-linger="0.34" data-sc-waypoint="vista" id="seg-vista">
+      <img class="sc-world__poster" alt="Vista desde el balcón hacia el valle y las montañas" data-src="assets/escazu/escazu-07.jpg" data-cap="vista" width="1400" height="1052" decoding="async" style="object-position:center 62%">
+    </div>
+
+    <div data-sc-segment data-sc-w="1.28" data-sc-linger="0.34" data-sc-waypoint="sala" id="seg-sala">
+      <img class="sc-world__poster" alt="Sala y comedor con ventanales de piso a techo y vista a las montañas" data-src="assets/escazu/escazu-03.jpg" data-cap="sala" width="1400" height="1052" decoding="async" style="object-position:center 46%">
+    </div>
+
+    <div data-sc-segment data-sc-w="1.28" data-sc-linger="0.34" data-sc-waypoint="cocina" id="seg-cocina">
+      <img class="sc-world__poster" alt="Cocina con isla de madera" data-src="assets/escazu/escazu-12.jpg" data-cap="cocina" width="1400" height="1053" decoding="async">
+    </div>
+
+    <div data-sc-segment data-sc-w="1.28" data-sc-linger="0.34" data-sc-waypoint="balcon" id="seg-balcon">
+      <img class="sc-world__poster" alt="Balcón con baranda de vidrio y vista verde" data-src="assets/escazu/escazu-08.jpg" data-cap="balcon" width="1400" height="1052" decoding="async" style="object-position:center 42%">
+    </div>
+
+    <div data-sc-segment data-sc-w="1.22" data-sc-linger="0.32" data-sc-waypoint="hab" id="seg-hab">
+      <img class="sc-world__poster" alt="Habitación con cama y respaldar de madera" data-src="assets/escazu/escazu-extra-02.jpg" data-cap="hab" width="960" height="1280" decoding="async" style="object-position:center 40%">
+    </div>
+
+    <div data-sc-segment data-sc-w="1.32" data-sc-linger="0.32" data-sc-waypoint="bosque" id="seg-bosque">
+      <img class="sc-world__poster" alt="Bosque en Bosques de Escazú" data-alt-en="Forest at Bosques de Escazú" data-src="assets/hero/bosque.jpg" width="1600" height="899" decoding="async" style="object-position:center 40%">
+    </div>
+
+    <div data-sc-segment data-sc-w="1.38" data-sc-linger="0.34" data-sc-waypoint="piscina" id="seg-piscina">
+      <img class="sc-world__poster" alt="Vista al bosque y a la piscina del condominio desde el balcón" data-src="assets/vistamontana/vista-montana-08.jpg" data-cap="piscina" width="1280" height="960" decoding="async" style="object-position:center 55%">
+    </div>
+
+    <!-- Optional scroll-synced video, or a frame sequence. Placeholder until a file lands. -->
+    <div data-sc-segment data-sc-w="1.12" data-sc-linger="0.22" data-sc-waypoint="video" id="seg-video">
+      <img class="sc-world__poster" alt="" data-slot-img="video" hidden width="1600" height="900" decoding="async">
+      <div class="rw-slot rw-slot--video" data-slot="video">
+        <div class="rw-slot__inner">
+          <svg class="rw-slot__frame" viewBox="0 0 160 100" aria-hidden="true">
+            <rect x="18" y="22" width="124" height="56" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M70 38 L98 50 L70 62 Z" fill="currentColor"/>
+          </svg>
+          <p class="rw-slot__flag" data-i18n="rwSoonVideo">Video por llegar</p>
+          <p class="rw-slot__path"><code>assets/recorrido/vt-01/walk.mp4</code></p>
+          <p class="rw-slot__path"><code>assets/recorrido/vt-01/frames/001.webp</code></p>
+          <p class="rw-slot__help" data-i18n="rwSlotHelp">Suelta el archivo y recarga. La página lo toma sola.</p>
+          <p class="rw-slot__held" hidden data-i18n="rwVideoStill">Con movimiento reducido, el video se queda en un fotograma.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finale. Placeholder until assets/recorrido/vt-01/planta.jpg exists. -->
+    <div data-sc-segment data-sc-w="1.6" data-sc-linger="0.3" data-sc-waypoint="planta" id="seg-planta">
+      <img class="sc-world__poster" alt="" data-slot-img="planta" hidden width="1600" height="1000" decoding="async">
+      <div class="rw-slot rw-slot--plan" data-slot="planta">
+        <div class="rw-slot__inner">
+          <svg class="rw-slot__iso" viewBox="0 0 200 150" aria-hidden="true">
+            <path d="M100 28 L168 62 L100 96 L32 62 Z" fill="none" stroke="#7F5126" stroke-width="1.4"/>
+            <path d="M100 52 L168 86 L100 120 L32 86 Z" fill="none" stroke="#0F3B33" stroke-width="1.6"/>
+            <path d="M32 62 V86 M168 62 V86 M100 28 V52 M100 96 V120" fill="none" stroke="#0F3B33" stroke-width="1.3"/>
+            <path d="M100 52 L100 96 M66 69 L134 103" fill="none" stroke="#0F3B33" stroke-width="1" opacity="0.45"/>
+          </svg>
+          <p class="rw-slot__flag" data-i18n="rwSoonPlan">Planta por llegar</p>
+          <p class="rw-slot__path"><code>assets/recorrido/vt-01/planta.jpg</code></p>
+          <p class="rw-slot__help" data-i18n="rwSlotHelp">Suelta el archivo y recarga. La página lo toma sola.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc-world__copy" data-sc-world-copy>
+    <div class="sc-world__scrim sc-scrim sc-scrim--band" aria-hidden="true"></div>
+
+    <div data-sc-copy data-scene="dusk" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker">VT-01 · Penthouse</p>
+        <h1 class="rw-title" data-i18n="rwDuskT">La torre, al atardecer.</h1>
+        <p class="rw-body" data-fill="where">Bosques de Escazú 603-A, Escazú</p>
+        <ul class="rw-chips" data-chips="dusk"></ul>
+        <p class="rw-hint"><span data-i18n="rwHint">Desliza para recorrer</span>
+          <svg class="rw-hint__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </p>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="vista" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwViewK">Bosques de Escazú</p>
+        <h2 class="rw-title" data-i18n="rwViewT">Primero, la vista.</h2>
+        <p class="rw-body" data-fill="cap-vista">Vista desde el balcón hacia el valle y las montañas.</p>
+        <ul class="rw-chips" data-chips="vista"></ul>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="sala" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwSalaK">La sala</p>
+        <h2 class="rw-title" data-i18n="rwSalaT">De piso a techo.</h2>
+        <p class="rw-body" data-fill="cap-sala">Sala y comedor con ventanales de piso a techo y vista a las montañas.</p>
+        <ul class="rw-chips" data-chips="sala"></ul>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="cocina" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwCocinaK">La cocina</p>
+        <h2 class="rw-title" data-i18n="rwCocinaT">Cocina con isla.</h2>
+        <p class="rw-body" data-fill="cap-cocina">Cocina con isla de madera.</p>
+        <ul class="rw-chips" data-chips="cocina"></ul>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="balcon" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwBalconK">El balcón</p>
+        <h2 class="rw-title" data-i18n="rwBalconT">Baranda de vidrio.</h2>
+        <p class="rw-body" data-fill="cap-balcon">Balcón con baranda de vidrio y vista verde.</p>
+        <ul class="rw-chips" data-chips="balcon"></ul>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="hab" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwHabK">Las habitaciones</p>
+        <h2 class="rw-title" data-i18n="rwHabT">Las habitaciones.</h2>
+        <p class="rw-body" data-fill="cap-hab">Habitación con cama y respaldar de madera.</p>
+        <ul class="rw-chips" data-chips="hab"></ul>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="bosque" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwBosqueK">Afuera</p>
+        <h2 class="rw-title" data-i18n="rwBosqueT">La reserva.</h2>
+        <p class="rw-body" data-fill="forest">El condominio está en un terreno montañoso con 13,000 m² de reserva y solo 4 torres de baja densidad, de 26 unidades cada una.</p>
+        <ul class="rw-chips" data-chips="bosque"></ul>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="piscina" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwPiscinaK">El condominio</p>
+        <h2 class="rw-title" data-i18n="rwPiscinaT">Piscina temperada.</h2>
+        <p class="rw-body" data-fill="cap-piscina">Vista al bosque y a la piscina del condominio desde el balcón.</p>
+        <p class="rw-chip-label" data-i18n="rwInCondo">En el condominio</p>
+        <ul class="rw-chips" data-chips="piscina"></ul>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="video" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwVideoK">Opcional</p>
+        <h2 class="rw-title" data-i18n="rwVideoT">El recorrido filmado.</h2>
+        <p class="rw-body" data-i18n="rwVideoB">Un video, o una secuencia de cuadros, puede ocupar esta escena.</p>
+      </div>
+    </div>
+
+    <div data-sc-copy data-scene="planta" class="sc-copy rw-copy">
+      <div class="rw-plate">
+        <p class="rw-kicker" data-i18n="rwPlanK">Para cerrar</p>
+        <h2 class="rw-title" data-i18n="rwPlanT">La planta, en corte.</h2>
+        <p class="rw-body" data-i18n="rwPlanB">Aquí va la planta isométrica. Mientras tanto, la visita la recorremos juntos.</p>
+        <ul class="rw-chips" data-chips="planta"></ul>
+        <div class="rw-actions">
+          <a class="btn btn--solid" id="rwVisit" href="index.html#/visita/bosques-escazu-603a" data-i18n="ctaVisit">Agendar visita</a>
+          <a class="btn btn--quiet" href="index.html#/apto/bosques-escazu-603a" data-i18n="rwFicha">Ver la ficha</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc-world__spacer" data-sc-spacer aria-hidden="true"></div>
+</main>
+
+<dialog id="rwPop" class="rw-pop" aria-labelledby="rwPopTitle">
+  <div class="rw-pop__card">
+    <div class="rw-pop__top">
+      <p class="rw-pop__code" data-fill="code">VT-01 · Escazú</p>
+      <button class="rw-pop__x" id="rwPopClose" type="button" aria-label="Cerrar" data-i18n-attr="aria-label:rwClose">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <h2 class="rw-pop__title" id="rwPopTitle" data-fill="title">Penthouse en Bosques de Escazú</h2>
+    <p class="rw-pop__where" data-fill="where">Bosques de Escazú 603-A, Escazú</p>
+    <p class="rw-pop__price" data-fill="price">US$450,000</p>
+    <dl class="rw-pop__dl">
+      <div><dt data-i18n="rwArea">Área</dt><dd data-fill="m2">223 m²</dd></div>
+      <div><dt data-i18n="rwBeds">Habitaciones</dt><dd data-fill="beds">4</dd></div>
+      <div><dt data-i18n="rwBaths">Baños</dt><dd data-fill="baths">4 + servicio</dd></div>
+      <div><dt data-i18n="rwParking">Parqueos</dt><dd data-fill="parking">3 + bodega</dd></div>
+      <div><dt data-i18n="rwFurn">Amueblado</dt><dd data-fill="furn">Se vende amueblado</dd></div>
+      <div><dt data-i18n="rwFee">Cuota de condominio</dt><dd data-fill="fee">₡200,000 al mes</dd></div>
+    </dl>
+    <h3 class="rw-pop__h" data-i18n="rwAmenities">En el condominio</h3>
+    <ul class="rw-pop__amen" data-fill="amenList"></ul>
+    <p class="rw-pop__note" data-fill="ocupacion">Habitado. Visitas con cita.</p>
+    <div class="rw-pop__actions">
+      <a class="btn btn--solid" href="index.html#/visita/bosques-escazu-603a" data-i18n="ctaVisit">Agendar visita</a>
+      <a class="btn btn--quiet" href="index.html#/apto/bosques-escazu-603a" data-i18n="rwFicha">Ver la ficha</a>
+    </div>
+  </div>
+</dialog>
+
+<script src="scrollcraft.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/recorrido.js"></script>
+</body>
+</html>

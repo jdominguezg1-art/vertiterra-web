@@ -1,0 +1,12 @@
+Suelta los archivos en esta carpeta y recarga el recorrido
+(#/recorrido/bosques-escazu-603a, página recorrido.html).
+No hace falta editar el HTML: la página los detecta sola.
+
+  dusk.jpg       Torre al atardecer. Abre el recorrido. Opcional: dusk-m.jpg en pantallas angostas.
+  planta.jpg     Planta isométrica o corte 3D. Cierra el recorrido. Opcional: planta-m.jpg.
+  walk.mp4       Video del recorrido, sincronizado con el scroll. Opcional: walk-m.mp4 para el teléfono.
+  walk.jpg       Fotograma quieto del video. Se usa cuando el sistema pide menos movimiento.
+  frames/001.webp, 002.webp, 003.webp…   Secuencia de cuadros, si no hay walk.mp4.
+                 Tres dígitos, desde 001, hasta 180 cuadros.
+
+Mientras el archivo no esté, la escena muestra el espacio reservado con esta misma ruta.
