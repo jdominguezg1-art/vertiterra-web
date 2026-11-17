@@ -950,6 +950,10 @@
     if (back) history.replaceState(null, '', back);
   }
   function route() {
+    if (/^#\/recorrido\/bosques-escazu-603a\/?$/.test(location.hash)) {
+      location.replace('recorrido.html');
+      return;
+    }
     var m = location.hash.match(/^#\/(apto|edificio|guia)\/([\w-]+)/) || location.hash.match(/^#\/(visita)(?:\/([\w-]+))?\/?$/);
     if (m && m[1] === 'apto') openDossier(m[2]);
     else if (m) openPage(m[1], m[2]);
