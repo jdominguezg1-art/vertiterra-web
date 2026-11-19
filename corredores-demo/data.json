@@ -1,0 +1,534 @@
+{
+ "corredor": {
+  "nombre": "Corredora Demo",
+  "whatsapp": "50672798418",
+  "nota": "Datos de ejemplo: los dos apartamentos de Verti Terra."
+ },
+ "propiedades": [
+  {
+   "id": "nova-lofts-santa-ana",
+   "codigo": "VT-02",
+   "zona": "Santa Ana",
+   "condominio": "Nova Lofts",
+   "titulo": {
+    "es": "Penthouse de dos niveles en Nova Lofts",
+    "en": "Two-level penthouse in Nova Lofts"
+   },
+   "precioUSD": 220000,
+   "m2": 113,
+   "habitaciones": 3,
+   "banos": 2,
+   "parqueos": 2,
+   "bodega": true,
+   "amueblado": {
+    "es": "Se vende amueblado",
+    "en": "Sold furnished"
+   },
+   "cuotaCondominio": {
+    "es": "[FALTA: cuota de condominio]",
+    "en": "[MISSING: condo fee]"
+   },
+   "financiamiento": {
+    "es": "[FALTA: confirmar con el dueño si acepta crédito bancario]",
+    "en": "[MISSING: confirm with the owner whether bank financing is accepted]"
+   },
+   "descuentoContado": {
+    "es": "[FALTA: confirmar si hay descuento por pago de contado]",
+    "en": "[MISSING: confirm whether there is a cash discount]"
+   },
+   "descripcion": {
+    "es": [
+     "Penthouse de dos niveles, 113 m², con 3 habitaciones y 2 baños, en el Condominio Nova Lofts, frente al centro de Santa Ana. Construido en 2022. Se vende amueblado.",
+     "Diseño moderno: cocina abierta con isla central y sala integrada. Habitación principal con baño completo y walk-in closet, segunda habitación y baño completo de visitas.",
+     "En el segundo nivel, una sala de TV o cuarto familiar y la tercera habitación."
+    ],
+    "en": [
+     "A two-level penthouse, 113 m², with 3 bedrooms and 2 bathrooms, in Condominio Nova Lofts, across from downtown Santa Ana. Built in 2022. Sold furnished.",
+     "Modern design: open kitchen with a central island and an integrated living room. Main bedroom with full bathroom and walk-in closet, a second bedroom and a full guest bathroom.",
+     "On the second level, a TV or family room and the third bedroom."
+    ]
+   },
+   "amenidades": {
+    "es": [
+     "Acceso controlado",
+     "Seguridad 24/7",
+     "Casa club",
+     "Piscina"
+    ],
+    "en": [
+     "Controlled access",
+     "24/7 security",
+     "Clubhouse",
+     "Pool"
+    ]
+   },
+   "fotos": [
+    {
+     "src": "assets/novalofts/novalofts-01.jpg",
+     "thumb": "assets/novalofts/t/novalofts-01.jpg",
+     "w": 1282,
+     "h": 720,
+     "alt": {
+      "es": "Cocina abierta y sala de doble altura",
+      "en": "Open kitchen and double-height living room"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-04.jpg",
+     "thumb": "assets/novalofts/t/novalofts-04.jpg",
+     "w": 1109,
+     "h": 720,
+     "alt": {
+      "es": "Comedor junto a la isla, con la sala al fondo",
+      "en": "Dining area by the island, living room behind"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-06.jpg",
+     "thumb": "assets/novalofts/t/novalofts-06.jpg",
+     "w": 1109,
+     "h": 720,
+     "alt": {
+      "es": "Isla central de la cocina",
+      "en": "Central kitchen island"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-07.jpg",
+     "thumb": "assets/novalofts/t/novalofts-07.jpg",
+     "w": 1109,
+     "h": 720,
+     "alt": {
+      "es": "Cocina con encimera eléctrica",
+      "en": "Kitchen with electric cooktop"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-08.jpg",
+     "thumb": "assets/novalofts/t/novalofts-08.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Sala con sofá esquinero",
+      "en": "Living room with corner sofa"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-09.jpg",
+     "thumb": "assets/novalofts/t/novalofts-09.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Sala y escalera al segundo nivel",
+      "en": "Living room and stairs to the second level"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-03.jpg",
+     "thumb": "assets/novalofts/t/novalofts-03.jpg",
+     "w": 1282,
+     "h": 720,
+     "alt": {
+      "es": "Sala de TV en el segundo nivel",
+      "en": "TV room on the second level"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-18.jpg",
+     "thumb": "assets/novalofts/t/novalofts-18.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Sala de TV con sofá de cuero",
+      "en": "TV room with leather sofa"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-10.jpg",
+     "thumb": "assets/novalofts/t/novalofts-10.jpg",
+     "w": 1343,
+     "h": 896,
+     "alt": {
+      "es": "Habitación principal",
+      "en": "Main bedroom"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-11.jpg",
+     "thumb": "assets/novalofts/t/novalofts-11.jpg",
+     "w": 1400,
+     "h": 577,
+     "alt": {
+      "es": "Habitación con TV",
+      "en": "Bedroom with TV"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-14.jpg",
+     "thumb": "assets/novalofts/t/novalofts-14.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Segunda habitación",
+      "en": "Second bedroom"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-15.jpg",
+     "thumb": "assets/novalofts/t/novalofts-15.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Tercera habitación",
+      "en": "Third bedroom"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-16.jpg",
+     "thumb": "assets/novalofts/t/novalofts-16.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Cuarto con escritorio y sofá",
+      "en": "Room with desk and sofa"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-12.jpg",
+     "thumb": "assets/novalofts/t/novalofts-12.jpg",
+     "w": 1400,
+     "h": 577,
+     "alt": {
+      "es": "Walk-in closet",
+      "en": "Walk-in closet"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-13.jpg",
+     "thumb": "assets/novalofts/t/novalofts-13.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Baño con lavamanos y paso a la habitación",
+      "en": "Bathroom with washbasin and door to the bedroom"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-17.jpg",
+     "thumb": "assets/novalofts/t/novalofts-17.jpg",
+     "w": 1026,
+     "h": 1176,
+     "alt": {
+      "es": "Baño con ducha",
+      "en": "Bathroom with shower"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-02.jpg",
+     "thumb": "assets/novalofts/t/novalofts-02.jpg",
+     "w": 1282,
+     "h": 720,
+     "alt": {
+      "es": "Piscina del condominio entre los edificios",
+      "en": "Condominium pool between the buildings"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-19.jpg",
+     "thumb": "assets/novalofts/t/novalofts-19.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Piscina y rancho del condominio",
+      "en": "Condominium pool and covered terrace"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-21.jpg",
+     "thumb": "assets/novalofts/t/novalofts-21.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Área social techada del condominio",
+      "en": "Covered social area of the condominium"
+     }
+    },
+    {
+     "src": "assets/novalofts/novalofts-20.jpg",
+     "thumb": "assets/novalofts/t/novalofts-20.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Sala de ejercicio del condominio",
+      "en": "Condominium exercise room"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rio-oro-b11-santa-ana",
+   "codigo": "VT-03",
+   "zona": "Santa Ana",
+   "condominio": "Río Oro",
+   "titulo": {
+    "es": "Último piso con ático en Río Oro",
+    "en": "Top floor with loft in Río Oro"
+   },
+   "precioUSD": 180000,
+   "m2": 91,
+   "habitaciones": 2,
+   "banos": 2,
+   "parqueos": 2,
+   "bodega": {
+    "es": "[FALTA: confirmar bodega]",
+    "en": "[MISSING: confirm storage room]"
+   },
+   "amueblado": {
+    "es": "[FALTA: confirmar si se vende amueblado]",
+    "en": "[MISSING: confirm whether it is sold furnished]"
+   },
+   "cuotaCondominio": {
+    "es": "[FALTA: cuota de condominio]",
+    "en": "[MISSING: condo fee]"
+   },
+   "financiamiento": {
+    "es": "[FALTA: confirmar con el dueño si acepta crédito bancario]",
+    "en": "[MISSING: confirm with the owner whether bank financing is accepted]"
+   },
+   "descuentoContado": {
+    "es": "[FALTA: confirmar si hay descuento por pago de contado]",
+    "en": "[MISSING: confirm whether there is a cash discount]"
+   },
+   "descripcion": {
+    "es": [
+     "Apartamento de 91 m², con 2 habitaciones y 2 baños, en el último piso del Condominio Río Oro, en Santa Ana.",
+     "Techos altos, cocina abierta, sala y comedor integrados, y un balcón con vista al bosque. Área de lavandería."
+    ],
+    "en": [
+     "A 91 m² apartment with 2 bedrooms and 2 bathrooms on the top floor of Condominio Río Oro, in Santa Ana.",
+     "High ceilings, open kitchen, integrated living and dining room, and a balcony facing the forest. Laundry area."
+    ]
+   },
+   "amenidades": {
+    "es": [
+     "Acceso controlado",
+     "Seguridad 24/7",
+     "Casa club",
+     "Piscina",
+     "Gimnasio",
+     "Área de juegos para niños"
+    ],
+    "en": [
+     "Controlled access",
+     "24/7 security",
+     "Clubhouse",
+     "Pool",
+     "Gym",
+     "Children's play area"
+    ]
+   },
+   "fotos": [
+    {
+     "src": "assets/riooro/riooro-06.jpg",
+     "thumb": "assets/riooro/t/riooro-06.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Sala, comedor y cocina abierta",
+      "en": "Living room, dining area and open kitchen"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-04.jpg",
+     "thumb": "assets/riooro/t/riooro-04.jpg",
+     "w": 1240,
+     "h": 805,
+     "alt": {
+      "es": "Sala con sofá y comedor al fondo",
+      "en": "Living room with sofa, dining table behind"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-05.jpg",
+     "thumb": "assets/riooro/t/riooro-05.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Comedor con espejo y lámparas colgantes",
+      "en": "Dining area with mirror and pendant lights"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-07.jpg",
+     "thumb": "assets/riooro/t/riooro-07.jpg",
+     "w": 941,
+     "h": 1288,
+     "alt": {
+      "es": "Comedor frente al balcón",
+      "en": "Dining area facing the balcony"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-10.jpg",
+     "thumb": "assets/riooro/t/riooro-10.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Sala con puertas al balcón",
+      "en": "Living room with doors to the balcony"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-08.jpg",
+     "thumb": "assets/riooro/t/riooro-08.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Cocina con barra y bancos",
+      "en": "Kitchen with bar and stools"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-09.jpg",
+     "thumb": "assets/riooro/t/riooro-09.jpg",
+     "w": 1372,
+     "h": 891,
+     "alt": {
+      "es": "Cocina con refrigeradora y cocina de acero",
+      "en": "Kitchen with steel fridge and stove"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-17.jpg",
+     "thumb": "assets/riooro/t/riooro-17.jpg",
+     "w": 1254,
+     "h": 533,
+     "alt": {
+      "es": "Balcón con vista al bosque",
+      "en": "Balcony with forest view"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-16.jpg",
+     "thumb": "assets/riooro/t/riooro-16.jpg",
+     "w": 706,
+     "h": 966,
+     "alt": {
+      "es": "Balcón con sillas",
+      "en": "Balcony with chairs"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-03.jpg",
+     "thumb": "assets/riooro/t/riooro-03.jpg",
+     "w": 1400,
+     "h": 787,
+     "alt": {
+      "es": "Copas de los árboles, vista al bosque",
+      "en": "Treetops, forest view"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-11.jpg",
+     "thumb": "assets/riooro/t/riooro-11.jpg",
+     "w": 1343,
+     "h": 896,
+     "alt": {
+      "es": "Habitación con cama y ventana",
+      "en": "Bedroom with bed and window"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-13.jpg",
+     "thumb": "assets/riooro/t/riooro-13.jpg",
+     "w": 1098,
+     "h": 713,
+     "alt": {
+      "es": "Habitación con cama",
+      "en": "Bedroom with bed"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-14.jpg",
+     "thumb": "assets/riooro/t/riooro-14.jpg",
+     "w": 1254,
+     "h": 533,
+     "alt": {
+      "es": "Otra vista de la habitación",
+      "en": "Another view of the bedroom"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-12.jpg",
+     "thumb": "assets/riooro/t/riooro-12.jpg",
+     "w": 706,
+     "h": 966,
+     "alt": {
+      "es": "Baño con lavamanos",
+      "en": "Bathroom with washbasin"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-15.jpg",
+     "thumb": "assets/riooro/t/riooro-15.jpg",
+     "w": 706,
+     "h": 966,
+     "alt": {
+      "es": "Baño con ducha",
+      "en": "Bathroom with shower"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-01.jpg",
+     "thumb": "assets/riooro/t/riooro-01.jpg",
+     "w": 1400,
+     "h": 787,
+     "alt": {
+      "es": "Piscina y casa club del condominio",
+      "en": "Condominium pool and clubhouse"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-02.jpg",
+     "thumb": "assets/riooro/t/riooro-02.jpg",
+     "w": 1400,
+     "h": 787,
+     "alt": {
+      "es": "Piscina y edificios del condominio",
+      "en": "Condominium pool and buildings"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-18.jpg",
+     "thumb": "assets/riooro/t/riooro-18.jpg",
+     "w": 1254,
+     "h": 533,
+     "alt": {
+      "es": "Sala de la casa club",
+      "en": "Clubhouse lounge"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-19.jpg",
+     "thumb": "assets/riooro/t/riooro-19.jpg",
+     "w": 1254,
+     "h": 533,
+     "alt": {
+      "es": "Gimnasio del condominio",
+      "en": "Condominium gym"
+     }
+    },
+    {
+     "src": "assets/riooro/riooro-20.jpg",
+     "thumb": "assets/riooro/t/riooro-20.jpg",
+     "w": 1098,
+     "h": 713,
+     "alt": {
+      "es": "Área de juegos para niños",
+      "en": "Children's play area"
+     }
+    }
+   ]
+  }
+ ]
+}
