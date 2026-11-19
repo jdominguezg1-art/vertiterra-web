@@ -758,14 +758,25 @@
   <!-- 5 · OWNERS: flow + reveal wipe -->
   <section id="propietarios" class="sc-section owners" data-sc-act="flow" aria-labelledby="ownTitle">
     <div class="sc-wrap owners__grid">
-      <figure class="owners__fig" data-sc-reveal="left" data-sc-reveal-at="0.08 0.4">
+      <figure class="owners__fig" data-sc-reveal="left" data-sc-reveal-at="0 0.15">
         <img src="assets/hero/piscina-nova.jpg" width="1282" height="720" loading="lazy" decoding="async" alt="Piscina del Condominio Nova Lofts, en Santa Ana" data-i18n-attr="alt:ownersAlt">
       </figure>
       <div class="owners__text">
         <h2 class="sc-display owners__title" id="ownTitle" data-i18n="ownTitle">¿Tienes un apartamento para vender?</h2>
         <p class="sc-lede" data-i18n="ownLede">Véndelo con nosotros.</p>
-        <p class="sc-body" data-i18n="ownBody">Aquí solo hay apartamentos, así que el tuyo no se pierde entre casas y lotes. Cuéntanos de él y te contactamos.</p>
+        <p class="sc-body" data-i18n="ownBody">Aquí solo hay apartamentos, así que el tuyo no se pierde entre casas y lotes. Esto es lo que hacemos con cada uno.</p>
 
+        <ol class="buy__steps owners__steps">
+          <li class="buy__step"><h3 data-i18n="ownS1t">Una ficha con fotos reales</h3><p data-i18n="ownS1">Armamos la ficha de tu apartamento con fotos reales: metros, habitaciones, baños, parqueos, piso y cuota de condominio.</p></li>
+          <li class="buy__step"><h3 data-i18n="ownS2t">Una guía de precios con anuncios parecidos</h3><p data-i18n="ownS2">Comparamos tu apartamento con los anuncios de Encuentra24 de la misma zona, tamaño y número de habitaciones. Usamos el precio por m² y la mediana. Te mostramos los 5 más parecidos. La repetimos cada dos semanas. El precio lo decides tú.</p><p class="owners__note" data-i18n="ownS2n">Son precios de anuncios, no de ventas cerradas.</p></li>
+          <li class="buy__step"><h3 data-i18n="ownS3t">Anuncio en Encuentra24</h3><p data-i18n="ownS3">Publicamos tu apartamento en Encuentra24, con hasta 20 fotos, sus datos, la ubicación en el mapa y nuestro contacto.</p></li>
+          <li class="buy__step"><h3 data-i18n="ownS4t">Instagram, Facebook y videos cortos</h3><p data-i18n="ownS4">Lo mostramos en @vertiterra con publicaciones y videos cortos hechos con las fotos reales.</p></li>
+          <li class="buy__step"><h3 data-i18n="ownS5t">Su propia página en este sitio</h3><p data-i18n="ownS5">Tu apartamento sale en el catálogo con un código, sus fotos, su precio y una página propia que se puede compartir.</p></li>
+          <li class="buy__step"><h3 data-i18n="ownS6t">Preguntas antes de la visita, y visitas con cita</h3><p data-i18n="ownS6">Antes de agendar, le preguntamos al comprador su presupuesto y si paga de contado o con crédito. Así evitamos visitas que no calzan con el presupuesto. Las visitas son siempre con cita, y si alguien vive ahí, las coordinamos contigo.</p><p data-i18n="ownS6b">También te preguntamos si aceptas crédito y si rebajas por pago de contado, para ponerlo en la ficha.</p></li>
+        </ol>
+
+
+        <p class="sc-body owners__lead" data-i18n="ownFormLead">Cuéntanos de tu apartamento y te contactamos.</p>
         <form class="owner-form" id="ownerForm" onsubmit="return false" aria-labelledby="ownTitle">
           <div class="owner-form__grid">
             <label class="field"><span data-i18n="oName">Tu nombre</span><input id="oName" type="text" autocomplete="name" required></label>
@@ -787,6 +798,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- 7 · ALTITUDE: flow + parallax bed -->
   <section class="altitude" data-sc-act="flow" aria-labelledby="altTitle">
