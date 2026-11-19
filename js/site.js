@@ -37,7 +37,7 @@
     data: null,
     guide: null,           // data/guia-primer-apartamento.json
     f: { zona: '', condo: '', piso: '', hab: 0, ban: 0, park: 0, pmin: 0, sort: 'asc' },
-    sent: { owner: false }   // the visitor opened WhatsApp from the owner form
+    sent: { owner: false, broker: false }   // the visitor opened WhatsApp from the owner / broker form
   };
   (function restore() {
     var b = parseInt(store.get('budget'), 10);
@@ -105,6 +105,7 @@
       return lines.join('\n');
     }
     if (kind === 'owner') return ownerMsg();
+    if (kind === 'broker') return brokerMsg();
     return T('msgGeneral');
   }
   function refreshWa() {
@@ -1156,7 +1157,7 @@
   function renderDone() {
     var reply = T('replyTime');
     var html = esc(T('sentWa')) + (reply ? ' ' + txt(reply) : '');
-    [['owner', '#ownerDone']].forEach(function (k) {
+    [['owner', '#ownerDone'], ['broker', '#brokerDone']].forEach(function (k) {
       var el = $(k[1]); if (!el) return;
       el.hidden = !state.sent[k[0]];
       if (state.sent[k[0]]) el.innerHTML = html;
@@ -1187,6 +1188,32 @@
     send.addEventListener('click', function (e) {
       if ($('#oName').value.trim()) { state.sent.owner = true; renderDone(); return; }
       e.preventDefault(); note.textContent = T('ownerNeedName'); $('#oName').focus();
+    });
+    upd();
+  }
+
+  /* -------------------------------------------------- broker form -- */
+  function brokerMsg() {
+    var v = function (id) { return $('#' + id).value.trim(); };
+    var lines = [T('msgBrokerHead')];
+    if (v('bName')) lines.push(T('msgName') + ': ' + v('bName'));
+    if (v('bZone')) lines.push(T('msgBrokerZone') + ': ' + v('bZone'));
+    if (v('bCount')) lines.push(T('msgBrokerCount') + ': ' + v('bCount'));
+    if (v('bWa')) lines.push(T('msgBrokerWa') + ': ' + v('bWa'));
+    return lines.join('\n');
+  }
+  function bindBroker() {
+    var send = $('#brokerSend'), note = $('#brokerNote');
+    if (!send) return;
+    var upd = function () {
+      var ok = $('#bName').value.trim().length > 0;
+      send.setAttribute('aria-disabled', String(!ok));
+      send.href = waLink(brokerMsg());
+    };
+    $$('#brokerForm input, #brokerForm select, #brokerForm textarea').forEach(function (i) { i.addEventListener('input', upd); i.addEventListener('change', upd); });
+    send.addEventListener('click', function (e) {
+      if ($('#bName').value.trim()) { state.sent.broker = true; renderDone(); return; }
+      e.preventDefault(); note.textContent = T('brokerNeedName'); $('#bName').focus();
     });
     upd();
   }
@@ -1269,7 +1296,7 @@
     buildHero();
     buildLine();
     registerEarth($('#fBudget'), $('.filters .earth-mini__svg'), $('#fBudgetOut'), 15, 12);
-    bindFilters(); bindOwner(); bindCalc();
+    bindFilters(); bindOwner(); bindBroker(); bindCalc();
     if (state.pago) setPago(state.pago);
     refreshWa();
 

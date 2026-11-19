@@ -99,7 +99,7 @@ body { background: var(--sc-canvas); }
 .bar__cta { min-height: 42px; }
 .bar__nav-cta { display: none; }
 
-/* six links fit on one line from about 1240px; below that they go in the menu */
+/* seven links (Corredores added 18-nov) still fit on one line from 1241px, checked at 1241/1280/1366/1440 in es and en; below that they go in the menu */
 @media (max-width: 1240px) {
   :root { --bar-h: 60px; }
   .bar__brand img { height: 40px; }
@@ -423,7 +423,7 @@ body { background: var(--sc-canvas); }
 .field--sort { grid-column: span 2; }
 .field { display: grid; gap: 6px; font-size: var(--sc-t-sm); }
 .field > span { font-weight: 600; color: var(--sc-ink); }
-.field select, .field input[type="text"], .field textarea {
+.field select, .field input[type="text"], .field input[type="tel"], .field textarea {
   width: 100%; min-height: 46px; padding: 10px 12px; border-radius: 10px;
   border: 1px solid #C9D2C9; background: #fff; color: var(--sc-ink); font-size: var(--sc-t-base);
 }
@@ -516,6 +516,43 @@ body { background: var(--sc-canvas); }
   .owners__fig img { aspect-ratio: 16 / 10; }
 }
 @media (max-width: 480px) { .owner-form__grid { grid-template-columns: 1fr; } }
+/* owners service steps: re-use .buy__steps / .buy__step, two columns in the half-width text column */
+/* one column at every width (18-nov review): two narrow columns gave very uneven rows */
+.owners__text > .owners__steps { margin-top: var(--sc-6); grid-template-columns: minmax(0, 1fr); gap: var(--sc-5); max-width: 60ch; }
+.owners__steps .buy__step p + p { margin-top: 2px; }
+.owners__note { font-style: italic; }
+.owners__h { margin: 0; font: 700 var(--sc-t-xl)/1.15 var(--sc-font-display); letter-spacing: -0.02em; }
+.owners__text > .owners__cost { margin-top: var(--sc-6); padding: 16px 18px; border-radius: var(--vt-r); background: var(--vt-paper-2); display: grid; gap: 6px; }
+.owners__cost p { margin: 0; }
+.owners__text > .owners__lead { margin-top: var(--sc-6); }
+.owners__text > .owners__lead + .owner-form { margin-top: var(--sc-4); }
+/* phones and tablets: the stacked photo shows in full, no wipe (the nav link lands here) */
+@media (max-width: 980px) { .owners__fig { clip-path: none !important; } }
+
+/* ------------------------------------------------------- 5b brokers */
+.brokers { background: var(--vt-paper-2); }
+.brokers__head { display: grid; gap: var(--sc-3); max-width: 46rem; }
+.brokers__head > * { margin: 0; }
+.brokers__kicker { font-size: var(--sc-t-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vt-earth); }
+.brokers__title { font-size: clamp(2.2rem, 1.4rem + 3vw, 4rem); }
+.brokers__lede { font-size: var(--sc-t-lg); line-height: 1.4; max-width: 40ch; }
+.brokers__cards { list-style: none; margin: var(--sc-7) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sc-4); }
+.brk { background: #fff; border-radius: 16px; padding: clamp(1.25rem, 2.4vw, 2rem); display: flex; flex-direction: column; gap: 10px; border-top: 3px solid var(--vt-forest); }
+.brk--later { border-top-color: var(--vt-line); }
+.brk__tag { margin: 0; font-size: var(--sc-t-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vt-earth); }
+.brk h3 { margin: 0; font: 700 var(--sc-t-lg)/1.2 var(--sc-font-display); letter-spacing: -0.01em; }
+.brk p:not(.brk__tag) { margin: 0; color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+.brokers__grid { margin-top: var(--sc-7); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+.brokers__notes { display: grid; gap: var(--sc-3); }
+.brokers__notes > * { margin: 0; }
+.brokers__easy { font: 600 var(--sc-t-xl)/1.25 var(--sc-font-display); letter-spacing: -0.01em; max-width: 30ch; }
+.brokers__form { margin-top: 0; padding: clamp(1.25rem, 2.6vw, 2rem); border-radius: 16px; background: #fff; box-shadow: var(--sc-e2); min-width: 0; }
+.brokers__form > .sc-body { margin: 0; }
+.brokers__data { max-width: 60ch; }
+/* a label that wraps (EN "How many properties...") must not push its input down or stretch the one beside it */
+.brokers__form .owner-form__grid { align-items: end; }
+@media (max-width: 980px) { .brokers__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .brokers__grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .brokers__cards { grid-template-columns: 1fr; } }
 
 /* ------------------------------------------------------------ 6 paths */
 .paths { background: var(--vt-forest); color: #F4F7F2; --sc-ink: #F4F7F2; --sc-ink-soft: #C9D8CF; }
